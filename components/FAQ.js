@@ -119,7 +119,7 @@ export default function FAQ() {
           <p className="text-sm text-blue-800 text-center font-sans">
             {language === 'ar' 
               ? 'لم تجد إجابة لسؤالك؟ اتصل بنا على الرقم 800-123-4567 أو أرسل بريداً إلكترونياً إلى support@social-portal.gov'
-              : 'Need more help? Contact us at 800-123-4567 or email support@social-portal.gov'
+              : 'Do you have an urgent case? Contact us at 800-123-4567 or email support@social-portal.gov'
             }
           </p>
         </div>

@@ -64,23 +64,21 @@ export default function Step1() {
 
           {/* National ID */}
           <div>
-            <label htmlFor="nationalId" className="form-label">
-              {t('nationalId')} *
-            </label>
-            <div className="relative">
-              <input
-                id="nationalId"
-                type="text"
-                {...register('nationalId', { required: t('required') })}
-                className="form-input pr-10"
-                aria-invalid={errors.nationalId ? 'true' : 'false'}
-              />
-              <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                <Tooltip content={t('nationalIdTooltip')} position="left">
-                  <HelpCircle size={16} className="text-gray-400 hover:text-blue-500 cursor-help transition-colors" />
-                </Tooltip>
-              </div>
+            <div className="flex items-center justify-between mb-1">
+              <label htmlFor="nationalId" className="form-label mb-0">
+                {t('nationalId')} *
+              </label>
+              <Tooltip content={t('nationalIdTooltip')} position="left">
+                <HelpCircle size={14} className="text-gray-400 hover:text-blue-500 cursor-help transition-colors" />
+              </Tooltip>
             </div>
+            <input
+              id="nationalId"
+              type="text"
+              {...register('nationalId', { required: t('required') })}
+              className="form-input"
+              aria-invalid={errors.nationalId ? 'true' : 'false'}
+            />
             {errors.nationalId && (
               <span className="text-red-500 text-sm mt-1" role="alert">{errors.nationalId.message}</span>
             )}
@@ -88,23 +86,21 @@ export default function Step1() {
 
           {/* Date of Birth */}
           <div>
-            <label htmlFor="dateOfBirth" className="form-label">
-              {t('dateOfBirth')} *
-            </label>
-            <div className="relative">
-              <input
-                id="dateOfBirth"
-                type="date"
-                {...register('dateOfBirth', { required: t('required') })}
-                className="form-input pr-10"
-                aria-invalid={errors.dateOfBirth ? 'true' : 'false'}
-              />
-              <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                <Tooltip content={t('dateOfBirthTooltip')} position="left">
-                  <HelpCircle size={16} className="text-gray-400 hover:text-blue-500 cursor-help transition-colors" />
-                </Tooltip>
-              </div>
+            <div className="flex items-center justify-between mb-1">
+              <label htmlFor="dateOfBirth" className="form-label mb-0">
+                {t('dateOfBirth')} *
+              </label>
+              <Tooltip content={t('dateOfBirthTooltip')} position="left">
+                <HelpCircle size={14} className="text-gray-400 hover:text-blue-500 cursor-help transition-colors" />
+              </Tooltip>
             </div>
+            <input
+              id="dateOfBirth"
+              type="date"
+              {...register('dateOfBirth', { required: t('required') })}
+              className="form-input"
+              aria-invalid={errors.dateOfBirth ? 'true' : 'false'}
+            />
             {errors.dateOfBirth && (
               <span className="text-red-500 text-sm mt-1" role="alert">{errors.dateOfBirth.message}</span>
             )}
@@ -112,12 +108,14 @@ export default function Step1() {
 
           {/* Gender */}
           <div>
-            <label className="form-label flex items-center gap-2">
-              {t('gender')} *
-              <Tooltip content={t('genderTooltip')} position="top">
+            <div className="flex items-center justify-between mb-2">
+              <label className="form-label mb-0">
+                {t('gender')} *
+              </label>
+              <Tooltip content={t('genderTooltip')} position="left">
                 <HelpCircle size={14} className="text-gray-400 hover:text-blue-500 cursor-help transition-colors" />
               </Tooltip>
-            </label>
+            </div>
             <div className="flex gap-3 mt-2">
               <label className="radio-label flex-1 group">
                 <input
@@ -155,23 +153,21 @@ export default function Step1() {
 
           {/* Address */}
           <div className="md:col-span-2">
-            <label htmlFor="address" className="form-label">
-              {t('address')} *
-            </label>
-            <div className="relative">
-              <input
-                id="address"
-                type="text"
-                {...register('address', { required: t('required') })}
-                className="form-input pr-10"
-                aria-invalid={errors.address ? 'true' : 'false'}
-              />
-              <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                <Tooltip content={t('addressTooltip')} position="left">
-                  <HelpCircle size={16} className="text-gray-400 hover:text-blue-500 cursor-help transition-colors" />
-                </Tooltip>
-              </div>
+            <div className="flex items-center justify-between mb-1">
+              <label htmlFor="address" className="form-label mb-0">
+                {t('address')} *
+              </label>
+              <Tooltip content={t('addressTooltip')} position="left">
+                <HelpCircle size={14} className="text-gray-400 hover:text-blue-500 cursor-help transition-colors" />
+              </Tooltip>
             </div>
+            <input
+              id="address"
+              type="text"
+              {...register('address', { required: t('required') })}
+              className="form-input"
+              aria-invalid={errors.address ? 'true' : 'false'}
+            />
             {errors.address && (
               <span className="text-red-500 text-sm mt-1" role="alert">{errors.address.message}</span>
             )}
@@ -230,29 +226,27 @@ export default function Step1() {
 
           {/* Phone */}
           <div>
-            <label htmlFor="phone" className="form-label">
-              {t('phone')} *
-            </label>
-            <div className="relative">
-              <input
-                id="phone"
-                type="tel"
-                {...register('phone', { 
-                  required: t('required'),
-                  pattern: {
-                    value: /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/,
-                    message: t('invalidPhone')
-                  }
-                })}
-                className="form-input pr-10"
-                aria-invalid={errors.phone ? 'true' : 'false'}
-              />
-              <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                <Tooltip content={t('phoneTooltip')} position="left">
-                  <HelpCircle size={16} className="text-gray-400 hover:text-blue-500 cursor-help transition-colors" />
-                </Tooltip>
-              </div>
+            <div className="flex items-center justify-between mb-1">
+              <label htmlFor="phone" className="form-label mb-0">
+                {t('phone')} *
+              </label>
+              <Tooltip content={t('phoneTooltip')} position="left">
+                <HelpCircle size={14} className="text-gray-400 hover:text-blue-500 cursor-help transition-colors" />
+              </Tooltip>
             </div>
+            <input
+              id="phone"
+              type="tel"
+              {...register('phone', { 
+                required: t('required'),
+                pattern: {
+                  value: /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/,
+                  message: t('invalidPhone')
+                }
+              })}
+              className="form-input"
+              aria-invalid={errors.phone ? 'true' : 'false'}
+            />
             {errors.phone && (
               <span className="text-red-500 text-sm mt-1" role="alert">{errors.phone.message}</span>
             )}
@@ -260,29 +254,27 @@ export default function Step1() {
 
           {/* Email */}
           <div>
-            <label htmlFor="email" className="form-label">
-              {t('email')} *
-            </label>
-            <div className="relative">
-              <input
-                id="email"
-                type="email"
-                {...register('email', { 
-                  required: t('required'),
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: t('invalidEmail')
-                  }
-                })}
-                className="form-input pr-10"
-                aria-invalid={errors.email ? 'true' : 'false'}
-              />
-              <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                <Tooltip content={t('emailTooltip')} position="left">
-                  <HelpCircle size={16} className="text-gray-400 hover:text-blue-500 cursor-help transition-colors" />
-                </Tooltip>
-              </div>
+            <div className="flex items-center justify-between mb-1">
+              <label htmlFor="email" className="form-label mb-0">
+                {t('email')} *
+              </label>
+              <Tooltip content={t('emailTooltip')} position="left">
+                <HelpCircle size={14} className="text-gray-400 hover:text-blue-500 cursor-help transition-colors" />
+              </Tooltip>
             </div>
+            <input
+              id="email"
+              type="email"
+              {...register('email', { 
+                required: t('required'),
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: t('invalidEmail')
+                }
+              })}
+              className="form-input"
+              aria-invalid={errors.email ? 'true' : 'false'}
+            />
             {errors.email && (
               <span className="text-red-500 text-sm mt-1" role="alert">{errors.email.message}</span>
             )}
