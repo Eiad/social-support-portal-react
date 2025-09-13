@@ -1,0 +1,262 @@
+'use client';
+
+import { useState } from 'react';
+import { useFormContext } from '@/contexts/FormContext';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useRouter } from 'next/navigation';
+import { Edit, Check, User, Home, FileText, Loader2 } from 'lucide-react';
+import { triggerFormCompletion } from '../CelebrationEffects';
+
+export default function Step4() {
+  const { formData, goToStep } = useFormContext();
+  const { t } = useLanguage();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionResult, setSubmissionResult] = useState(null);
+  const router = useRouter();
+
+  const handleSubmit = async () => {
+    setIsSubmitting(true);
+    try {
+      const response = await fetch('/api/submit-application', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const result = await response.json();
+      
+      if (response.ok) {
+        // Trigger celebration before showing success
+        triggerFormCompletion();
+        
+        // Redirect with URL params to maintain success state on refresh
+        const params = new URLSearchParams({
+          success: 'true',
+          applicationNumber: result.applicationNumber,
+          message: encodeURIComponent(result.message)
+        });
+        
+        router.push(`${window.location.pathname}?${params.toString()}`);
+      } else {
+        setSubmissionResult({
+          success: false,
+          message: result.error || t('error')
+        });
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      setSubmissionResult({
+        success: false,
+        message: t('error')
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (submissionResult) {
+    return (
+      <div className="fixed inset-0 bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4 z-50">
+        <div className="bg-white rounded-xl shadow-xl max-w-md w-full p-8 text-center">
+          {submissionResult.success ? (
+            <>
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Check size={32} className="text-green-600" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-800 mb-2">
+                {t('applicationSubmitted')}
+              </h2>
+              <p className="text-gray-600 mb-4">{submissionResult.message}</p>
+              <div className="bg-gray-50 rounded-lg p-4 mb-6">
+                <p className="text-sm text-gray-500 mb-1">{t('applicationNumber')}</p>
+                <p className="text-lg font-mono font-bold text-blue-600">
+                  {submissionResult.applicationNumber}
+                </p>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <FileText size={32} className="text-red-600" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-800 mb-2">
+                Submission Failed
+              </h2>
+              <p className="text-gray-600 mb-6">{submissionResult.message}</p>
+            </>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-full">
+      <div className="mb-6">
+        <h2 className="text-xl text-gray-900 mb-2">
+          {t('reviewAndSubmit')}
+        </h2>
+        <p className="text-sm text-gray-600">{t('reviewYourInfo')}</p>
+      </div>
+
+      <div className="space-y-6">
+        {/* Personal Information Section */}
+        <div className="bg-white border border-gray-200 rounded-lg p-6">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <User size={20} className="text-blue-600" />
+              <h3 className="text-lg font-medium text-gray-800">{t('personalInformation')}</h3>
+            </div>
+            <button
+              onClick={() => goToStep(1)}
+              className="flex items-center gap-1 text-blue-600 hover:text-blue-700 text-sm"
+            >
+              <Edit size={14} />
+              {t('edit')}
+            </button>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+            <div>
+              <span className="text-gray-500">{t('name')}:</span>
+              <span className="ml-2 text-gray-900">{formData.name || '-'}</span>
+            </div>
+            <div>
+              <span className="text-gray-500">{t('nationalId')}:</span>
+              <span className="ml-2 text-gray-900">{formData.nationalId || '-'}</span>
+            </div>
+            <div>
+              <span className="text-gray-500">{t('dateOfBirth')}:</span>
+              <span className="ml-2 text-gray-900">{formData.dateOfBirth || '-'}</span>
+            </div>
+            <div>
+              <span className="text-gray-500">{t('gender')}:</span>
+              <span className="ml-2 text-gray-900">{formData.gender ? t(formData.gender) : '-'}</span>
+            </div>
+            <div className="md:col-span-2">
+              <span className="text-gray-500">{t('address')}:</span>
+              <span className="ml-2 text-gray-900">{formData.address || '-'}</span>
+            </div>
+            <div>
+              <span className="text-gray-500">{t('city')}:</span>
+              <span className="ml-2 text-gray-900">{formData.city || '-'}</span>
+            </div>
+            <div>
+              <span className="text-gray-500">{t('phone')}:</span>
+              <span className="ml-2 text-gray-900">{formData.phone || '-'}</span>
+            </div>
+            <div>
+              <span className="text-gray-500">{t('email')}:</span>
+              <span className="ml-2 text-gray-900">{formData.email || '-'}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Family & Financial Information Section */}
+        <div className="bg-white border border-gray-200 rounded-lg p-6">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <Home size={20} className="text-blue-600" />
+              <h3 className="text-lg font-medium text-gray-800">{t('familyFinancialInfo')}</h3>
+            </div>
+            <button
+              onClick={() => goToStep(2)}
+              className="flex items-center gap-1 text-blue-600 hover:text-blue-700 text-sm"
+            >
+              <Edit size={14} />
+              {t('edit')}
+            </button>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+            <div>
+              <span className="text-gray-500">{t('maritalStatus')}:</span>
+              <span className="ml-2 text-gray-900">{formData.maritalStatus ? t(formData.maritalStatus) : '-'}</span>
+            </div>
+            <div>
+              <span className="text-gray-500">{t('dependents')}:</span>
+              <span className="ml-2 text-gray-900">{formData.dependents || '-'}</span>
+            </div>
+            <div>
+              <span className="text-gray-500">{t('employmentStatus')}:</span>
+              <span className="ml-2 text-gray-900">{formData.employmentStatus ? t(formData.employmentStatus) : '-'}</span>
+            </div>
+            <div>
+              <span className="text-gray-500">{t('monthlyIncome')}:</span>
+              <span className="ml-2 text-gray-900">{formData.monthlyIncome ? `$${formData.monthlyIncome}` : '-'}</span>
+            </div>
+            <div>
+              <span className="text-gray-500">{t('housingStatus')}:</span>
+              <span className="ml-2 text-gray-900">{formData.housingStatus ? t(formData.housingStatus) : '-'}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Situation Descriptions Section */}
+        <div className="bg-white border border-gray-200 rounded-lg p-6">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <FileText size={20} className="text-blue-600" />
+              <h3 className="text-lg font-medium text-gray-800">{t('situationDescriptions')}</h3>
+            </div>
+            <button
+              onClick={() => goToStep(3)}
+              className="flex items-center gap-1 text-blue-600 hover:text-blue-700 text-sm"
+            >
+              <Edit size={14} />
+              {t('edit')}
+            </button>
+          </div>
+          
+          <div className="space-y-4 text-sm">
+            <div>
+              <span className="text-gray-500 font-medium">{t('currentSituation')}:</span>
+              <p className="mt-1 text-gray-900 leading-relaxed">{formData.currentSituation || '-'}</p>
+            </div>
+            <div>
+              <span className="text-gray-500 font-medium">{t('employmentCircumstances')}:</span>
+              <p className="mt-1 text-gray-900 leading-relaxed">{formData.employmentCircumstances || '-'}</p>
+            </div>
+            <div>
+              <span className="text-gray-500 font-medium">{t('reasonForApplying')}:</span>
+              <p className="mt-1 text-gray-900 leading-relaxed">{formData.reasonForApplying || '-'}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Submit Section */}
+      <div className="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-6">
+        <h3 className="text-lg font-medium text-gray-800 mb-2">{t('readyToSubmit')}</h3>
+        <p className="text-sm text-gray-600 mb-4">{t('submitWarning')}</p>
+        
+        <div className="flex justify-between items-center">
+          <button
+            type="button"
+            onClick={() => goToStep(3)}
+            className="px-6 py-3 bg-gray-300 text-gray-700 font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors duration-200"
+          >
+            {t('previous')}
+          </button>
+          
+          <button
+            onClick={handleSubmit}
+            disabled={isSubmitting}
+            className="px-8 py-3 bg-green-600 text-white font-medium rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+          >
+            {isSubmitting ? (
+              <>
+                <Loader2 size={18} className="animate-spin" />
+                {t('submitting')}
+              </>
+            ) : (
+              t('submitApplication')
+            )}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}

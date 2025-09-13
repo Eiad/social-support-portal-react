@@ -64,7 +64,7 @@ export const FormProvider = ({ children }) => {
   };
 
   const nextStep = () => {
-    const newStep = Math.min(currentStep + 1, 3);
+    const newStep = Math.min(currentStep + 1, 4);
     if (newStep !== currentStep) {
       setIsTransitioning(true);
       setTransitionDirection('forward');
@@ -88,6 +88,21 @@ export const FormProvider = ({ children }) => {
       // Add a small delay to start the transition
       setTimeout(() => {
         setCurrentStep(newStep);
+        setTimeout(() => {
+          setIsTransitioning(false);
+        }, 100);
+      }, 200);
+    }
+  };
+
+  const goToStep = (step) => {
+    const targetStep = Math.max(1, Math.min(step, 4));
+    if (targetStep !== currentStep) {
+      setIsTransitioning(true);
+      setTransitionDirection(targetStep > currentStep ? 'forward' : 'backward');
+      
+      setTimeout(() => {
+        setCurrentStep(targetStep);
         setTimeout(() => {
           setIsTransitioning(false);
         }, 100);
@@ -130,6 +145,7 @@ export const FormProvider = ({ children }) => {
     updateFormData,
     nextStep,
     prevStep,
+    goToStep,
     resetForm
   };
 

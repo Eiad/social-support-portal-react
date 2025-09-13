@@ -87,6 +87,13 @@ const translations = {
     employmentCircumstancesPlaceholder: 'Explain your employment situation and any obstacles...',
     reasonForApplying: 'Reason for Applying',
     reasonForApplyingPlaceholder: 'Explain why you are applying for social support...',
+    
+    // Step 4
+    reviewAndSubmit: 'Review and Submit',
+    reviewYourInfo: 'Please review your information carefully before submitting',
+    readyToSubmit: 'Ready to Submit?',
+    submitWarning: 'Please ensure all information is correct as changes cannot be made after submission.',
+    submitApplication: 'Submit Application',
   },
   ar: {
     applicationTitle: 'طلب الدعم الاجتماعي',
@@ -162,6 +169,13 @@ const translations = {
     employmentCircumstancesPlaceholder: 'اشرح وضعك الوظيفي وأي عقبات تواجهها...',
     reasonForApplying: 'سبب التقديم',
     reasonForApplyingPlaceholder: 'اشرح سبب تقديمك للحصول على الدعم الاجتماعي...',
+    
+    // Step 4
+    reviewAndSubmit: 'مراجعة وإرسال',
+    reviewYourInfo: 'يرجى مراجعة معلوماتك بعناية قبل الإرسال',
+    readyToSubmit: 'جاهز للإرسال؟',
+    submitWarning: 'يرجى التأكد من صحة جميع المعلومات حيث لا يمكن إجراء تغييرات بعد الإرسال.',
+    submitApplication: 'إرسال الطلب',
   }
 };
 

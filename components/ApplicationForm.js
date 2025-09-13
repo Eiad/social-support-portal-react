@@ -1,15 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useFormContext } from '@/contexts/FormContext';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useSearchParams, useRouter } from 'next/navigation';
 import ModernProgressBar from './ModernProgressBar';
 import Step1 from './FormSteps/Step1';
 import Step2 from './FormSteps/Step2';
 import Step3 from './FormSteps/Step3';
+import Step4 from './FormSteps/Step4';
 import FAQ from './FAQ';
 import Footer from './Footer';
-import { triggerFormCompletion } from './CelebrationEffects';
 import { StepSkeleton, ProgressSkeleton } from './Skeleton';
 import { FileText, CheckCircle, XCircle } from 'lucide-react';
 
@@ -17,53 +18,28 @@ export default function ApplicationForm() {
   const { currentStep, resetForm, isTransitioning, transitionDirection } = useFormContext();
   const { t } = useLanguage();
   const [submissionResult, setSubmissionResult] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const searchParams = useSearchParams();
+  const router = useRouter();
 
-  const handleSubmit = async (formData) => {
-    setIsLoading(true);
-    try {
-      const response = await fetch('/api/submit-application', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-      });
-
-      const result = await response.json();
+  // Check for success parameter on mount
+  useEffect(() => {
+    if (searchParams.get('success') === 'true') {
+      const applicationNumber = searchParams.get('applicationNumber');
+      const message = searchParams.get('message') || 'Your application has been successfully submitted.';
       
-      if (response.ok) {
-        // Trigger celebration before showing success
-        triggerFormCompletion();
-        
-        setSubmissionResult({
-          success: true,
-          applicationNumber: result.applicationNumber,
-          message: result.message
-        });
-        // Clear form data after successful submission
-        resetForm();
-      } else {
-        setSubmissionResult({
-          success: false,
-          message: result.error || t('error')
-        });
-      }
-    } catch (error) {
-      console.error('Submission error:', error);
       setSubmissionResult({
-        success: false,
-        message: t('error')
+        success: true,
+        applicationNumber: applicationNumber || 'APP-' + Date.now(),
+        message: decodeURIComponent(message)
       });
-    } finally {
-      setIsLoading(false);
     }
-  };
+  }, [searchParams]);
+
 
   // Show success/error screen after submission
   if (submissionResult) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+      <div className="fixed inset-0 bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4 z-50">
         <div className="bg-white rounded-xl shadow-xl max-w-md w-full p-8 text-center">
           {submissionResult.success ? (
             <>
@@ -84,6 +60,8 @@ export default function ApplicationForm() {
                 onClick={() => {
                   setSubmissionResult(null);
                   resetForm();
+                  // Clear URL params and redirect to clean URL
+                  router.push(window.location.pathname);
                 }}
                 className="px-6 py-3 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200"
               >
@@ -131,7 +109,7 @@ export default function ApplicationForm() {
           {isTransitioning ? (
             <ProgressSkeleton />
           ) : (
-            <ModernProgressBar currentStep={currentStep} totalSteps={3} />
+            <ModernProgressBar currentStep={currentStep} totalSteps={4} />
           )}
         </div>
         
@@ -146,7 +124,8 @@ export default function ApplicationForm() {
               }`}>
                 {currentStep === 1 && <Step1 />}
                 {currentStep === 2 && <Step2 />}
-                {currentStep === 3 && <Step3 onSubmit={handleSubmit} />}
+                {currentStep === 3 && <Step3 />}
+                {currentStep === 4 && <Step4 />}
               </div>
             )}
           </div>

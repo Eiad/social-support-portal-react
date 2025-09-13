@@ -7,10 +7,9 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import AIAssistModal from '../AIAssistModal';
 import { Wand2, Loader2 } from 'lucide-react';
 
-export default function Step3({ onSubmit: handleFormSubmit }) {
-  const { formData, updateFormData, prevStep } = useFormContext();
+export default function Step3() {
+  const { formData, updateFormData, prevStep, nextStep } = useFormContext();
   const { t, language } = useLanguage();
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [showAIModal, setShowAIModal] = useState(false);
   const [currentField, setCurrentField] = useState('');
   const [aiSuggestion, setAiSuggestion] = useState('');
@@ -32,11 +31,9 @@ export default function Step3({ onSubmit: handleFormSubmit }) {
 
   const watchedValues = watch();
 
-  const onSubmit = async (data) => {
+  const onSubmit = (data) => {
     updateFormData(data);
-    setIsSubmitting(true);
-    await handleFormSubmit({ ...formData, ...data });
-    setIsSubmitting(false);
+    nextStep();
   };
 
   const generateAISuggestion = async (fieldName, userText) => {
@@ -287,17 +284,15 @@ Write a comprehensive professional statement explaining why they deserve social 
           <button
             type="button"
             onClick={prevStep}
-            disabled={isSubmitting}
             className="px-6 py-3 bg-gray-300 text-gray-700 font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {t('previous')}
           </button>
           <button
             type="submit"
-            disabled={isSubmitting}
-            className="px-6 py-3 bg-green-600 text-white font-medium rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-6 py-3 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
           >
-            {isSubmitting ? t('submitting') : t('submit')}
+            {t('next')}
           </button>
         </div>
       </form>

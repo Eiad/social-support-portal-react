@@ -26,7 +26,8 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
   const steps = [
     { id: 1, name: t('personalInformation'), icon: User },
     { id: 2, name: t('familyFinancialInfo'), icon: DollarSign },
-    { id: 3, name: t('situationDescriptions'), icon: FileText }
+    { id: 3, name: t('situationDescriptions'), icon: FileText },
+    { id: 4, name: t('reviewAndSubmit'), icon: FileText }
   ];
 
   const getStepStatus = (stepId) => {
