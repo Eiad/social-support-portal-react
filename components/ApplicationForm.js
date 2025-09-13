@@ -120,10 +120,10 @@ export default function ApplicationForm() {
           <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-600 rounded-full mb-4">
             <FileText size={24} className="text-white" />
           </div>
-          <h1 className="text-2xl font-normal text-gray-900 mb-2 font-sans">
+          <h1 className="text-2xl text-gray-900 mb-2">
             {t('applicationTitle')}
           </h1>
-          <p className="text-sm text-gray-600 font-sans">{t('completeInSteps')}</p>
+          <p className="text-sm text-gray-600">{t('completeInSteps')}</p>
         </div>
 
         {/* Compact Progress */}

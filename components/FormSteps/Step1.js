@@ -38,10 +38,10 @@ export default function Step1() {
     <div className="w-full">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div className="mb-6">
-          <h2 className="text-xl font-sans font-normal text-gray-900 mb-2">
+          <h2 className="text-xl text-gray-900 mb-2">
             {t('personalInformation')}
           </h2>
-          <p className="text-sm text-gray-600 font-sans">{t('provideBasicInfo')}</p>
+          <p className="text-sm text-gray-600">{t('provideBasicInfo')}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

@@ -74,10 +74,10 @@ export default function FAQ() {
         <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full mb-4">
           <HelpCircle size={24} className="text-blue-600" />
         </div>
-        <h2 className="text-2xl font-normal text-gray-900 mb-2 font-sans">
+        <h2 className="text-2xl text-gray-900 mb-2">
           {language === 'ar' ? 'الأسئلة الشائعة' : 'Frequently Asked Questions'}
         </h2>
-        <p className="text-sm text-gray-600 font-sans">
+        <p className="text-sm text-gray-600">
           {language === 'ar' 
             ? 'إجابات على الأسئلة الأكثر شيوعاً حول برامج الدعم الاجتماعي'
             : 'Answers to common questions about social support programs'
@@ -92,7 +92,7 @@ export default function FAQ() {
               className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors duration-200 focus:outline-none"
               onClick={() => toggleItem(index)}
             >
-              <h3 className="text-sm font-medium text-gray-800 font-sans pr-4">
+              <h3 className="text-sm font-medium text-gray-800 pr-4">
                 {faq.question}
               </h3>
               <div className="flex-shrink-0">
@@ -106,7 +106,7 @@ export default function FAQ() {
             
             {openItems[index] && (
               <div className="px-6 pb-4 animate-slideUp">
-                <p className="text-sm text-gray-600 leading-relaxed font-sans">
+                <p className="text-sm text-gray-600 leading-relaxed">
                   {faq.answer}
                 </p>
               </div>
@@ -116,7 +116,7 @@ export default function FAQ() {
       </div>
 
         <div className="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-          <p className="text-sm text-blue-800 text-center font-sans">
+          <p className="text-sm text-blue-800 text-center">
             {language === 'ar' 
               ? 'لم تجد إجابة لسؤالك؟ اتصل بنا على الرقم 800-123-4567 أو أرسل بريداً إلكترونياً إلى support@social-portal.gov'
               : 'Do you have an urgent case? Contact us at 800-123-4567 or email support@social-portal.gov'

@@ -40,10 +40,10 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
       {/* Compact Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h2 className="text-lg font-sans text-gray-800 mb-1">
+          <h2 className="text-lg text-gray-800 mb-1">
             {t('step')} {currentStep} {t('of')} {totalSteps}
           </h2>
-          <p className="text-sm text-gray-600 font-sans">
+          <p className="text-sm text-gray-600">
             {steps.find(s => s.id === currentStep)?.name}
           </p>
         </div>
@@ -74,7 +74,7 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
                 >
                   {/* Circle - Google Style */}
                   <div className={`
-                    w-8 h-8 rounded-full flex items-center justify-center text-sm font-sans
+                    w-8 h-8 rounded-full flex items-center justify-center text-sm
                     transition-all duration-300
                     ${status === 'completed' 
                       ? 'bg-blue-600 text-white' 
@@ -98,7 +98,7 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
                     ${status === 'current' ? 'text-blue-600 font-medium' : 'text-gray-600'}
                     ${hoveredStep === step.id ? 'text-blue-500 font-medium' : ''}
                   `}>
-                    <div className="text-xs leading-tight font-sans">{step.name}</div>
+                    <div className="text-xs leading-tight">{step.name}</div>
                   </div>
                 </div>
               );

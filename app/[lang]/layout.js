@@ -1,16 +1,7 @@
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import StructuredData from "./components/StructuredData";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import "@fontsource/inter";
+import "@fontsource/noto-kufi-arabic";
+import "../globals.css";
+import StructuredData from "../components/StructuredData";
 
 export const viewport = {
   width: 'device-width',
@@ -86,12 +77,13 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
+export default async function LanguageLayout({ children, params }) {
+  const { lang } = await params;
+  const isArabic = lang === 'ar';
+  
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang={lang} dir={isArabic ? 'rtl' : 'ltr'}>
+      <body className={`antialiased ${isArabic ? 'font-arabic' : 'font-english'}`}>
         <StructuredData />
         {children}
       </body>

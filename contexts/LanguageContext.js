@@ -165,34 +165,19 @@ const translations = {
   }
 };
 
-export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState('en');
-
-  useEffect(() => {
-    const savedLanguage = localStorage.getItem('language');
-    if (savedLanguage) {
-      setLanguage(savedLanguage);
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('language', language);
-    document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
-    document.documentElement.lang = language;
-  }, [language]);
+export const LanguageProvider = ({ children, lang }) => {
+  const language = lang || 'en';
 
   const t = (key) => {
+    if (!translations[language]) {
+      console.warn(`Language ${language} not found, falling back to 'en'`);
+      return translations['en'][key] || key;
+    }
     return translations[language][key] || key;
-  };
-
-  const toggleLanguage = () => {
-    setLanguage(prev => prev === 'en' ? 'ar' : 'en');
   };
 
   const value = {
     language,
-    setLanguage,
-    toggleLanguage,
     t,
     isRTL: language === 'ar'
   };
