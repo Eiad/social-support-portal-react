@@ -1,0 +1,74 @@
+{
+  "name": "Social Support Portal",
+  "short_name": "Support Portal",
+  "description": "Government social support and assistance application portal",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en-US",
+  "categories": ["government", "social", "utilities"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png", 
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Social Support Portal Application Form"
+    },
+    {
+      "src": "/screenshot-narrow.png", 
+      "sizes": "640x1136",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Mobile Application View"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Start Application",
+      "short_name": "Apply",
+      "description": "Start a new social support application",
+      "url": "/?source=pwa-shortcut",
+      "icons": [
+        {
+          "src": "/shortcut-apply.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Check Status", 
+      "short_name": "Status",
+      "description": "Check your application status",
+      "url": "/status?source=pwa-shortcut",
+      "icons": [
+        {
+          "src": "/shortcut-status.png", 
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}

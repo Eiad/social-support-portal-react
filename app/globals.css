@@ -1,0 +1,281 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+body[dir="rtl"] {
+  font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Arial', sans-serif;
+}
+
+/* Remove font-sans class - use inline styles instead */
+
+/* Custom Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  40%, 43% {
+    transform: translate3d(0, -8px, 0);
+  }
+  70% {
+    transform: translate3d(0, -4px, 0);
+  }
+  90% {
+    transform: translate3d(0, -2px, 0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.5s ease-out;
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-slideOutLeft {
+  animation: slideOutLeft 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-slideOutRight {
+  animation: slideOutRight 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-bounce {
+  animation: bounce 0.6s ease-in-out;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.4s ease-out;
+}
+
+/* Step transition container */
+.step-container {
+  position: relative;
+  min-height: 500px;
+  overflow: hidden;
+}
+
+.step-content {
+  width: 100%;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 0px,
+    #e0e0e0 40px,
+    #f0f0f0 80px
+  );
+  background-size: 200px;
+}
+
+/* Google-style Form Enhancements */
+.form-input {
+  @apply w-full px-3 py-3 border border-gray-300 rounded font-sans text-sm focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all duration-200 hover:border-gray-400;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.form-input:focus {
+  box-shadow: 0 0 0 1px #1976d2;
+}
+
+.form-label {
+  @apply block text-sm font-medium text-gray-700 mb-1 font-sans;
+}
+
+/* Google-style Buttons */
+.btn-primary {
+  @apply px-6 py-2 bg-blue-600 text-white font-medium rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-blue-200 transition-colors duration-200 font-sans text-sm;
+}
+
+.btn-secondary {
+  @apply px-6 py-2 border border-gray-300 text-gray-700 font-medium rounded hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-blue-200 transition-colors duration-200 font-sans text-sm;
+}
+
+.btn-success {
+  @apply px-6 py-2 bg-green-600 text-white font-medium rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-blue-200 transition-colors duration-200 font-sans text-sm;
+}
+
+/* Modern Radio Button Styles */
+.radio-modern {
+  @apply appearance-none w-5 h-5 rounded-full border-2 border-gray-400 cursor-pointer transition-all duration-200 relative;
+}
+
+.radio-modern:hover {
+  @apply border-blue-500;
+}
+
+.radio-modern:checked {
+  @apply border-blue-600 bg-blue-600;
+}
+
+.radio-modern:checked::after {
+  content: '';
+  @apply absolute inset-0 m-auto w-2 h-2 rounded-full bg-white;
+}
+
+.radio-modern:focus {
+  @apply outline-none ring-2 ring-blue-200 ring-offset-2;
+}
+
+/* Pink radio button for female */
+.radio-modern-female:hover {
+  @apply border-pink-500;
+}
+
+.radio-modern-female:checked {
+  @apply border-pink-600 bg-pink-600;
+}
+
+.radio-modern-female:focus {
+  @apply outline-none ring-2 ring-pink-200 ring-offset-2;
+}
+
+.radio-label {
+  @apply flex items-center gap-3 px-4 py-3 rounded-lg border border-gray-200 cursor-pointer transition-all duration-200;
+}
+
+.radio-label:hover:has(.radio-modern:not(.radio-modern-female)) {
+  @apply border-blue-400 bg-blue-50;
+}
+
+.radio-label:hover:has(.radio-modern-female) {
+  @apply border-pink-400 bg-pink-50;
+}
+
+.radio-label:has(.radio-modern:checked) {
+  @apply border-blue-500 bg-blue-50;
+}
+
+.radio-label:has(.radio-modern-female:checked) {
+  @apply border-pink-500 bg-pink-50;
+}
+
+.radio-label.group:has(.radio-modern:checked) .bg-blue-100 {
+  @apply bg-blue-200;
+}
+
+.radio-label.group:has(.radio-modern-female:checked) .bg-pink-100 {
+  @apply bg-pink-200;
+}

@@ -1,0 +1,26 @@
+# Social Support Portal - Robots.txt
+
+User-agent: *
+Allow: /
+
+# Specific crawling preferences
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+# Block sensitive areas (if any)
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /private/
+
+# Sitemap location
+Sitemap: https://social-support-portal.gov/sitemap.xml
