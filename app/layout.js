@@ -12,6 +12,13 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: '#2563eb',
+}
+
 export const metadata = {
   title: "Social Support Portal - Government Assistance Application",
   description: "Apply for government social support and financial assistance. Easy online application for welfare benefits, housing support, and emergency aid programs.",
@@ -30,8 +37,6 @@ export const metadata = {
       'max-snippet': -1,
     },
   },
-  viewport: "width=device-width, initial-scale=1, maximum-scale=5",
-  themeColor: "#2563eb",
   manifest: "/manifest.json",
   alternates: {
     canonical: "https://social-support-portal.gov",
