@@ -154,7 +154,7 @@ export default function Step2() {
         </button>
         <button
           type="submit"
-          className="px-6 py-3 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
+          className="px-6 py-3 bg-gradient-to-r from-gray-800 to-black text-white font-medium rounded-lg hover:from-gray-700 hover:to-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all duration-200"
         >
           {t('next')}
         </button>

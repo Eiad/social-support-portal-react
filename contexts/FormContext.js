@@ -69,6 +69,9 @@ export const FormProvider = ({ children }) => {
       setIsTransitioning(true);
       setTransitionDirection('forward');
       
+      // Scroll to top smoothly
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      
       // Add a small delay to start the transition
       setTimeout(() => {
         setCurrentStep(newStep);
@@ -85,6 +88,9 @@ export const FormProvider = ({ children }) => {
       setIsTransitioning(true);
       setTransitionDirection('backward');
       
+      // Scroll to top smoothly
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      
       // Add a small delay to start the transition
       setTimeout(() => {
         setCurrentStep(newStep);
@@ -100,6 +106,9 @@ export const FormProvider = ({ children }) => {
     if (targetStep !== currentStep) {
       setIsTransitioning(true);
       setTransitionDirection(targetStep > currentStep ? 'forward' : 'backward');
+      
+      // Scroll to top smoothly
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       
       setTimeout(() => {
         setCurrentStep(targetStep);

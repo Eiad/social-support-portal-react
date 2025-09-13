@@ -56,9 +56,9 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
           {/* Background Line */}
           <div className="absolute top-6 left-0 w-full h-0.5 bg-gray-200" />
           
-          {/* Progress Line */}
+          {/* Progress Line with Dark Theme */}
           <div 
-            className="absolute top-6 left-0 h-0.5 bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-1000 ease-out"
+            className="absolute top-6 left-0 h-0.5 bg-gradient-to-r from-gray-700 to-black transition-all duration-1000 ease-out"
             style={{ width: `${((currentStep - 1) / (totalSteps - 1)) * 100}%` }}
           />
           
@@ -78,9 +78,9 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
                     w-8 h-8 rounded-full flex items-center justify-center text-sm
                     transition-all duration-300
                     ${status === 'completed' 
-                      ? 'bg-blue-600 text-white' 
+                      ? 'bg-gradient-to-r from-gray-700 to-black text-white' 
                       : status === 'current'
-                      ? 'bg-blue-600 text-white' 
+                      ? 'bg-gradient-to-r from-gray-700 to-black text-white shadow-lg' 
                       : 'bg-gray-300 text-gray-600'
                     }
                   `}>
@@ -96,8 +96,8 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
                   {/* Label - More Compact */}
                   <div className={`
                     mt-2 text-center max-w-24 transition-all duration-200
-                    ${status === 'current' ? 'text-blue-600 font-medium' : 'text-gray-600'}
-                    ${hoveredStep === step.id ? 'text-blue-500 font-medium' : ''}
+                    ${status === 'current' ? 'text-gray-800 font-semibold' : 'text-gray-600'}
+                    ${hoveredStep === step.id ? 'text-gray-700 font-medium' : ''}
                   `}>
                     <div className="text-xs leading-tight">{step.name}</div>
                   </div>

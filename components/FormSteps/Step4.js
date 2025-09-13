@@ -28,17 +28,16 @@ export default function Step4() {
       const result = await response.json();
       
       if (response.ok) {
-        // Trigger celebration before showing success
-        triggerFormCompletion();
-        
-        // Redirect with URL params to maintain success state on refresh
-        const params = new URLSearchParams({
-          success: 'true',
-          applicationNumber: result.applicationNumber,
-          message: encodeURIComponent(result.message)
-        });
-        
-        router.push(`${window.location.pathname}?${params.toString()}`);
+        // Add delay for smooth transition effect, then redirect
+        setTimeout(() => {
+          const params = new URLSearchParams({
+            success: 'true',
+            applicationNumber: result.applicationNumber,
+            message: encodeURIComponent(result.message)
+          });
+          
+          router.push(`${window.location.pathname}?${params.toString()}`);
+        }, 500);
       } else {
         setSubmissionResult({
           success: false,
@@ -58,33 +57,44 @@ export default function Step4() {
 
   if (submissionResult) {
     return (
-      <div className="fixed inset-0 bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4 z-50">
-        <div className="bg-white rounded-xl shadow-xl max-w-md w-full p-8 text-center">
+      <div className="fixed inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center p-4 z-50 animate-fadeIn">
+        <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-10 text-center transform animate-scaleIn">
           {submissionResult.success ? (
             <>
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Check size={32} className="text-green-600" />
+              {/* Enhanced success icon with animation */}
+              <div className="relative mb-6">
+                <div className="w-20 h-20 bg-gradient-to-r from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto animate-bounce">
+                  <Check size={40} className="text-white" />
+                </div>
+                <div className="absolute inset-0 w-20 h-20 bg-green-200 rounded-full mx-auto animate-ping opacity-20"></div>
               </div>
-              <h2 className="text-2xl font-bold text-gray-800 mb-2">
+              
+              <h2 className="text-xl font-semibold text-gray-900 mb-2">
                 {t('applicationSubmitted')}
               </h2>
-              <p className="text-gray-600 mb-4">{submissionResult.message}</p>
-              <div className="bg-gray-50 rounded-lg p-4 mb-6">
-                <p className="text-sm text-gray-500 mb-1">{t('applicationNumber')}</p>
-                <p className="text-lg font-mono font-bold text-blue-600">
-                  {submissionResult.applicationNumber}
-                </p>
+              <p className="text-gray-600 mb-4 text-sm leading-relaxed">{submissionResult.message}</p>
+              
+              {/* Enhanced application number display */}
+              <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg p-4 mb-6 border border-gray-200">
+                <p className="text-xs font-medium text-gray-500 mb-1">{t('applicationNumber')}</p>
+                <div className="bg-white rounded-lg p-3 border-2 border-dashed border-gray-300">
+                  <p className="text-lg font-mono font-bold text-gray-900 tracking-wide">
+                    {submissionResult.applicationNumber}
+                  </p>
+                </div>
               </div>
             </>
           ) : (
             <>
-              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <FileText size={32} className="text-red-600" />
+              <div className="relative mb-6">
+                <div className="w-20 h-20 bg-gradient-to-r from-red-400 to-red-600 rounded-full flex items-center justify-center mx-auto">
+                  <FileText size={40} className="text-white" />
+                </div>
               </div>
-              <h2 className="text-2xl font-bold text-gray-800 mb-2">
+              <h2 className="text-xl font-semibold text-gray-900 mb-2">
                 Submission Failed
               </h2>
-              <p className="text-gray-600 mb-6">{submissionResult.message}</p>
+              <p className="text-gray-600 mb-4 text-sm leading-relaxed">{submissionResult.message}</p>
             </>
           )}
         </div>
@@ -228,7 +238,7 @@ export default function Step4() {
       </div>
 
       {/* Submit Section */}
-      <div className="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-6">
+      <div className="mt-8 bg-gray-50 border border-gray-200 rounded-lg p-6">
         <h3 className="text-lg font-medium text-gray-800 mb-2">{t('readyToSubmit')}</h3>
         <p className="text-sm text-gray-600 mb-4">{t('submitWarning')}</p>
         
@@ -244,7 +254,7 @@ export default function Step4() {
           <button
             onClick={handleSubmit}
             disabled={isSubmitting}
-            className="px-8 py-3 bg-green-600 text-white font-medium rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            className="px-8 py-3 bg-gradient-to-r from-gray-800 to-black text-white font-semibold rounded-xl hover:from-gray-700 hover:to-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 transform hover:scale-105"
           >
             {isSubmitting ? (
               <>

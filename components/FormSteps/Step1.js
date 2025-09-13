@@ -69,7 +69,7 @@ export default function Step1() {
                 {t('nationalId')} *
               </label>
               <Tooltip content={t('nationalIdTooltip')} position="left">
-                <HelpCircle size={14} className="text-gray-400 hover:text-blue-500 cursor-help transition-colors" />
+                <HelpCircle size={14} className="text-gray-400 hover:text-gray-600 cursor-help transition-colors" />
               </Tooltip>
             </div>
             <input
@@ -91,7 +91,7 @@ export default function Step1() {
                 {t('dateOfBirth')} *
               </label>
               <Tooltip content={t('dateOfBirthTooltip')} position="left">
-                <HelpCircle size={14} className="text-gray-400 hover:text-blue-500 cursor-help transition-colors" />
+                <HelpCircle size={14} className="text-gray-400 hover:text-gray-600 cursor-help transition-colors" />
               </Tooltip>
             </div>
             <input
@@ -113,7 +113,7 @@ export default function Step1() {
                 {t('gender')} *
               </label>
               <Tooltip content={t('genderTooltip')} position="left">
-                <HelpCircle size={14} className="text-gray-400 hover:text-blue-500 cursor-help transition-colors" />
+                <HelpCircle size={14} className="text-gray-400 hover:text-gray-600 cursor-help transition-colors" />
               </Tooltip>
             </div>
             <div className="flex gap-3 mt-2">
@@ -125,8 +125,8 @@ export default function Step1() {
                   className="radio-modern"
                 />
                 <div className="flex items-center gap-2">
-                  <div className="p-2 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors">
-                    <User size={20} className="text-blue-600" strokeWidth={2} />
+                  <div className="p-2 bg-gray-100 rounded-lg group-hover:bg-gray-200 transition-colors">
+                    <User size={20} className="text-gray-600" strokeWidth={2} />
                   </div>
                   <span className="text-sm font-medium text-gray-700">{t('male')}</span>
                 </div>
@@ -158,7 +158,7 @@ export default function Step1() {
                 {t('address')} *
               </label>
               <Tooltip content={t('addressTooltip')} position="left">
-                <HelpCircle size={14} className="text-gray-400 hover:text-blue-500 cursor-help transition-colors" />
+                <HelpCircle size={14} className="text-gray-400 hover:text-gray-600 cursor-help transition-colors" />
               </Tooltip>
             </div>
             <input
@@ -231,7 +231,7 @@ export default function Step1() {
                 {t('phone')} *
               </label>
               <Tooltip content={t('phoneTooltip')} position="left">
-                <HelpCircle size={14} className="text-gray-400 hover:text-blue-500 cursor-help transition-colors" />
+                <HelpCircle size={14} className="text-gray-400 hover:text-gray-600 cursor-help transition-colors" />
               </Tooltip>
             </div>
             <input
@@ -259,7 +259,7 @@ export default function Step1() {
                 {t('email')} *
               </label>
               <Tooltip content={t('emailTooltip')} position="left">
-                <HelpCircle size={14} className="text-gray-400 hover:text-blue-500 cursor-help transition-colors" />
+                <HelpCircle size={14} className="text-gray-400 hover:text-gray-600 cursor-help transition-colors" />
               </Tooltip>
             </div>
             <input

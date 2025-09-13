@@ -177,9 +177,9 @@ Write a comprehensive professional statement explaining why they deserve social 
               <button
                 type="button"
                 onClick={() => handleAIAssist('currentSituation')}
-                className={`flex items-center gap-2 text-sm px-3 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 ${
+                className={`flex items-center gap-2 text-sm px-3 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all duration-200 ${
                   watchedValues.currentSituation && watchedValues.currentSituation.trim().length >= 10
-                    ? 'bg-blue-100 text-blue-700 hover:bg-blue-200 hover:shadow-sm' 
+                    ? 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:shadow-sm' 
                     : 'bg-gray-100 text-gray-500 cursor-not-allowed'
                 }`}
                 disabled={!watchedValues.currentSituation || watchedValues.currentSituation.trim().length < 10}
@@ -197,7 +197,7 @@ Write a comprehensive professional statement explaining why they deserve social 
               })}
               rows="4"
               placeholder={t('currentSituationPlaceholder')}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-vertical min-h-[100px]"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-500 resize-vertical min-h-[100px]"
               aria-invalid={errors.currentSituation ? 'true' : 'false'}
             />
             {errors.currentSituation && (
@@ -214,9 +214,9 @@ Write a comprehensive professional statement explaining why they deserve social 
               <button
                 type="button"
                 onClick={() => handleAIAssist('employmentCircumstances')}
-                className={`flex items-center gap-2 text-sm px-3 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 ${
+                className={`flex items-center gap-2 text-sm px-3 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all duration-200 ${
                   watchedValues.employmentCircumstances && watchedValues.employmentCircumstances.trim().length >= 10
-                    ? 'bg-blue-100 text-blue-700 hover:bg-blue-200 hover:shadow-sm' 
+                    ? 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:shadow-sm' 
                     : 'bg-gray-100 text-gray-500 cursor-not-allowed'
                 }`}
                 disabled={!watchedValues.employmentCircumstances || watchedValues.employmentCircumstances.trim().length < 10}
@@ -234,7 +234,7 @@ Write a comprehensive professional statement explaining why they deserve social 
               })}
               rows="4"
               placeholder={t('employmentCircumstancesPlaceholder')}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-vertical min-h-[100px]"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-500 resize-vertical min-h-[100px]"
               aria-invalid={errors.employmentCircumstances ? 'true' : 'false'}
             />
             {errors.employmentCircumstances && (
@@ -251,9 +251,9 @@ Write a comprehensive professional statement explaining why they deserve social 
               <button
                 type="button"
                 onClick={() => handleAIAssist('reasonForApplying')}
-                className={`flex items-center gap-2 text-sm px-3 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 ${
+                className={`flex items-center gap-2 text-sm px-3 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all duration-200 ${
                   watchedValues.reasonForApplying && watchedValues.reasonForApplying.trim().length >= 10
-                    ? 'bg-blue-100 text-blue-700 hover:bg-blue-200 hover:shadow-sm' 
+                    ? 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:shadow-sm' 
                     : 'bg-gray-100 text-gray-500 cursor-not-allowed'
                 }`}
                 disabled={!watchedValues.reasonForApplying || watchedValues.reasonForApplying.trim().length < 10}
@@ -271,7 +271,7 @@ Write a comprehensive professional statement explaining why they deserve social 
               })}
               rows="4"
               placeholder={t('reasonForApplyingPlaceholder')}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-vertical min-h-[100px]"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-500 resize-vertical min-h-[100px]"
               aria-invalid={errors.reasonForApplying ? 'true' : 'false'}
             />
             {errors.reasonForApplying && (
@@ -290,7 +290,7 @@ Write a comprehensive professional statement explaining why they deserve social 
           </button>
           <button
             type="submit"
-            className="px-6 py-3 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
+            className="px-6 py-3 bg-gradient-to-r from-gray-800 to-black text-white font-medium rounded-lg hover:from-gray-700 hover:to-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all duration-200"
           >
             {t('next')}
           </button>
