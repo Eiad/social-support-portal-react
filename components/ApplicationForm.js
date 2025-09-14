@@ -13,7 +13,7 @@ import Step4 from './FormSteps/Step4';
 import FAQ from './FAQ';
 import Footer from './Footer';
 import { StepSkeleton, ProgressSkeleton } from './Skeleton';
-import { FileText, CheckCircle, XCircle, HelpCircle, Info } from 'lucide-react';
+import { HandHeart, CheckCircle, XCircle, HelpCircle, Info } from 'lucide-react';
 import Onboarding from './Onboarding';
 import LanguageToggle from './LanguageToggle';
 import Link from 'next/link';
@@ -58,13 +58,13 @@ export default function ApplicationForm() {
 
               {/* Left side - Logo and Title */}
               <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
-                <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-gradient-to-br from-gray-800 via-gray-900 to-black rounded-xl shadow-lg ring-1 ring-white/20">
-                  <FileText size={16} className="sm:hidden text-white" />
-                  <FileText size={20} className="hidden sm:block md:hidden text-white" />
-                  <FileText size={24} className="hidden md:block text-white" />
+                <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 rounded-xl shadow-lg ring-1 ring-white/20">
+                  <HandHeart size={16} className="sm:hidden text-white" />
+                  <HandHeart size={20} className="hidden sm:block md:hidden text-white" />
+                  <HandHeart size={24} className="hidden md:block text-white" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 leading-tight truncate">
+                  <h1 className="font-logo text-lg sm:text-xl md:text-2xl text-gray-900 leading-tight truncate">
                     {t('applicationTitle')}
                   </h1>
                   <p className="text-xs sm:text-sm text-gray-600 hidden sm:block truncate">{t('completeInSteps')}</p>
@@ -73,12 +73,6 @@ export default function ApplicationForm() {
 
               {/* Right side - Navigation Controls */}
               <div className="flex items-center gap-1 sm:gap-2 md:gap-3 flex-shrink-0">
-
-                {/* Language Toggle */}
-                <LanguageToggle currentLang={language} showLabel={true} />
-
-                {/* Separator */}
-                <div className="hidden md:block w-px h-5 bg-gray-200"></div>
 
                 {/* App Details Link - Responsive */}
                 <Link
@@ -102,6 +96,12 @@ export default function ApplicationForm() {
                   <HelpCircle size={16} className="hidden sm:block text-gray-500 group-hover:text-gray-700" />
                   <span className="hidden sm:inline">{t('tutorial')}</span>
                 </button>
+
+                {/* Separator */}
+                <div className="hidden md:block w-px h-5 bg-gray-200"></div>
+
+                {/* Language Toggle - Last item */}
+                <LanguageToggle currentLang={language} showLabel={true} />
               </div>
             </nav>
 

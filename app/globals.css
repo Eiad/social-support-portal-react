@@ -42,6 +42,12 @@ body {
   font-family: 'Noto Kufi Arabic', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Arial', sans-serif;
 }
 
+.font-logo {
+  font-family: 'Boogaloo', cursive, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
 /* Remove class - use inline styles instead */
 
 /* Custom Animations */
