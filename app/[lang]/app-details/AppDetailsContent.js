@@ -14,7 +14,8 @@ import {
   Target,
   Mail,
   Star,
-  ArrowRight
+  ArrowRight,
+  Github
 } from 'lucide-react';
 import LanguageToggle from '@/components/LanguageToggle';
 import ZoomableImage from '@/components/ZoomableImage';
@@ -115,29 +116,30 @@ export default function AppDetailsContent() {
               <h1 className="text-3xl font-normal text-gray-900 mb-3">
                 {t('appDetailsTitle')}
               </h1>
-              <p className="text-lg text-gray-700 max-w-2xl leading-relaxed">
+              <p className="text-md text-gray-700 max-w-2xl leading-relaxed">
                 {t('appDetailsSubtitle')}
               </p>
             </div>
             <LanguageToggle currentLang={language} />
           </div>
 
-          <div className="flex gap-3">
-            <Link
-              href={`/${language}`}
-              className="inline-flex items-center bg-blue-600 text-white px-5 py-2 rounded text-sm font-medium hover:bg-blue-700 transition-colors"
-            >
-              {t('viewApp')}
-              <ArrowRight className={`w-4 h-4 ${isRTL ? 'mr-2 rotate-180' : 'ml-2'}`} />
-            </Link>
+          <div className="flex gap-4">
             <a
               href="https://github.com/Eiad/social-support-portal-react"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center border border-gray-300 text-gray-700 px-5 py-2 rounded text-sm font-medium hover:bg-gray-50 transition-colors"
+              className="inline-flex items-center bg-gray-900 text-white border border-gray-900 px-5 py-2 rounded text-sm font-medium hover:bg-gray-800 hover:border-gray-800 transition-colors"
             >
+              <Github className={`w-4 h-4 ${isRTL ? 'ml-2' : 'mr-2'}`} />
               {t('viewCode')}
             </a>
+            <Link
+              href={`/${language}`}
+              className="group inline-flex items-center bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-lg text-sm font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl ring-1 ring-blue-500/20"
+            >
+              {t('viewApp')}
+              <ArrowRight className={`w-4 h-4 ${isRTL ? 'mr-2 rotate-180 group-hover:-translate-x-1' : 'ml-2 group-hover:translate-x-1'} transition-transform duration-200`} />
+            </Link>
           </div>
         </div>
       </div>
@@ -288,22 +290,23 @@ export default function AppDetailsContent() {
             <h2 className="text-xl font-normal text-gray-900 mb-2">{t('readyToExplore')}</h2>
             <p className="text-gray-600 mb-6">{t('readyToExploreDesc')}</p>
 
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Link
-                href={`/${language}`}
-                className="inline-flex items-center justify-center bg-blue-600 text-white px-6 py-2 rounded text-sm font-medium hover:bg-blue-700 transition-colors"
-              >
-                {t('tryApplication')}
-                <ArrowRight className={`w-4 h-4 ${isRTL ? 'mr-2 rotate-180' : 'ml-2'}`} />
-              </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="https://github.com/Eiad/social-support-portal-react"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center border border-gray-300 text-gray-700 px-6 py-2 rounded text-sm font-medium hover:bg-gray-50 transition-colors"
+                className="inline-flex items-center justify-center bg-gray-900 text-white border border-gray-900 px-6 py-2 rounded text-sm font-medium hover:bg-gray-800 hover:border-gray-800 transition-colors"
               >
+                <Github className={`w-4 h-4 ${isRTL ? 'ml-2' : 'mr-2'}`} />
                 {t('viewSource')}
               </a>
+              <Link
+                href={`/${language}`}
+                className="group inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-3 rounded-lg text-sm font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl ring-1 ring-blue-500/20"
+              >
+                {t('tryApplication')}
+                <ArrowRight className={`w-4 h-4 ${isRTL ? 'mr-2 rotate-180 group-hover:-translate-x-1' : 'ml-2 group-hover:translate-x-1'} transition-transform duration-200`} />
+              </Link>
             </div>
           </div>
         </section>

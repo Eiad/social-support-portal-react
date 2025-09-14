@@ -154,7 +154,7 @@ const translations = {
     // App Details Page
     caseStudy: 'Case Study Implementation',
     appDetailsTitle: 'Social Support Portal with AI Assistance',
-    appDetailsSubtitle: 'A modern, accessible government portal featuring AI-powered writing assistance, comprehensive testing, and bilingual support.',
+    appDetailsSubtitle: 'A modern and accessible government services portal, featuring AI-powered writing assistance, robust test coverage, and full bilingual support in English and Arabic',
     viewApp: 'View Live App',
     viewCode: 'View Source Code',
     requirementsFulfilled: 'Requirements Fulfilled',
