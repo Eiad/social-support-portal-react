@@ -5,7 +5,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 
-export default function LanguageToggle({ currentLang, className = '' }) {
+export default function LanguageToggle({ currentLang, className = '', showLabel = false }) {
   const { language } = useLanguage();
   const router = useRouter();
   const pathname = usePathname();
@@ -40,14 +40,25 @@ export default function LanguageToggle({ currentLang, className = '' }) {
     <div className={`relative ${className}`}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 p-2 rounded-full hover:bg-gray-100 transition-colors duration-200 group"
+        className={`flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 ${showLabel ? 'rounded-lg' : 'rounded-full'} hover:bg-gray-50 active:bg-gray-100 transition-all duration-200 group text-xs sm:text-sm ${!showLabel ? 'min-w-[44px] min-h-[44px] sm:min-w-auto sm:min-h-auto justify-center' : ''}`}
         aria-label="Select language"
         title="Change language"
       >
-        <span className="text-xl">{currentLanguage?.flag}</span>
+        <span className="text-base sm:text-lg">{currentLanguage?.flag}</span>
+        {showLabel && (
+          <span className="text-xs sm:text-sm font-medium text-gray-600 group-hover:text-gray-800 hidden sm:inline">
+            {currentLanguage?.name}
+          </span>
+        )}
         <ChevronDown
-          size={16}
-          className={`text-gray-500 group-hover:text-gray-700 transition-transform duration-200 ${
+          size={12}
+          className={`sm:hidden text-gray-500 group-hover:text-gray-700 transition-transform duration-200 ${
+            isOpen ? 'rotate-180' : ''
+          }`}
+        />
+        <ChevronDown
+          size={14}
+          className={`hidden sm:block text-gray-500 group-hover:text-gray-700 transition-transform duration-200 ${
             isOpen ? 'rotate-180' : ''
           }`}
         />
@@ -61,13 +72,13 @@ export default function LanguageToggle({ currentLang, className = '' }) {
             onClick={() => setIsOpen(false)}
           />
 
-          {/* Dropdown */}
-          <div className="absolute top-full right-0 mt-2 w-40 bg-white border border-gray-200 rounded-xl shadow-lg z-50 overflow-hidden animate-in slide-in-from-top-2 duration-200">
+          {/* Dropdown - Mobile optimized */}
+          <div className="absolute top-full right-0 mt-2 w-40 sm:w-44 bg-white border border-gray-200 rounded-xl shadow-lg z-50 overflow-hidden animate-in slide-in-from-top-2 duration-200">
             {languages.map((lang) => (
               <button
                 key={lang.code}
                 onClick={() => handleLanguageChange(lang.code)}
-                className={`w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-gray-50 transition-colors duration-150 ${
+                className={`w-full flex items-center gap-3 px-4 py-3 sm:py-3 text-left hover:bg-gray-50 active:bg-gray-100 transition-colors duration-150 min-h-[48px] sm:min-h-[44px] ${
                   currentLang === lang.code ? 'bg-gray-50 text-gray-900' : 'text-gray-700'
                 }`}
               >

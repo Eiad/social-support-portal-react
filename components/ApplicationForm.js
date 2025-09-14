@@ -49,57 +49,79 @@ export default function ApplicationForm() {
         />
       )}
       
-      <div className="min-h-screen bg-white py-6 pb-0">
-        <div className="max-w-4xl mx-auto px-4">
-          {/* Enhanced Header with Dark Theme */}
-          <div className="text-center mb-8 relative">
-            {/* Top right controls */}
-            <div className="absolute right-0 top-0 flex items-center gap-2">
-              {/* Language Toggle */}
-              <LanguageToggle currentLang={language} />
+      <div className="min-h-screen bg-white py-4 sm:py-6 pb-0">
+        <div className="max-w-4xl mx-auto px-3 sm:px-4">
+          {/* Smart Responsive Header */}
+          <header className="mb-4 sm:mb-6">
+            {/* Navigation Bar */}
+            <nav className="flex items-center justify-between py-3 sm:py-4 border-b border-gray-100 bg-white/80 backdrop-blur-sm">
 
-              {/* App Details Link */}
-              <Link
-                href={`/${language}/app-details`}
-                className="flex items-center gap-1 px-3 py-2 rounded-full hover:bg-gray-100 transition-colors duration-200 group text-sm font-medium text-gray-600 group-hover:text-gray-800"
-                aria-label="View app details"
-                title="About this application"
-              >
-                <Info size={16} className="text-gray-500 group-hover:text-gray-700" />
-                <span>{language === 'ar' ? 'تفاصيل التطبيق' : 'App Details'}</span>
-              </Link>
+              {/* Left side - Logo and Title */}
+              <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
+                <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-gradient-to-br from-gray-800 via-gray-900 to-black rounded-xl shadow-lg ring-1 ring-white/20">
+                  <FileText size={16} className="sm:hidden text-white" />
+                  <FileText size={20} className="hidden sm:block md:hidden text-white" />
+                  <FileText size={24} className="hidden md:block text-white" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 leading-tight truncate">
+                    {t('applicationTitle')}
+                  </h1>
+                  <p className="text-xs sm:text-sm text-gray-600 hidden sm:block truncate">{t('completeInSteps')}</p>
+                </div>
+              </div>
 
-              {/* Help Button */}
-              <button
-                onClick={() => setShowOnboarding(true)}
-                className="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200 group"
-                aria-label="Show tour"
-                title="Need help? Take a tour"
-              >
-                <HelpCircle size={24} className="text-gray-500 group-hover:text-gray-700" />
-              </button>
+              {/* Right side - Navigation Controls */}
+              <div className="flex items-center gap-1 sm:gap-2 md:gap-3 flex-shrink-0">
+
+                {/* Language Toggle */}
+                <LanguageToggle currentLang={language} showLabel={true} />
+
+                {/* Separator */}
+                <div className="hidden md:block w-px h-5 bg-gray-200"></div>
+
+                {/* App Details Link - Responsive */}
+                <Link
+                  href={`/${language}/app-details`}
+                  className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 rounded-lg hover:bg-gray-50 active:bg-gray-100 transition-all duration-200 group text-xs sm:text-sm font-medium text-gray-600 hover:text-gray-800"
+                  aria-label="View app details"
+                >
+                  <Info size={14} className="sm:hidden text-gray-500 group-hover:text-gray-700" />
+                  <Info size={16} className="hidden sm:block text-gray-500 group-hover:text-gray-700" />
+                  <span className="hidden sm:inline">{language === 'ar' ? 'التفاصيل' : 'Details'}</span>
+                  <span className="hidden md:inline">{language === 'ar' ? 'تفاصيل التطبيق' : 'App Details'}</span>
+                </Link>
+
+                {/* Help/Tutorial Button - Responsive */}
+                <button
+                  onClick={() => setShowOnboarding(true)}
+                  className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 rounded-lg hover:bg-gray-50 active:bg-gray-100 transition-all duration-200 group text-xs sm:text-sm font-medium text-gray-600 hover:text-gray-800"
+                  aria-label="Show tutorial"
+                >
+                  <HelpCircle size={14} className="sm:hidden text-gray-500 group-hover:text-gray-700" />
+                  <HelpCircle size={16} className="hidden sm:block text-gray-500 group-hover:text-gray-700" />
+                  <span className="hidden sm:inline">{t('tutorial')}</span>
+                </button>
+              </div>
+            </nav>
+
+            {/* Mobile subtitle - More prominent */}
+            <div className="sm:hidden pt-2 pb-1 text-center bg-gradient-to-r from-gray-50 to-white">
+              <p className="text-sm text-gray-600 px-4">{t('completeInSteps')}</p>
             </div>
-            
-            <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-r from-gray-800 to-black rounded-full mb-4 shadow-lg">
-              <FileText size={28} className="text-white" />
-            </div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">
-              {t('applicationTitle')}
-            </h1>
-            <p className="text-gray-600">{t('completeInSteps')}</p>
-          </div>
+          </header>
 
-        {/* Compact Progress */}
-        <div className="mb-8">
+        {/* Compact Progress - Mobile optimized */}
+        <div className="mb-6 sm:mb-8">
           {isTransitioning ? (
             <ProgressSkeleton />
           ) : (
             <ModernProgressBar currentStep={currentStep} totalSteps={4} />
           )}
         </div>
-        
-        {/* Clean Form Section */}
-        <div className="bg-white border border-gray-200 rounded-lg p-6 md:p-8 shadow-sm">
+
+        {/* Clean Form Section - Mobile optimized padding */}
+        <div className="bg-white border border-gray-200 rounded-lg p-4 sm:p-6 md:p-8 shadow-sm">
           <div className="relative">
             {isTransitioning ? (
               <StepSkeleton step={currentStep} />

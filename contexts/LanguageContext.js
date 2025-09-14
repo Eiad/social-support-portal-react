@@ -36,6 +36,7 @@ const translations = {
     provideBasicInfo: 'Please provide your basic information',
     completeInSteps: 'Complete your application in a few simple steps',
     helpMeWrite: 'Help Me Write',
+    tutorial: 'Tutorial',
     
     // Tooltips
     nationalIdTooltip: 'Enter your national ID number as shown on your official identification document',
@@ -219,6 +220,7 @@ const translations = {
     provideBasicInfo: 'يرجى تقديم معلوماتك الأساسية',
     completeInSteps: 'أكمل طلبك في خطوات بسيطة',
     helpMeWrite: 'ساعدني في الكتابة',
+    tutorial: 'دليل الاستخدام',
     
     // Tooltips
     nationalIdTooltip: 'أدخل رقم الهوية الوطنية كما يظهر في وثائق هويتك الرسمية',
