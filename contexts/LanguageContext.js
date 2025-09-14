@@ -211,7 +211,7 @@ const translations = {
     tryApplication: 'Try the Application',
     viewSource: 'View Source Code',
     builtWith: 'Built with',
-    forAccessibleGovernment: 'for accessible government services',
+    forAccessibleGovernment: 'for Northbay Solutions team',
   },
   ar: {
     applicationTitle: 'منصة الدعم الاجتماعي',
