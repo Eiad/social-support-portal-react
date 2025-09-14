@@ -8,7 +8,7 @@ import Tooltip from '../Tooltip';
 
 export default function Step1() {
   const { formData, updateFormData, nextStep } = useFormContext();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   
   const {
     register,
@@ -286,7 +286,7 @@ export default function Step1() {
             type="submit"
             className="btn-primary"
           >
-            {t('next')} →
+            {language === 'ar' ? `${t('next')} ←` : `${t('next')} →`}
           </button>
         </div>
       </form>
