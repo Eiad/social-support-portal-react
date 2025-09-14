@@ -3,8 +3,10 @@
 import { Mail, CheckCircle, Loader2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { triggerFormCompletion } from './CelebrationEffects';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function EmailSendingOverlay({ email, phase, onComplete, applicationNumber }) {
+  const { t } = useLanguage();
   const [currentPhase, setCurrentPhase] = useState(phase);
   const [showCheck, setShowCheck] = useState(false);
 
@@ -26,8 +28,8 @@ export default function EmailSendingOverlay({ email, phase, onComplete, applicat
       case 'submitting':
         return {
           icon: <Loader2 className="w-12 h-12 text-gray-700 animate-spin" />,
-          title: 'Submitting Application',
-          description: 'Processing your information...',
+          title: t('submittingApplication'),
+          description: t('processingInfo'),
           showEmail: false
         };
 
@@ -41,8 +43,8 @@ export default function EmailSendingOverlay({ email, phase, onComplete, applicat
               </div>
             </div>
           ),
-          title: 'Sending Confirmation',
-          description: 'Sending confirmation to your email...',
+          title: t('sendingConfirmation'),
+          description: t('sendingToEmail'),
           showEmail: true
         };
 
@@ -58,8 +60,8 @@ export default function EmailSendingOverlay({ email, phase, onComplete, applicat
               )}
             </div>
           ),
-          title: 'Email Sent Successfully!',
-          description: 'Confirmation has been sent to your inbox',
+          title: t('emailSentSuccess'),
+          description: t('confirmationSent'),
           showEmail: true
         };
 
@@ -70,8 +72,8 @@ export default function EmailSendingOverlay({ email, phase, onComplete, applicat
               <CheckCircle size={24} className="text-white" />
             </div>
           ),
-          title: 'Application Submitted Successfully!',
-          description: 'Your application has been successfully submitted.',
+          title: t('applicationSubmittedSuccess'),
+          description: t('applicationSuccessDesc'),
           showEmail: false
         };
 
@@ -125,7 +127,7 @@ export default function EmailSendingOverlay({ email, phase, onComplete, applicat
         {/* Email Display */}
         {content.showEmail && email && (
           <div className="bg-gray-50 rounded-lg px-4 py-3 text-center">
-            <p className="text-xs text-gray-500 mb-1">Sending to:</p>
+            <p className="text-xs text-gray-500 mb-1">{t('sendingTo')}</p>
             <p className="text-sm font-medium text-gray-800 break-all">{email}</p>
           </div>
         )}
@@ -133,7 +135,7 @@ export default function EmailSendingOverlay({ email, phase, onComplete, applicat
         {/* Application Number Display - only show in success phase */}
         {currentPhase === 'success' && applicationNumber && (
           <div className="bg-gray-50 rounded-lg px-4 py-3 text-center mb-4">
-            <p className="text-xs text-gray-500 mb-1">Your application number is</p>
+            <p className="text-xs text-gray-500 mb-1">{t('applicationNumber')}</p>
             <p className="text-sm font-medium text-gray-800 break-all font-mono">
               {applicationNumber}
             </p>

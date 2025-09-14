@@ -5,7 +5,7 @@ import { X, ChevronRight, ChevronLeft, Rocket, Info, CheckCircle, FileText, User
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Onboarding({ onComplete, onSkip }) {
-  const { t } = useLanguage();
+  const { t, isRTL } = useLanguage();
   const [currentStep, setCurrentStep] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -13,64 +13,64 @@ export default function Onboarding({ onComplete, onSkip }) {
     {
       id: 'welcome',
       icon: <BookOpen className="w-7 h-7" />,
-      title: 'Welcome to Social Support Portal',
-      description: 'Let us guide you through the application process. It only takes a few minutes!',
+      title: t('tourWelcomeTitle'),
+      description: t('tourWelcomeDesc'),
       highlight: null,
       position: 'center'
     },
     {
       id: 'personal',
       icon: <FileText className="w-6 h-6 text-gray-700" />,
-      title: 'Personal Information',
-      description: 'First, we\'ll collect your basic information like name, ID, and contact details. All information is kept secure and confidential.',
+      title: t('tourPersonalTitle'),
+      description: t('tourPersonalDesc'),
       highlight: 'step-1',
       tips: [
-        'Have your National ID ready',
-        'Ensure your contact info is up-to-date',
-        'Double-check your email address'
+        t('tourPersonalTip1'),
+        t('tourPersonalTip2'),
+        t('tourPersonalTip3')
       ]
     },
     {
       id: 'family',
       icon: <Users className="w-6 h-6 text-gray-700" />,
-      title: 'Family & Financial Details',
-      description: 'Next, we\'ll ask about your family situation and financial status to better understand your needs.',
+      title: t('tourFamilyTitle'),
+      description: t('tourFamilyDesc'),
       highlight: 'step-2',
       tips: [
-        'Know your monthly income',
-        'Count all dependents',
-        'Include all sources of support'
+        t('tourFamilyTip1'),
+        t('tourFamilyTip2'),
+        t('tourFamilyTip3')
       ]
     },
     {
       id: 'situation',
       icon: <MessageSquare className="w-6 h-6 text-gray-700" />,
-      title: 'Your Situation',
-      description: 'Here you\'ll describe your current situation and why you\'re applying. Be detailed and honest - this helps us serve you better.',
+      title: t('tourSituationTitle'),
+      description: t('tourSituationDesc'),
       highlight: 'step-3',
       tips: [
-        'Be specific about your challenges',
-        'Explain your employment situation',
-        'Use the AI assistant for help writing'
+        t('tourSituationTip1'),
+        t('tourSituationTip2'),
+        t('tourSituationTip3')
       ]
     },
     {
       id: 'review',
       icon: <CheckCircle className="w-6 h-6 text-green-600" />,
-      title: 'Review & Submit',
-      description: 'Finally, you\'ll review all your information before submitting. You can edit any section if needed.',
+      title: t('tourReviewTitle'),
+      description: t('tourReviewDesc'),
       highlight: 'step-4',
       tips: [
-        'Review everything carefully',
-        'Edit any mistakes before submitting',
-        'Save your application number'
+        t('tourReviewTip1'),
+        t('tourReviewTip2'),
+        t('tourReviewTip3')
       ]
     },
     {
       id: 'ready',
       icon: <Target className="w-7 h-7" />,
-      title: 'You\'re All Set!',
-      description: 'You now know everything needed to complete your application. Good luck!',
+      title: t('tourReadyTitle'),
+      description: t('tourReadyDesc'),
       highlight: null,
       position: 'center'
     }
@@ -172,7 +172,7 @@ export default function Onboarding({ onComplete, onSkip }) {
             <div className="bg-gray-50/50 rounded-2xl p-4 mb-6 border border-gray-100">
               <div className="flex items-center gap-2 mb-3">
                 <Info size={16} className="text-gray-700" />
-                <span className="text-sm font-medium text-gray-800">Quick Tips</span>
+                <span className="text-sm font-medium text-gray-800">{t('quickTips')}</span>
               </div>
               <ul className="space-y-2">
                 {currentTourStep.tips.map((tip, index) => (
@@ -213,8 +213,8 @@ export default function Onboarding({ onComplete, onSkip }) {
                 onClick={handlePrevious}
                 className="flex-1 px-5 py-2.5 text-gray-700 font-medium rounded-full hover:bg-gray-50 transition-all duration-200 flex items-center justify-center gap-2 text-sm"
               >
-                <ChevronLeft size={18} />
-                Previous
+                {isRTL ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
+                {t('previous')}
               </button>
             )}
             
@@ -223,7 +223,7 @@ export default function Onboarding({ onComplete, onSkip }) {
                 onClick={handleSkip}
                 className="flex-1 px-5 py-2.5 text-gray-600 font-medium rounded-full border border-gray-200 hover:bg-gray-50 transition-all duration-200 text-sm"
               >
-                Skip Tour
+{t('skipTour')}
               </button>
             )}
 
@@ -233,13 +233,13 @@ export default function Onboarding({ onComplete, onSkip }) {
             >
               {currentStep === tourSteps.length - 1 ? (
                 <>
-                  Start Application
-                  <ChevronRight size={18} />
+                  {t('startApplication')}
+                  {isRTL ? <ChevronLeft size={18} /> : <ChevronRight size={18} />}
                 </>
               ) : (
                 <>
-                  Next
-                  <ChevronRight size={18} />
+                  {t('next')}
+                  {isRTL ? <ChevronLeft size={18} /> : <ChevronRight size={18} />}
                 </>
               )}
             </button>

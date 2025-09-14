@@ -276,19 +276,19 @@ export default function Step4() {
         <h3 className="text-lg font-medium text-gray-800 mb-2">{t('readyToSubmit')}</h3>
         <p className="text-sm text-gray-600 mb-4">{t('submitWarning')}</p>
         
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col sm:flex-row sm:justify-between items-center gap-4">
           <button
             type="button"
             onClick={() => goToStep(3)}
-            className="px-6 py-3 bg-gray-300 text-gray-700 font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors duration-200"
+            className="w-full sm:w-auto px-6 py-3 bg-gray-300 text-gray-700 font-medium rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors duration-200 order-2 sm:order-1"
           >
             {t('previous')}
           </button>
-          
+
           <button
             onClick={handleSubmit}
             disabled={isSubmitting}
-            className="px-8 py-3 bg-gradient-to-r from-gray-800 to-black text-white font-semibold rounded-xl hover:from-gray-700 hover:to-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 transform hover:scale-105"
+            className="w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-gray-800 to-black text-white font-semibold rounded-xl hover:from-gray-700 hover:to-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 transform hover:scale-105 order-1 sm:order-2"
           >
             {isSubmitting ? (
               <>
