@@ -114,7 +114,7 @@ export default function Onboarding({ onComplete, onSkip }) {
   return (
     <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-md flex items-center justify-center p-4 animate-fadeIn">
       {/* Main Card - Material Design 3 Style */}
-      <div className={`bg-white rounded-3xl shadow-xl max-w-md w-full relative overflow-hidden transform transition-all duration-300 ${
+      <div className={`bg-white rounded-3xl shadow-xl max-w-md w-full max-h-[85vh] relative overflow-hidden transform transition-all duration-300 ${
         isAnimating ? 'scale-95 opacity-0' : 'scale-100 opacity-100'
       }`}>
         {/* Linear Progress Indicator - Material Style */}
@@ -135,9 +135,9 @@ export default function Onboarding({ onComplete, onSkip }) {
         </button>
 
         {/* Content */}
-        <div className="p-6 pt-10">
+        <div className="p-4 pt-8 pb-4 sm:p-6 sm:pt-10 sm:pb-6 overflow-y-auto max-h-[calc(85vh-2rem)]">
           {/* Step Dots - Material Design Style */}
-          <div className="flex justify-center mb-8">
+          <div className="flex justify-center mb-4 sm:mb-8">
             <div className="flex items-center gap-1.5">
               {tourSteps.map((_, index) => (
                 <div
@@ -155,21 +155,21 @@ export default function Onboarding({ onComplete, onSkip }) {
           </div>
 
           {/* Icon and Title - Material Design Style */}
-          <div className="text-center mb-6">
+          <div className="text-center mb-4 sm:mb-6">
             <div className="inline-flex items-center justify-center w-14 h-14 bg-gray-50 rounded-2xl mb-4 text-gray-700">
               {currentTourStep.icon}
             </div>
             <h3 className="text-xl font-medium text-gray-900 mb-2">
               {currentTourStep.title}
             </h3>
-            <p className="text-sm text-gray-600 leading-relaxed px-4">
+            <p className="text-sm text-gray-600 leading-relaxed px-2 sm:px-4">
               {currentTourStep.description}
             </p>
           </div>
 
           {/* Tips Section - Material Card Style */}
           {currentTourStep.tips && (
-            <div className="bg-gray-50/50 rounded-2xl p-4 mb-6 border border-gray-100">
+            <div className="bg-gray-50/50 rounded-2xl p-3 sm:p-4 mb-4 sm:mb-6 border border-gray-100">
               <div className="flex items-center gap-2 mb-3">
                 <Info size={16} className="text-gray-700" />
                 <span className="text-sm font-medium text-gray-800">{t('quickTips')}</span>
@@ -187,7 +187,7 @@ export default function Onboarding({ onComplete, onSkip }) {
 
           {/* Visual Preview - Material Card */}
           {currentTourStep.highlight && (
-            <div className="mb-6">
+            <div className="mb-4 sm:mb-6">
               <div className="bg-white rounded-2xl p-4 border border-gray-200 shadow-sm">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-gray-900 flex items-center justify-center text-white font-medium text-sm">
@@ -207,7 +207,7 @@ export default function Onboarding({ onComplete, onSkip }) {
           )}
 
           {/* Navigation Buttons - Material Design */}
-          <div className="flex gap-3 mt-8">
+          <div className="flex gap-3 mt-4 sm:mt-8">
             {currentStep > 0 && (
               <button
                 onClick={handlePrevious}

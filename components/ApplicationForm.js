@@ -15,10 +15,11 @@ import Footer from './Footer';
 import { StepSkeleton, ProgressSkeleton } from './Skeleton';
 import { FileText, CheckCircle, XCircle, HelpCircle } from 'lucide-react';
 import Onboarding from './Onboarding';
+import LanguageToggle from './LanguageToggle';
 
 export default function ApplicationForm() {
   const { currentStep, resetForm, isTransitioning, transitionDirection } = useFormContext();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [submissionResult, setSubmissionResult] = useState(null);
   const [showOnboarding, setShowOnboarding] = useState(false);
   const searchParams = useSearchParams();
@@ -51,15 +52,21 @@ export default function ApplicationForm() {
         <div className="max-w-4xl mx-auto px-4">
           {/* Enhanced Header with Dark Theme */}
           <div className="text-center mb-8 relative">
-            {/* Help Button - Always visible */}
-            <button
-              onClick={() => setShowOnboarding(true)}
-              className="absolute right-0 top-0 p-2 rounded-full hover:bg-gray-100 transition-colors duration-200 group"
-              aria-label="Show tour"
-              title="Need help? Take a tour"
-            >
-              <HelpCircle size={24} className="text-gray-500 group-hover:text-gray-700" />
-            </button>
+            {/* Top right controls */}
+            <div className="absolute right-0 top-0 flex items-center gap-2">
+              {/* Language Toggle */}
+              <LanguageToggle currentLang={language} />
+
+              {/* Help Button */}
+              <button
+                onClick={() => setShowOnboarding(true)}
+                className="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200 group"
+                aria-label="Show tour"
+                title="Need help? Take a tour"
+              >
+                <HelpCircle size={24} className="text-gray-500 group-hover:text-gray-700" />
+              </button>
+            </div>
             
             <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-r from-gray-800 to-black rounded-full mb-4 shadow-lg">
               <FileText size={28} className="text-white" />
