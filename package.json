@@ -13,6 +13,7 @@
   "dependencies": {
     "@fontsource/inter": "^5.2.6",
     "@fontsource/noto-kufi-arabic": "^5.2.7",
+    "@vercel/analytics": "^1.5.0",
     "axios": "^1.12.1",
     "canvas-confetti": "^1.9.3",
     "i18next": "^25.5.2",

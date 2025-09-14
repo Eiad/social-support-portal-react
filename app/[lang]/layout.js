@@ -2,6 +2,7 @@ import "@fontsource/inter";
 import "@fontsource/noto-kufi-arabic";
 import "../globals.css";
 import StructuredData from "../components/StructuredData";
+import { Analytics } from "@vercel/analytics/react";
 
 export const viewport = {
   width: 'device-width',
@@ -86,6 +87,7 @@ export default async function LanguageLayout({ children, params }) {
       <body className={`antialiased ${isArabic ? 'font-arabic' : 'font-english'}`}>
         <StructuredData />
         {children}
+        <Analytics />
       </body>
     </html>
   );
