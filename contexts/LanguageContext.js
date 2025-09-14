@@ -64,7 +64,7 @@ const translations = {
     email: 'Email Address',
     
     // Step 2
-    familyFinancialInfo: 'Family & Finance Details',
+    familyFinancialInfo: 'Family & Finance',
     maritalStatus: 'Marital Status',
     single: 'Single',
     married: 'Married',
@@ -83,7 +83,7 @@ const translations = {
     withFamily: 'Living with Family',
     
     // Step 3
-    situationDescriptions: 'Situation Descriptions',
+    situationDescriptions: 'My Situation',
     currentSituation: 'Current Financial Situation',
     currentSituationPlaceholder: 'Describe your current financial situation and challenges...',
     employmentCircumstances: 'Employment Circumstances',
@@ -92,7 +92,7 @@ const translations = {
     reasonForApplyingPlaceholder: 'Explain why you are applying for social support...',
     
     // Step 4
-    reviewAndSubmit: 'Review and Submit',
+    reviewAndSubmit: 'Review & Send',
     reviewYourInfo: 'Please review your information carefully before submitting',
     readyToSubmit: 'Ready to Submit?',
     submitWarning: 'Please ensure all information is correct as changes cannot be made after submission.',
@@ -112,7 +112,7 @@ const translations = {
     // Onboarding tour
     tourWelcomeTitle: 'Welcome to Social Support Portal',
     tourWelcomeDesc: 'Let us guide you through the application process. It only takes a few minutes!',
-    tourPersonalTitle: 'Personal Information',
+    tourPersonalTitle: 'My Information',
     tourPersonalDesc: 'First, we\'ll collect your basic information like name, ID, and contact details. All information is kept secure and confidential.',
     tourPersonalTip1: 'Have your National ID ready',
     tourPersonalTip2: 'Ensure your contact info is up-to-date',
