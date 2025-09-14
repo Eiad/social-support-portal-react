@@ -352,7 +352,7 @@ const translations = {
 
     technicalExcellence: 'التميز التقني',
     technicalExcellenceDesc: 'مبني بالتقنيات الحديثة وأفضل الممارسات للموثوقية والأداء.',
-    modernTechStack: 'مكدس تقني حديث',
+    modernTechStack: 'أحدث التقنيات',
     qualityAssurance: 'ضمان الجودة',
     comprehensiveTesting: '17 حالة اختبار شاملة',
     accessibilityCompliance: 'توافق WCAG 2.1 AA',

@@ -58,7 +58,7 @@ npm install
 3. Set up environment variables:
 The `.env` file is already created with the OpenAI API key:
 ```
-NEXT_PUBLIC_OPENAI_API_KEY=your_api_key_here
+NEXT_OPENAI_API_KEY=your_api_key_here
 ```
 
 4. Run the development server:
@@ -355,7 +355,7 @@ npm start
 ```
 
 ### Environment Variables
-- `NEXT_PUBLIC_OPENAI_API_KEY`: OpenAI API key for text assistance
+- `NEXT_OPENAI_API_KEY`: OpenAI API key for text assistance
 
 ### Browser Support
 - Chrome 90+
