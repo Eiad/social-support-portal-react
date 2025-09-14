@@ -44,6 +44,8 @@ const translations = {
     dateOfBirthTooltip: 'Select your date of birth. This information is used to verify your eligibility for age-specific programs',
     genderTooltip: 'Select your gender as shown on your official documents',
     addressTooltip: 'Provide your complete residential address including building number, street name, and area',
+    aiAssistTooltip: 'AI will help expand and professionalize your text for the application',
+    aiAssistDisabledTooltip: 'Write at least 10 characters to enable AI assistance',
     
     // Step 1
     personalInformation: 'Personal Information',
@@ -225,6 +227,8 @@ const translations = {
     dateOfBirthTooltip: 'اختر تاريخ ميلادك. تستخدم هذه المعلومة للتحقق من أهليتك للبرامج المخصصة لفئات عمرية محددة',
     genderTooltip: 'اختر جنسك كما يظهر في وثائقك الرسمية',
     addressTooltip: 'قدم عنوانك السكني الكامل بما في ذلك رقم المبنى واسم الشارع والمنطقة',
+    aiAssistTooltip: 'سيساعدك الذكاء الاصطناعي في توسيع وتطوير نصك للطلب بشكل مهني',
+    aiAssistDisabledTooltip: 'اكتب 10 أحرف على الأقل لتفعيل مساعد الذكاء الاصطناعي',
     
     // Step 1
     personalInformation: 'المعلومات الشخصية',

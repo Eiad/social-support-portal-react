@@ -3,25 +3,12 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useState, useEffect } from 'react';
 import { User, DollarSign, FileText } from 'lucide-react';
-import CelebrationEffects, { triggerProgressMilestone } from './CelebrationEffects';
 import { useFormContext } from '@/contexts/FormContext';
 
 export default function ModernProgressBar({ currentStep, totalSteps }) {
   const { t, isRTL } = useLanguage();
   const { goToStep } = useFormContext();
   const [hoveredStep, setHoveredStep] = useState(null);
-  const [prevStep, setPrevStep] = useState(currentStep);
-
-  // Trigger celebration when step advances
-  useEffect(() => {
-    if (currentStep > prevStep) {
-      // Small delay to let the step transition complete first
-      setTimeout(() => {
-        triggerProgressMilestone(currentStep);
-      }, 600);
-    }
-    setPrevStep(currentStep);
-  }, [currentStep, prevStep]);
   
   const progressPercentage = (currentStep / totalSteps) * 100;
 

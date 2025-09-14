@@ -44,7 +44,16 @@ export const FormProvider = ({ children }) => {
   useEffect(() => {
     const savedData = localStorage.getItem('socialSupportFormData');
     const savedStep = localStorage.getItem('socialSupportFormStep');
-    
+    const wasSubmitted = localStorage.getItem('applicationSubmitted');
+
+    // If application was submitted, reset everything
+    if (wasSubmitted) {
+      localStorage.removeItem('socialSupportFormData');
+      localStorage.removeItem('socialSupportFormStep');
+      localStorage.removeItem('applicationSubmitted');
+      return; // Don't load saved data, keep fresh state
+    }
+
     if (savedData) {
       setFormData(JSON.parse(savedData));
     }

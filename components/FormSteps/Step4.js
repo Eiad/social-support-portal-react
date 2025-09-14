@@ -21,6 +21,9 @@ export default function Step4() {
     setIsSubmitting(true);
     setEmailPhase('submitting');
 
+    // Mark application as being submitted to prevent page refresh issues
+    localStorage.setItem('applicationSubmitted', 'true');
+
     try {
       const response = await fetch('/api/submit-application', {
         method: 'POST',
@@ -128,8 +131,18 @@ export default function Step4() {
         phase={emailPhase}
         applicationNumber={applicationNumber}
         onComplete={() => {
+          // Clear all submission states
           setEmailPhase(null);
+          setApplicationNumber(null);
+          setSubmissionResult(null);
+          setIsSubmitting(false);
+
+          // Reset form and clear localStorage
           resetForm();
+
+          // Also clear any submission-related localStorage
+          localStorage.removeItem('applicationSubmitted');
+
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }}
       />

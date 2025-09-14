@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { useFormContext } from '@/contexts/FormContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import AIAssistModal from '../AIAssistModal';
+import Tooltip from '../Tooltip';
 import { Wand2, Loader2 } from 'lucide-react';
 
 export default function Step3() {
@@ -174,20 +175,34 @@ Write a comprehensive professional statement explaining why they deserve social 
               <label htmlFor="currentSituation" className="block text-sm font-medium text-gray-700">
                 {t('currentSituation')} *
               </label>
-              <button
-                type="button"
-                onClick={() => handleAIAssist('currentSituation')}
-                className={`flex items-center gap-2 text-sm px-3 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all duration-200 ${
-                  watchedValues.currentSituation && watchedValues.currentSituation.trim().length >= 10
-                    ? 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:shadow-sm' 
-                    : 'bg-gray-100 text-gray-500 cursor-not-allowed'
-                }`}
-                disabled={!watchedValues.currentSituation || watchedValues.currentSituation.trim().length < 10}
-                aria-label={`AI enhance text for ${t('currentSituation')}`}
+              <Tooltip
+                content={watchedValues.currentSituation && watchedValues.currentSituation.trim().length >= 10
+                  ? t('aiAssistTooltip')
+                  : t('aiAssistDisabledTooltip')
+                }
+                position="left"
               >
-                <Wand2 size={14} />
-                {t('helpMeWrite')}
-              </button>
+                <button
+                  type="button"
+                  onClick={() => handleAIAssist('currentSituation')}
+                  className={`relative group flex items-center gap-2 text-sm px-3 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all duration-200 ${
+                    watchedValues.currentSituation && watchedValues.currentSituation.trim().length >= 10
+                      ? 'bg-gray-900 text-white hover:bg-black hover:shadow-lg transform hover:scale-105'
+                      : 'bg-gray-50 text-gray-400 cursor-not-allowed border border-gray-200 opacity-60'
+                  }`}
+                  disabled={!watchedValues.currentSituation || watchedValues.currentSituation.trim().length < 10}
+                  aria-label={`AI enhance text for ${t('currentSituation')}`}
+                >
+                  <Wand2
+                    size={14}
+                    className={watchedValues.currentSituation && watchedValues.currentSituation.trim().length >= 10
+                      ? 'group-hover:animate-pulse'
+                      : ''
+                    }
+                  />
+                  {t('helpMeWrite')}
+                </button>
+              </Tooltip>
             </div>
             <textarea
               id="currentSituation"
@@ -211,20 +226,34 @@ Write a comprehensive professional statement explaining why they deserve social 
               <label htmlFor="employmentCircumstances" className="block text-sm font-medium text-gray-700">
                 {t('employmentCircumstances')} *
               </label>
-              <button
-                type="button"
-                onClick={() => handleAIAssist('employmentCircumstances')}
-                className={`flex items-center gap-2 text-sm px-3 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all duration-200 ${
-                  watchedValues.employmentCircumstances && watchedValues.employmentCircumstances.trim().length >= 10
-                    ? 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:shadow-sm' 
-                    : 'bg-gray-100 text-gray-500 cursor-not-allowed'
-                }`}
-                disabled={!watchedValues.employmentCircumstances || watchedValues.employmentCircumstances.trim().length < 10}
-                aria-label={`AI enhance text for ${t('employmentCircumstances')}`}
+              <Tooltip
+                content={watchedValues.employmentCircumstances && watchedValues.employmentCircumstances.trim().length >= 10
+                  ? t('aiAssistTooltip')
+                  : t('aiAssistDisabledTooltip')
+                }
+                position="left"
               >
-                <Wand2 size={14} />
-                {t('helpMeWrite')}
-              </button>
+                <button
+                  type="button"
+                  onClick={() => handleAIAssist('employmentCircumstances')}
+                  className={`relative group flex items-center gap-2 text-sm px-3 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all duration-200 ${
+                    watchedValues.employmentCircumstances && watchedValues.employmentCircumstances.trim().length >= 10
+                      ? 'bg-gray-900 text-white hover:bg-black hover:shadow-lg transform hover:scale-105'
+                      : 'bg-gray-50 text-gray-400 cursor-not-allowed border border-gray-200 opacity-60'
+                  }`}
+                  disabled={!watchedValues.employmentCircumstances || watchedValues.employmentCircumstances.trim().length < 10}
+                  aria-label={`AI enhance text for ${t('employmentCircumstances')}`}
+                >
+                  <Wand2
+                    size={14}
+                    className={watchedValues.employmentCircumstances && watchedValues.employmentCircumstances.trim().length >= 10
+                      ? 'group-hover:animate-pulse'
+                      : ''
+                    }
+                  />
+                  {t('helpMeWrite')}
+                </button>
+              </Tooltip>
             </div>
             <textarea
               id="employmentCircumstances"
@@ -248,20 +277,34 @@ Write a comprehensive professional statement explaining why they deserve social 
               <label htmlFor="reasonForApplying" className="block text-sm font-medium text-gray-700">
                 {t('reasonForApplying')} *
               </label>
-              <button
-                type="button"
-                onClick={() => handleAIAssist('reasonForApplying')}
-                className={`flex items-center gap-2 text-sm px-3 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all duration-200 ${
-                  watchedValues.reasonForApplying && watchedValues.reasonForApplying.trim().length >= 10
-                    ? 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:shadow-sm' 
-                    : 'bg-gray-100 text-gray-500 cursor-not-allowed'
-                }`}
-                disabled={!watchedValues.reasonForApplying || watchedValues.reasonForApplying.trim().length < 10}
-                aria-label={`AI enhance text for ${t('reasonForApplying')}`}
+              <Tooltip
+                content={watchedValues.reasonForApplying && watchedValues.reasonForApplying.trim().length >= 10
+                  ? t('aiAssistTooltip')
+                  : t('aiAssistDisabledTooltip')
+                }
+                position="left"
               >
-                <Wand2 size={14} />
-                {t('helpMeWrite')}
-              </button>
+                <button
+                  type="button"
+                  onClick={() => handleAIAssist('reasonForApplying')}
+                  className={`relative group flex items-center gap-2 text-sm px-3 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all duration-200 ${
+                    watchedValues.reasonForApplying && watchedValues.reasonForApplying.trim().length >= 10
+                      ? 'bg-gray-900 text-white hover:bg-black hover:shadow-lg transform hover:scale-105'
+                      : 'bg-gray-50 text-gray-400 cursor-not-allowed border border-gray-200 opacity-60'
+                  }`}
+                  disabled={!watchedValues.reasonForApplying || watchedValues.reasonForApplying.trim().length < 10}
+                  aria-label={`AI enhance text for ${t('reasonForApplying')}`}
+                >
+                  <Wand2
+                    size={14}
+                    className={watchedValues.reasonForApplying && watchedValues.reasonForApplying.trim().length >= 10
+                      ? 'group-hover:animate-pulse'
+                      : ''
+                    }
+                  />
+                  {t('helpMeWrite')}
+                </button>
+              </Tooltip>
             </div>
             <textarea
               id="reasonForApplying"

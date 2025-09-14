@@ -10,6 +10,14 @@ export default function EmailSendingOverlay({ email, phase, onComplete, applicat
   const [currentPhase, setCurrentPhase] = useState(phase);
   const [showCheck, setShowCheck] = useState(false);
 
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, []);
+
   useEffect(() => {
     setCurrentPhase(phase);
     if (phase === 'sent') {
