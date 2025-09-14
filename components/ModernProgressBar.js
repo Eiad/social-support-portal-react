@@ -176,9 +176,15 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
                 {/* Connection line to next step */}
                 {index < steps.length - 1 && (
                   <div className={`
-                    absolute top-3.5 left-1/2 w-full h-0.5 -translate-y-1/2
-                    ${status === 'completed' ? 'bg-gradient-to-r from-gray-700 to-gray-400' : 'bg-gray-200'}
-                  `} style={{ left: '50%', width: 'calc(100% - 1.75rem)', marginLeft: '0.875rem' }} />
+                    absolute top-3.5 w-full h-0.5 -translate-y-1/2
+                    ${status === 'completed' ?
+                      (isRTL ? 'bg-gradient-to-l from-gray-700 to-gray-400' : 'bg-gradient-to-r from-gray-700 to-gray-400')
+                      : 'bg-gray-200'}
+                  `} style={{
+                    [isRTL ? 'right' : 'left']: '50%',
+                    width: 'calc(100% - 1.75rem)',
+                    [isRTL ? 'marginRight' : 'marginLeft']: '0.875rem'
+                  }} />
                 )}
               </div>
             );
