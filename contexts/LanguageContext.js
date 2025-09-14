@@ -410,8 +410,8 @@ const translations = {
     readyToExploreDesc: 'اكتشفوا جميع الخدمات والمزايا المتاحة في المنصة أو تصفحوا الكود البرمجي للاطلاع على تفاصيل التطوير.',
     tryApplication: 'تجربة المنصة',
     viewSource: 'الاطلاع على الكود البرمجي',
-    builtWith: 'تم التطوير باستخدام',
-    forAccessibleGovernment: 'لتطوير الخدمات الحكومية الرقمية',
+    builtWith: 'تم التطوير بإتقان وعناية لفريق',
+    forAccessibleGovernment: 'Northbay Solutions',
   }
 };
 
