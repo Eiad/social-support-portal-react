@@ -142,30 +142,13 @@ const response = await fetch('/api/ai-assist', {
 - **Loading States**: Skeleton screens and progress indicators
 - **Accessibility**: Screen reader announcements for AI interactions
 
-## Internationalization Excellence
+## Internationalization
 
-### Bilingual Implementation
-- **Languages**: Complete English and Arabic support
-- **RTL Layout**: Proper right-to-left text direction for Arabic
-- **Icon Direction**: Chevrons and directional elements flip appropriately
-- **Dynamic Switching**: Live language toggle without data loss or page reload
-
-### Translation Coverage
-| Component | English | Arabic |
-|-----------|---------|---------|
-| Form Labels | Yes | Yes |
-| Error Messages | Yes | Yes |
-| Button Text | Yes | Yes |
-| Onboarding Tour | Yes | Yes |
-| AI Assistant | Yes | Yes |
-| Email Confirmation | Yes | Yes |
-| Tooltips & Help Text | Yes | Yes |
-
-### Cultural Considerations
-- **Arabic Typography**: Noto Kufi Arabic font for optimal readability
-- **Layout Mirroring**: Navigation and progress indicators adapt to RTL
-- **Content Direction**: Text alignment and spacing optimized for each language
-- **Color Semantics**: Universal color meanings maintained across cultures
+**Complete bilingual support (English/Arabic) with:**
+- RTL layout with proper text direction and icon flipping
+- Live language switching without data loss
+- Full translation coverage: forms, errors, buttons, tours, AI assistant
+- Cultural considerations: Arabic typography, layout mirroring, color semantics
 
 ## Testing
 
