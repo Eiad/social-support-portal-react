@@ -88,8 +88,8 @@ export default function ApplicationForm() {
                 >
                   <Info size={14} className="sm:hidden text-gray-500 group-hover:text-gray-700" />
                   <Info size={16} className="hidden sm:block text-gray-500 group-hover:text-gray-700" />
-                  <span className="hidden sm:inline">{language === 'ar' ? 'التفاصيل' : 'Details'}</span>
-                  <span className="hidden md:inline">{language === 'ar' ? 'تفاصيل التطبيق' : 'App Details'}</span>
+                  <span className="hidden sm:inline md:hidden">{language === 'ar' ? 'التفاصيل' : 'Details'}</span>
+                  <span className="hidden md:inline">{language === 'ar' ? 'تفاصيل التقنية' : "Used Tech Details"}</span>
                 </Link>
 
                 {/* Help/Tutorial Button - Responsive */}
