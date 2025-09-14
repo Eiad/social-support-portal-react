@@ -13,6 +13,7 @@
   "dependencies": {
     "@fontsource/boogaloo": "^5.2.7",
     "@fontsource/inter": "^5.2.6",
+    "@fontsource/limelight": "^5.2.6",
     "@fontsource/noto-kufi-arabic": "^5.2.7",
     "@fontsource/outfit": "^5.2.7",
     "@fontsource/reem-kufi": "^5.2.10",
