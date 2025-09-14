@@ -370,7 +370,7 @@ npm start
 
 ## License
 
-This project is created for interview/demonstration purposes.
+This project is created for interview/demonstration purposes for Northbay Solutions team.
 
 ## Support
 
