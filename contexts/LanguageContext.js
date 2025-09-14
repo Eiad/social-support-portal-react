@@ -14,7 +14,7 @@ export const useLanguage = () => {
 
 const translations = {
   en: {
-    applicationTitle: 'Social Support Application',
+    applicationTitle: 'Gov Social Support',
     step: 'Step',
     of: 'of',
     next: 'Next',
@@ -34,7 +34,7 @@ const translations = {
     invalidEmail: 'Invalid email address',
     invalidPhone: 'Invalid phone number',
     provideBasicInfo: 'Please provide your basic information',
-    completeInSteps: 'Complete your application in a few simple steps',
+    completeInSteps: 'Finish your application in a few steps',
     helpMeWrite: 'Help Me Write',
     tutorial: 'Tutorial',
     
@@ -64,7 +64,7 @@ const translations = {
     email: 'Email Address',
     
     // Step 2
-    familyFinancialInfo: 'Family & Finance',
+    familyFinancialInfo: 'Family & Finance Details',
     maritalStatus: 'Marital Status',
     single: 'Single',
     married: 'Married',

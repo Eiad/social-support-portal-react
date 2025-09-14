@@ -49,7 +49,7 @@
     {
       "name": "Start Application",
       "short_name": "Apply",
-      "description": "Start a new social support application",
+      "description": "Start a new Gov Social Support",
       "url": "/?source=pwa-shortcut",
       "icons": [
         {

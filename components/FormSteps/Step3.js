@@ -115,21 +115,21 @@ export default function Step3() {
       // English prompts
       switch(fieldName) {
         case 'currentSituation':
-          return `You are helping someone write a compelling government social support application. Based on their brief description, write a detailed, professional, and empathetic explanation of their current financial situation. Make it convincing but honest, include specific challenges they face, and explain how this impacts their daily life. Keep it between 120-180 words and use formal language appropriate for government applications.
+          return `You are helping someone write a compelling government Gov Social Support. Based on their brief description, write a detailed, professional, and empathetic explanation of their current financial situation. Make it convincing but honest, include specific challenges they face, and explain how this impacts their daily life. Keep it between 120-180 words and use formal language appropriate for government applications.
 
 User's brief description: "${currentText}"
 
 Write a comprehensive professional statement about their current financial situation that would help justify their need for social support.`;
 
         case 'employmentCircumstances':
-          return `You are helping someone write a compelling government social support application. Based on their brief description, write a detailed, professional explanation of their employment circumstances and any obstacles they face. Include specific details about their job search efforts, barriers to employment, skills or qualifications, and how their situation affects their ability to work. Keep it between 120-180 words and use formal language.
+          return `You are helping someone write a compelling government Gov Social Support. Based on their brief description, write a detailed, professional explanation of their employment circumstances and any obstacles they face. Include specific details about their job search efforts, barriers to employment, skills or qualifications, and how their situation affects their ability to work. Keep it between 120-180 words and use formal language.
 
 User's brief description: "${currentText}"
 
 Write a comprehensive professional statement about their employment circumstances that explains their situation clearly.`;
 
         case 'reasonForApplying':
-          return `You are helping someone write a compelling government social support application. Based on their brief description, write a detailed, professional, and persuasive explanation of why they need social support. Include specific needs, how the support would help them, their efforts to improve their situation, and their commitment to using the assistance responsibly. Keep it between 120-180 words and use formal, respectful language.
+          return `You are helping someone write a compelling government Gov Social Support. Based on their brief description, write a detailed, professional, and persuasive explanation of why they need social support. Include specific needs, how the support would help them, their efforts to improve their situation, and their commitment to using the assistance responsibly. Keep it between 120-180 words and use formal, respectful language.
 
 User's brief description: "${currentText}"
 

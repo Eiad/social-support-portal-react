@@ -1,6 +1,6 @@
-# Social Support Application Portal
+# Gov Social Support Portal
 
-A modern, accessible, and multilingual web application for government social support applications, featuring AI-powered writing assistance, advanced UX design, and comprehensive accessibility features.
+A modern, accessible, and multilingual web application for government Gov Social Supports, featuring AI-powered writing assistance, advanced UX design, and comprehensive accessibility features.
 
 ## Features Overview
 
@@ -80,7 +80,7 @@ npm run dev
 
 ### AI Integration Features
 - **"Help Me Write" Button**: Available for all three text areas in Step 3
-- **Professional Content Generation**: Context-aware suggestions for social support applications
+- **Professional Content Generation**: Context-aware suggestions for Gov Social Supports
 - **Modal Interface**: Clean popup with Accept, Regenerate, and Discard options
 - **Error Handling**: Graceful API timeout and failure management
 - **Body Scroll Lock**: Prevents background scrolling during modal interaction
@@ -112,7 +112,7 @@ npm run dev
 ### OpenAI GPT Implementation
 - **Endpoint**: OpenAI Chat Completions API (`https://api.openai.com/v1/chat/completions`)
 - **Model**: GPT-3.5-turbo (configurable)
-- **Context-Aware Prompts**: Tailored suggestions for social support applications
+- **Context-Aware Prompts**: Tailored suggestions for Gov Social Supports
 
 ### User Experience Flow
 1. **Trigger**: Click "Help Me Write" button in Step 3 text areas
@@ -130,7 +130,7 @@ const response = await fetch('/api/ai-assist', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({
-    prompt: `Help write professional ${fieldType} for social support application`,
+    prompt: `Help write professional ${fieldType} for Gov Social Support`,
     context: userFormData
   })
 });

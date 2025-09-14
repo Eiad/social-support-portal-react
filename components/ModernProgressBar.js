@@ -2,7 +2,7 @@
 
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useState, useEffect } from 'react';
-import { User, DollarSign, FileText } from 'lucide-react';
+import { User, Users, FileText, CheckSquare } from 'lucide-react';
 import { useFormContext } from '@/contexts/FormContext';
 
 export default function ModernProgressBar({ currentStep, totalSteps }) {
@@ -14,9 +14,9 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
 
   const steps = [
     { id: 1, name: t('personalInformation'), icon: User },
-    { id: 2, name: t('familyFinancialInfo'), icon: DollarSign },
+    { id: 2, name: t('familyFinancialInfo'), icon: Users },
     { id: 3, name: t('situationDescriptions'), icon: FileText },
-    { id: 4, name: t('reviewAndSubmit'), icon: FileText }
+    { id: 4, name: t('reviewAndSubmit'), icon: CheckSquare }
   ];
 
   const getStepStatus = (stepId) => {
@@ -27,23 +27,23 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
 
   return (
     <div className="mb-4 sm:mb-6">
-      {/* Smart Progress Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6 p-4 sm:p-5 bg-gradient-to-r from-gray-50/50 to-white rounded-xl border border-gray-100/50 shadow-sm">
+      {/* Minimal Progress Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3 mb-3 sm:mb-4 p-2 sm:p-3 bg-gray-50/30 rounded-lg">
         <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-1">
-            <div className="w-2 h-2 rounded-full bg-gradient-to-r from-gray-700 to-black animate-pulse"></div>
-            <h2 className="text-base sm:text-lg font-semibold text-gray-800 truncate">
+          <div className="flex items-center gap-2 mb-0.5">
+            <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-gray-700 to-black animate-pulse"></div>
+            <h2 className="text-sm sm:text-base font-semibold text-gray-800 truncate">
               {t('step')} {currentStep} {t('of')} {totalSteps}
             </h2>
           </div>
-          <p className="text-sm sm:text-base text-gray-600 font-medium truncate">
+          <p className="text-xs sm:text-sm text-gray-600 font-medium truncate">
             {steps.find(s => s.id === currentStep)?.name}
           </p>
         </div>
 
         {/* Mini progress indicator for mobile */}
         <div className="flex sm:hidden items-center gap-2">
-          <div className="w-16 bg-gray-200 rounded-full h-1.5 overflow-hidden">
+          <div className="w-12 bg-gray-200 rounded-full h-1 overflow-hidden">
             <div
               className="h-full bg-gradient-to-r from-gray-700 to-black rounded-full transition-all duration-1000 ease-out"
               style={{ width: `${progressPercentage}%` }}
@@ -53,8 +53,8 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
         </div>
       </div>
 
-      {/* Beautiful Desktop Step Indicator */}
-      <div className="hidden md:block p-6 bg-white rounded-xl border border-gray-100 shadow-sm">
+      {/* Clean Desktop Step Indicator */}
+      <div className="hidden md:block p-4 bg-gray-50/30 rounded-lg">
         <div className="relative">
           {/* Enhanced Background Line */}
           <div className="absolute top-8 left-0 w-full h-1 bg-gray-100 rounded-full" />
@@ -135,11 +135,11 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
         </div>
       </div>
 
-      {/* Smart Mobile/Tablet Step Indicator */}
-      <div className="md:hidden bg-white rounded-xl p-4 border border-gray-100 shadow-sm">
+      {/* Clean Mobile/Tablet Step Indicator */}
+      <div className="md:hidden bg-gray-50/30 rounded-lg p-3">
 
         {/* Step dots with labels */}
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-3">
           {steps.map((step, index) => {
             const status = getStepStatus(step.id);
             const Icon = step.icon;
@@ -148,12 +148,12 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
 
                 {/* Step Circle */}
                 <div className={`
-                  w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 mb-2
+                  w-7 h-7 rounded-lg flex items-center justify-center transition-all duration-300 mb-1.5
                   ${status === 'completed'
-                    ? 'bg-gradient-to-br from-gray-700 to-black text-white shadow-md'
+                    ? 'bg-gradient-to-br from-gray-700 to-black text-white'
                     : status === 'current'
-                    ? 'bg-gradient-to-br from-gray-700 to-black text-white shadow-lg ring-2 ring-gray-300'
-                    : 'bg-gray-100 text-gray-400 border border-gray-200'
+                    ? 'bg-gradient-to-br from-gray-700 to-black text-white ring-2 ring-gray-300'
+                    : 'bg-gray-100 text-gray-400'
                   }
                 `}>
                   {status === 'completed' ? (
@@ -161,7 +161,7 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
                     </svg>
                   ) : (
-                    <Icon size={14} />
+                    <Icon size={13} />
                   )}
                 </div>
 
@@ -176,9 +176,9 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
                 {/* Connection line to next step */}
                 {index < steps.length - 1 && (
                   <div className={`
-                    absolute top-4 left-1/2 w-full h-0.5 -translate-y-1/2
+                    absolute top-3.5 left-1/2 w-full h-0.5 -translate-y-1/2
                     ${status === 'completed' ? 'bg-gradient-to-r from-gray-700 to-gray-400' : 'bg-gray-200'}
-                  `} style={{ left: '50%', width: 'calc(100% - 2rem)', marginLeft: '1rem' }} />
+                  `} style={{ left: '50%', width: 'calc(100% - 1.75rem)', marginLeft: '0.875rem' }} />
                 )}
               </div>
             );

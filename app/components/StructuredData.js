@@ -27,7 +27,7 @@ export default function StructuredData() {
         "alternateName": "ar"
       }
     ],
-    "serviceType": "Social Support Application",
+    "serviceType": "Gov Social Support",
     "category": "Government Services",
     "audience": {
       "@type": "Audience",
