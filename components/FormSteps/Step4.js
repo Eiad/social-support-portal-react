@@ -6,16 +6,21 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useRouter } from 'next/navigation';
 import { Edit, Check, User, Home, FileText, Loader2 } from 'lucide-react';
 import { triggerFormCompletion } from '../CelebrationEffects';
+import EmailSendingOverlay from '../EmailSendingOverlay';
 
 export default function Step4() {
-  const { formData, goToStep } = useFormContext();
+  const { formData, goToStep, resetForm } = useFormContext();
   const { t } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionResult, setSubmissionResult] = useState(null);
+  const [emailPhase, setEmailPhase] = useState(null);
+  const [applicationNumber, setApplicationNumber] = useState(null);
   const router = useRouter();
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
+    setEmailPhase('submitting');
+
     try {
       const response = await fetch('/api/submit-application', {
         method: 'POST',
@@ -26,19 +31,29 @@ export default function Step4() {
       });
 
       const result = await response.json();
-      
+
       if (response.ok) {
-        // Add delay for smooth transition effect, then redirect
+        // Store application number for success phase
+        setApplicationNumber(result.applicationNumber);
+
+        // Transition to email sending phase
         setTimeout(() => {
-          const params = new URLSearchParams({
-            success: 'true',
-            applicationNumber: result.applicationNumber,
-            message: encodeURIComponent(result.message)
-          });
-          
-          router.push(`${window.location.pathname}?${params.toString()}`);
-        }, 500);
+          setEmailPhase('sending');
+
+          // Simulate email sending delay
+          setTimeout(() => {
+            setEmailPhase('sent');
+
+            // Show success immediately after 1.5 seconds of displaying "sent"
+            setTimeout(() => {
+              setEmailPhase('success');
+            }, 1500);
+
+            // No auto-complete - user manually closes via X button
+          }, 2000);
+        }, 1500);
       } else {
+        setEmailPhase(null);
         setSubmissionResult({
           success: false,
           message: result.error || t('error')
@@ -46,12 +61,15 @@ export default function Step4() {
       }
     } catch (error) {
       console.error('Submission error:', error);
+      setEmailPhase(null);
       setSubmissionResult({
         success: false,
         message: t('error')
       });
     } finally {
-      setIsSubmitting(false);
+      setTimeout(() => {
+        setIsSubmitting(false);
+      }, 1500);
     }
   };
 
@@ -99,6 +117,22 @@ export default function Step4() {
           )}
         </div>
       </div>
+    );
+  }
+
+  // Show email sending overlay during submission process
+  if (emailPhase) {
+    return (
+      <EmailSendingOverlay
+        email={formData.email}
+        phase={emailPhase}
+        applicationNumber={applicationNumber}
+        onComplete={() => {
+          setEmailPhase(null);
+          resetForm();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+      />
     );
   }
 

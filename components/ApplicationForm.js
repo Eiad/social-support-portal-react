@@ -24,24 +24,7 @@ export default function ApplicationForm() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  // Check for success parameter on mount
-  useEffect(() => {
-    if (searchParams.get('success') === 'true') {
-      const applicationNumber = searchParams.get('applicationNumber');
-      const message = searchParams.get('message') || 'Your application has been successfully submitted.';
-      
-      // Trigger celebration animation when success screen loads
-      setTimeout(() => {
-        triggerFormCompletion();
-      }, 500);
-      
-      setSubmissionResult({
-        success: true,
-        applicationNumber: applicationNumber || 'APP-' + Date.now(),
-        message: decodeURIComponent(message)
-      });
-    }
-  }, [searchParams]);
+  // No longer needed - success is handled in EmailSendingOverlay
 
   // Check if user has seen onboarding
   useEffect(() => {
@@ -52,71 +35,7 @@ export default function ApplicationForm() {
   }, [currentStep, submissionResult]);
 
 
-  // Show success/error screen after submission
-  if (submissionResult) {
-    return (
-      <div className="fixed inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center p-4 z-50 animate-fadeIn">
-        <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-10 text-center transform animate-scaleIn">
-          {submissionResult.success ? (
-            <>
-              {/* Enhanced success icon with animation */}
-              <div className="relative mb-6">
-                <div className="w-20 h-20 bg-gradient-to-r from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto animate-bounce">
-                  <CheckCircle size={40} className="text-white" />
-                </div>
-                <div className="absolute inset-0 w-20 h-20 bg-green-200 rounded-full mx-auto animate-ping opacity-20"></div>
-              </div>
-              
-              <h2 className="text-xl font-semibold text-gray-900 mb-2">
-                {t('applicationSubmitted')}
-              </h2>
-              <p className="text-gray-600 mb-4 text-sm leading-relaxed">{submissionResult.message}</p>
-              
-              {/* Enhanced application number display */}
-              <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg p-4 mb-6 border border-gray-200">
-                <p className="text-xs font-medium text-gray-500 mb-1">{t('applicationNumber')}</p>
-                <div className="bg-white rounded-lg p-3 border-2 border-dashed border-gray-300">
-                  <p className="text-lg font-mono font-bold text-gray-900 tracking-wide">
-                    {submissionResult.applicationNumber}
-                  </p>
-                </div>
-              </div>
-              
-              <button
-                onClick={() => {
-                  setSubmissionResult(null);
-                  resetForm();
-                  // Clear URL params and redirect to clean URL
-                  router.push(window.location.pathname);
-                }}
-                className="px-6 py-3 bg-gradient-to-r from-gray-700 to-gray-900 text-white font-medium rounded-lg hover:from-gray-600 hover:to-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all duration-200 text-sm"
-              >
-                Start New Application
-              </button>
-            </>
-          ) : (
-            <>
-              <div className="relative mb-6">
-                <div className="w-20 h-20 bg-gradient-to-r from-red-400 to-red-600 rounded-full flex items-center justify-center mx-auto">
-                  <XCircle size={40} className="text-white" />
-                </div>
-              </div>
-              <h2 className="text-xl font-semibold text-gray-900 mb-2">
-                Submission Failed
-              </h2>
-              <p className="text-gray-600 mb-4 text-sm leading-relaxed">{submissionResult.message}</p>
-              <button
-                onClick={() => setSubmissionResult(null)}
-                className="px-6 py-3 bg-gradient-to-r from-gray-700 to-gray-900 text-white font-medium rounded-lg hover:from-gray-600 hover:to-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all duration-200 text-sm"
-              >
-                Try Again
-              </button>
-            </>
-          )}
-        </div>
-      </div>
-    );
-  }
+  // Success is now handled entirely in EmailSendingOverlay
 
   return (
     <>
