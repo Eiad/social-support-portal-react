@@ -10,7 +10,7 @@ import EmailSendingOverlay from '../EmailSendingOverlay';
 
 export default function Step4() {
   const { formData, goToStep, resetForm } = useFormContext();
-  const { t } = useLanguage();
+  const { t, isRTL } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionResult, setSubmissionResult] = useState(null);
   const [emailPhase, setEmailPhase] = useState(null);
@@ -178,35 +178,35 @@ export default function Step4() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
             <div>
               <span className="text-gray-500">{t('name')}:</span>
-              <span className="ml-2 text-gray-900">{formData.name || '-'}</span>
+              <span className={`${isRTL ? 'mr-2' : 'ml-2'} text-gray-900`}>{formData.name || '-'}</span>
             </div>
             <div>
               <span className="text-gray-500">{t('nationalId')}:</span>
-              <span className="ml-2 text-gray-900">{formData.nationalId || '-'}</span>
+              <span className={`${isRTL ? 'mr-2' : 'ml-2'} text-gray-900`}>{formData.nationalId || '-'}</span>
             </div>
             <div>
               <span className="text-gray-500">{t('dateOfBirth')}:</span>
-              <span className="ml-2 text-gray-900">{formData.dateOfBirth || '-'}</span>
+              <span className={`${isRTL ? 'mr-2' : 'ml-2'} text-gray-900`}>{formData.dateOfBirth || '-'}</span>
             </div>
             <div>
               <span className="text-gray-500">{t('gender')}:</span>
-              <span className="ml-2 text-gray-900">{formData.gender ? t(formData.gender) : '-'}</span>
+              <span className={`${isRTL ? 'mr-2' : 'ml-2'} text-gray-900`}>{formData.gender ? t(formData.gender) : '-'}</span>
             </div>
             <div className="md:col-span-2">
               <span className="text-gray-500">{t('address')}:</span>
-              <span className="ml-2 text-gray-900">{formData.address || '-'}</span>
+              <span className={`${isRTL ? 'mr-2' : 'ml-2'} text-gray-900`}>{formData.address || '-'}</span>
             </div>
             <div>
               <span className="text-gray-500">{t('city')}:</span>
-              <span className="ml-2 text-gray-900">{formData.city || '-'}</span>
+              <span className={`${isRTL ? 'mr-2' : 'ml-2'} text-gray-900`}>{formData.city || '-'}</span>
             </div>
             <div>
               <span className="text-gray-500">{t('phone')}:</span>
-              <span className="ml-2 text-gray-900">{formData.phone || '-'}</span>
+              <span className={`${isRTL ? 'mr-2' : 'ml-2'} text-gray-900`}>{formData.phone || '-'}</span>
             </div>
             <div>
               <span className="text-gray-500">{t('email')}:</span>
-              <span className="ml-2 text-gray-900">{formData.email || '-'}</span>
+              <span className={`${isRTL ? 'mr-2' : 'ml-2'} text-gray-900`}>{formData.email || '-'}</span>
             </div>
           </div>
         </div>
@@ -230,23 +230,23 @@ export default function Step4() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
             <div>
               <span className="text-gray-500">{t('maritalStatus')}:</span>
-              <span className="ml-2 text-gray-900">{formData.maritalStatus ? t(formData.maritalStatus) : '-'}</span>
+              <span className={`${isRTL ? 'mr-2' : 'ml-2'} text-gray-900`}>{formData.maritalStatus ? t(formData.maritalStatus) : '-'}</span>
             </div>
             <div>
               <span className="text-gray-500">{t('dependents')}:</span>
-              <span className="ml-2 text-gray-900">{formData.dependents || '-'}</span>
+              <span className={`${isRTL ? 'mr-2' : 'ml-2'} text-gray-900`}>{formData.dependents || '-'}</span>
             </div>
             <div>
               <span className="text-gray-500">{t('employmentStatus')}:</span>
-              <span className="ml-2 text-gray-900">{formData.employmentStatus ? t(formData.employmentStatus) : '-'}</span>
+              <span className={`${isRTL ? 'mr-2' : 'ml-2'} text-gray-900`}>{formData.employmentStatus ? t(formData.employmentStatus) : '-'}</span>
             </div>
             <div>
               <span className="text-gray-500">{t('monthlyIncome')}:</span>
-              <span className="ml-2 text-gray-900">{formData.monthlyIncome ? `$${formData.monthlyIncome}` : '-'}</span>
+              <span className={`${isRTL ? 'mr-2' : 'ml-2'} text-gray-900`}>{formData.monthlyIncome ? `$${formData.monthlyIncome}` : '-'}</span>
             </div>
             <div>
               <span className="text-gray-500">{t('housingStatus')}:</span>
-              <span className="ml-2 text-gray-900">{formData.housingStatus ? t(formData.housingStatus) : '-'}</span>
+              <span className={`${isRTL ? 'mr-2' : 'ml-2'} text-gray-900`}>{formData.housingStatus ? t(formData.housingStatus) : '-'}</span>
             </div>
           </div>
         </div>

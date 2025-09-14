@@ -45,7 +45,11 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
         <div className="flex sm:hidden items-center gap-2">
           <div className="w-12 bg-gray-200 rounded-full h-1 overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-gray-700 to-black rounded-full transition-all duration-1000 ease-out"
+              className={`h-full rounded-full transition-all duration-1000 ease-out ${
+                isRTL
+                  ? 'bg-gradient-to-l from-gray-700 to-black ml-auto'
+                  : 'bg-gradient-to-r from-gray-700 to-black'
+              }`}
               style={{ width: `${progressPercentage}%` }}
             />
           </div>
@@ -61,8 +65,15 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
 
           {/* Animated Progress Line */}
           <div
-            className="absolute top-8 left-0 h-1 bg-gradient-to-r from-gray-700 via-gray-800 to-black rounded-full transition-all duration-1000 ease-out shadow-sm"
-            style={{ width: `${((currentStep - 1) / (totalSteps - 1)) * 100}%` }}
+            className={`absolute top-8 h-1 rounded-full transition-all duration-1000 ease-out shadow-sm ${
+              isRTL
+                ? 'right-0 bg-gradient-to-l from-gray-700 via-gray-800 to-black'
+                : 'left-0 bg-gradient-to-r from-gray-700 via-gray-800 to-black'
+            }`}
+            style={{
+              width: `${((currentStep - 1) / (totalSteps - 1)) * 100}%`,
+              ...(isRTL && { transformOrigin: 'right' })
+            }}
           />
 
           {/* Steps with enhanced design */}
@@ -195,7 +206,11 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
         <div className="relative">
           <div className="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-gray-700 via-gray-800 to-black rounded-full transition-all duration-1000 ease-out shadow-sm relative overflow-hidden"
+              className={`h-full rounded-full transition-all duration-1000 ease-out shadow-sm relative overflow-hidden ${
+                isRTL
+                  ? 'bg-gradient-to-l from-gray-700 via-gray-800 to-black ml-auto'
+                  : 'bg-gradient-to-r from-gray-700 via-gray-800 to-black'
+              }`}
               style={{ width: `${progressPercentage}%` }}
             >
               {/* Animated shine effect */}
