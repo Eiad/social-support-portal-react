@@ -13,10 +13,10 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
   const progressPercentage = (currentStep / totalSteps) * 100;
 
   const steps = [
-    { id: 1, name: t('personalInformation'), icon: User },
-    { id: 2, name: t('familyFinancialInfo'), icon: Users },
-    { id: 3, name: t('situationDescriptions'), icon: FileText },
-    { id: 4, name: t('reviewAndSubmit'), icon: CheckSquare }
+    { id: 1, name: t('personalInformation'), fullName: t('personalInformationFull'), icon: User },
+    { id: 2, name: t('familyFinancialInfo'), fullName: t('familyFinancialInfoFull'), icon: Users },
+    { id: 3, name: t('situationDescriptions'), fullName: t('situationDescriptionsFull'), icon: FileText },
+    { id: 4, name: t('reviewAndSubmit'), fullName: t('reviewAndSubmitFull'), icon: CheckSquare }
   ];
 
   const getStepStatus = (stepId) => {
@@ -37,7 +37,7 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
             </h2>
           </div>
           <p className="text-xs sm:text-sm text-gray-600 font-medium truncate">
-            {steps.find(s => s.id === currentStep)?.name}
+            {steps.find(s => s.id === currentStep)?.fullName}
           </p>
         </div>
 

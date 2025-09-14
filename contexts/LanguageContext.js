@@ -49,7 +49,8 @@ const translations = {
     aiAssistDisabledTooltip: 'Write at least 10 characters to enable AI assistance',
     
     // Step 1
-    personalInformation: 'Personal Information',
+    personalInformation: 'My Info',
+    personalInformationFull: 'Personal Information',
     name: 'Full Name',
     nationalId: 'National ID',
     dateOfBirth: 'Date of Birth',
@@ -65,6 +66,7 @@ const translations = {
     
     // Step 2
     familyFinancialInfo: 'Family & Finance',
+    familyFinancialInfoFull: 'Family & Financial Details',
     maritalStatus: 'Marital Status',
     single: 'Single',
     married: 'Married',
@@ -84,6 +86,7 @@ const translations = {
     
     // Step 3
     situationDescriptions: 'My Situation',
+    situationDescriptionsFull: 'Situation Description',
     currentSituation: 'Current Financial Situation',
     currentSituationPlaceholder: 'Describe your current financial situation and challenges...',
     employmentCircumstances: 'Employment Circumstances',
@@ -93,6 +96,7 @@ const translations = {
     
     // Step 4
     reviewAndSubmit: 'Review & Send',
+    reviewAndSubmitFull: 'Review and Submit',
     reviewYourInfo: 'Please review your information carefully before submitting',
     readyToSubmit: 'Ready to Submit?',
     submitWarning: 'Please ensure all information is correct as changes cannot be made after submission.',
@@ -233,7 +237,8 @@ const translations = {
     aiAssistDisabledTooltip: 'اكتب 10 أحرف على الأقل لتفعيل مساعد الذكاء الاصطناعي',
     
     // Step 1
-    personalInformation: 'المعلومات الشخصية',
+    personalInformation: 'معلوماتي',
+    personalInformationFull: 'المعلومات الشخصية',
     name: 'الاسم الكامل',
     nationalId: 'الهوية الوطنية',
     dateOfBirth: 'تاريخ الميلاد',
@@ -249,6 +254,7 @@ const translations = {
     
     // Step 2
     familyFinancialInfo: 'الأسرة و الماليات',
+    familyFinancialInfoFull: 'تفاصيل الأسرة والمالية',
     maritalStatus: 'الحالة الاجتماعية',
     single: 'أعزب',
     married: 'متزوج',
@@ -268,6 +274,7 @@ const translations = {
     
     // Step 3
     situationDescriptions: 'وصف الحالة',
+    situationDescriptionsFull: 'وصف الحالة التفصيلي',
     currentSituation: 'الوضع المالي الحالي',
     currentSituationPlaceholder: 'صف وضعك المالي الحالي والتحديات التي تواجهها...',
     employmentCircumstances: 'ظروف العمل',
@@ -277,6 +284,7 @@ const translations = {
     
     // Step 4
     reviewAndSubmit: 'مراجعة وإرسال',
+    reviewAndSubmitFull: 'المراجعة والإرسال',
     reviewYourInfo: 'يرجى مراجعة معلوماتك بعناية قبل الإرسال',
     readyToSubmit: 'جاهز للإرسال؟',
     submitWarning: 'يرجى التأكد من صحة جميع المعلومات حيث لا يمكن إجراء تغييرات بعد الإرسال.',
