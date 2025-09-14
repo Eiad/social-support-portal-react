@@ -244,6 +244,24 @@ export default function AppDetailsContent() {
           </div>
         </section>
 
+        {/* Project Structure */}
+        <section className="mb-12">
+          <div className="mb-6">
+            <h2 className="text-2xl font-normal text-gray-900 mb-2">{t('projectStructure')}</h2>
+            <p className="text-gray-600">{t('projectStructureDesc')}</p>
+          </div>
+
+          <div className="border border-gray-200 rounded p-4">
+            <div className="text-center">
+              <img
+                src="/assets/project-structure.png"
+                alt={t('projectStructureDiagram')}
+                className="max-w-full h-auto mx-auto rounded border border-gray-100"
+              />
+            </div>
+          </div>
+        </section>
+
         {/* Beyond Requirements */}
         <section className="mb-12">
           <div className="mb-6">

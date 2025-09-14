@@ -185,6 +185,9 @@ const translations = {
     performanceOptimized: 'Performance optimized',
     securityFirst: 'Security-first approach',
 
+    projectStructure: 'Project Structure',
+    projectStructureDesc: 'Visual overview of the application architecture and component organization.',
+    projectStructureDiagram: 'Project Structure Diagram',
     beyondRequirements: 'Beyond Requirements',
     beyondRequirementsDesc: 'Additional features that enhance the user experience and demonstrate technical excellence.',
     bonusOnboarding: 'Interactive onboarding tour system',
@@ -373,6 +376,9 @@ const translations = {
     performanceOptimized: 'محسن الأداء',
     securityFirst: 'مقاربة الأمان أولاً',
 
+    projectStructure: 'هيكل المشروع',
+    projectStructureDesc: 'نظرة بصرية شاملة على هندسة التطبيق وتنظيم المكونات.',
+    projectStructureDiagram: 'مخطط هيكل المشروع',
     beyondRequirements: 'ما وراء المتطلبات',
     beyondRequirementsDesc: 'ميزات إضافية تحسن تجربة المستخدم وتُظهر التميز التقني.',
     bonusOnboarding: 'نظام جولة إرشادية تفاعلية',
