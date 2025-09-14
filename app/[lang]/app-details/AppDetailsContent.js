@@ -17,6 +17,7 @@ import {
   ArrowRight
 } from 'lucide-react';
 import LanguageToggle from '@/components/LanguageToggle';
+import ZoomableImage from '@/components/ZoomableImage';
 import Link from 'next/link';
 
 export default function AppDetailsContent() {
@@ -253,10 +254,10 @@ export default function AppDetailsContent() {
 
           <div className="border border-gray-200 rounded p-4">
             <div className="text-center">
-              <img
+              <ZoomableImage
                 src="/assets/project-structure.png"
                 alt={t('projectStructureDiagram')}
-                className="max-w-full h-auto mx-auto rounded border border-gray-100"
+                className="max-w-full h-auto"
               />
             </div>
           </div>
