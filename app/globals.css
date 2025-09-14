@@ -48,6 +48,12 @@ body {
   letter-spacing: 0.01em;
 }
 
+.font-logo-arabic {
+  font-family: 'Reem Kufi', 'Noto Kufi Arabic', -apple-system, BlinkMacSystemFont, 'Arial', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
 /* Remove class - use inline styles instead */
 
 /* Custom Animations */

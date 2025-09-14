@@ -237,7 +237,7 @@ const translations = {
     name: 'الاسم الكامل',
     nationalId: 'الهوية الوطنية',
     dateOfBirth: 'تاريخ الميلاد',
-    gender: 'الجنس',
+    gender: 'النوع',
     male: 'ذكر',
     female: 'أنثى',
     address: 'العنوان',
@@ -248,7 +248,7 @@ const translations = {
     email: 'البريد الإلكتروني',
     
     // Step 2
-    familyFinancialInfo: 'معلومات الأسرة والمالية',
+    familyFinancialInfo: 'الأسرة و الماليات',
     maritalStatus: 'الحالة الاجتماعية',
     single: 'أعزب',
     married: 'متزوج',

@@ -112,7 +112,7 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
 
                   {/* Enhanced Label */}
                   <div className={`
-                    mt-3 text-center max-w-28 transition-all duration-200 relative
+                    mt-3 text-center max-w-32 transition-all duration-200 relative
                     ${status === 'current' ? 'text-gray-900 font-semibold' : 'text-gray-600 font-medium'}
                     ${hoveredStep === step.id && step.id < currentStep ? 'text-gray-900 font-semibold' : ''}
                   `}>

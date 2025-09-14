@@ -59,12 +59,12 @@ export default function ApplicationForm() {
               {/* Left side - Logo and Title */}
               <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
                 <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 rounded-xl shadow-lg ring-1 ring-white/20">
-                  <HandHeart size={16} className="sm:hidden text-white" />
-                  <HandHeart size={20} className="hidden sm:block md:hidden text-white" />
-                  <HandHeart size={24} className="hidden md:block text-white" />
+                  <HandHeart size={16} className={`sm:hidden text-white ${language === 'ar' ? 'scale-x-[-1]' : ''}`} />
+                  <HandHeart size={20} className={`hidden sm:block md:hidden text-white ${language === 'ar' ? 'scale-x-[-1]' : ''}`} />
+                  <HandHeart size={24} className={`hidden md:block text-white ${language === 'ar' ? 'scale-x-[-1]' : ''}`} />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h1 className="font-logo text-lg sm:text-xl md:text-2xl text-gray-900 leading-tight truncate">
+                  <h1 className={`${language === 'ar' ? 'font-logo-arabic' : 'font-logo'} text-lg sm:text-xl md:text-2xl text-gray-900 leading-tight truncate`}>
                     {t('applicationTitle')}
                   </h1>
                   <p className="text-xs sm:text-sm text-gray-600 hidden sm:block truncate">{t('completeInSteps')}</p>
@@ -74,26 +74,26 @@ export default function ApplicationForm() {
               {/* Right side - Navigation Controls */}
               <div className="flex items-center gap-1 sm:gap-2 md:gap-3 flex-shrink-0">
 
-                {/* App Details Link - Responsive */}
+                {/* App Details Link - Enhanced */}
                 <Link
                   href={`/${language}/app-details`}
-                  className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 rounded-lg hover:bg-gray-50 active:bg-gray-100 transition-all duration-200 group text-xs sm:text-sm font-medium text-gray-600 hover:text-gray-800"
+                  className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 rounded-lg hover:bg-blue-50 active:bg-blue-100 transition-all duration-200 group text-xs sm:text-sm font-semibold text-slate-700 hover:text-blue-700"
                   aria-label="View app details"
                 >
-                  <Info size={14} className="sm:hidden text-gray-500 group-hover:text-gray-700" />
-                  <Info size={16} className="hidden sm:block text-gray-500 group-hover:text-gray-700" />
+                  <Info size={14} className="sm:hidden text-blue-600 group-hover:text-blue-700" />
+                  <Info size={16} className="hidden sm:block text-blue-600 group-hover:text-blue-700" />
                   <span className="hidden sm:inline md:hidden">{language === 'ar' ? 'التفاصيل' : 'Details'}</span>
                   <span className="hidden md:inline">{language === 'ar' ? 'تفاصيل التقنية' : "Used Tech Details"}</span>
                 </Link>
 
-                {/* Help/Tutorial Button - Responsive */}
+                {/* Help/Tutorial Button - Enhanced */}
                 <button
                   onClick={() => setShowOnboarding(true)}
-                  className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 rounded-lg hover:bg-gray-50 active:bg-gray-100 transition-all duration-200 group text-xs sm:text-sm font-medium text-gray-600 hover:text-gray-800"
+                  className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 rounded-lg hover:bg-emerald-50 active:bg-emerald-100 transition-all duration-200 group text-xs sm:text-sm font-semibold text-slate-700 hover:text-emerald-700"
                   aria-label="Show tutorial"
                 >
-                  <HelpCircle size={14} className="sm:hidden text-gray-500 group-hover:text-gray-700" />
-                  <HelpCircle size={16} className="hidden sm:block text-gray-500 group-hover:text-gray-700" />
+                  <HelpCircle size={14} className="sm:hidden text-emerald-600 group-hover:text-emerald-700" />
+                  <HelpCircle size={16} className="hidden sm:block text-emerald-600 group-hover:text-emerald-700" />
                   <span className="hidden sm:inline">{t('tutorial')}</span>
                 </button>
 

@@ -1,6 +1,7 @@
 import "@fontsource/inter";
 import "@fontsource/noto-kufi-arabic";
 import "@fontsource/boogaloo";
+import "@fontsource/reem-kufi";
 import "../globals.css";
 import StructuredData from "../components/StructuredData";
 import { Analytics } from "@vercel/analytics/react";
