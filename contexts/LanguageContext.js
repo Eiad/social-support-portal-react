@@ -61,7 +61,7 @@ const translations = {
     email: 'Email Address',
     
     // Step 2
-    familyFinancialInfo: 'Family & Financial Information',
+    familyFinancialInfo: 'Family & Finance',
     maritalStatus: 'Marital Status',
     single: 'Single',
     married: 'Married',
