@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
@@ -8,11 +8,15 @@ import { useState } from 'react';
 export default function LanguageToggle({ currentLang, className = '' }) {
   const { language } = useLanguage();
   const router = useRouter();
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleLanguageChange = (newLang) => {
     if (newLang !== currentLang) {
-      router.push(`/${newLang}`);
+      // Extract the path after the language code
+      const currentPathWithoutLang = pathname.replace(`/${currentLang}`, '') || '';
+      const newPath = `/${newLang}${currentPathWithoutLang}`;
+      router.push(newPath);
     }
     setIsOpen(false);
   };

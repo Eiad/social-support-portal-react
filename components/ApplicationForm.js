@@ -13,9 +13,10 @@ import Step4 from './FormSteps/Step4';
 import FAQ from './FAQ';
 import Footer from './Footer';
 import { StepSkeleton, ProgressSkeleton } from './Skeleton';
-import { FileText, CheckCircle, XCircle, HelpCircle } from 'lucide-react';
+import { FileText, CheckCircle, XCircle, HelpCircle, Info } from 'lucide-react';
 import Onboarding from './Onboarding';
 import LanguageToggle from './LanguageToggle';
+import Link from 'next/link';
 
 export default function ApplicationForm() {
   const { currentStep, resetForm, isTransitioning, transitionDirection } = useFormContext();
@@ -56,6 +57,17 @@ export default function ApplicationForm() {
             <div className="absolute right-0 top-0 flex items-center gap-2">
               {/* Language Toggle */}
               <LanguageToggle currentLang={language} />
+
+              {/* App Details Link */}
+              <Link
+                href={`/${language}/app-details`}
+                className="flex items-center gap-1 px-3 py-2 rounded-full hover:bg-gray-100 transition-colors duration-200 group text-sm font-medium text-gray-600 group-hover:text-gray-800"
+                aria-label="View app details"
+                title="About this application"
+              >
+                <Info size={16} className="text-gray-500 group-hover:text-gray-700" />
+                <span>{language === 'ar' ? 'تفاصيل التطبيق' : 'App Details'}</span>
+              </Link>
 
               {/* Help Button */}
               <button

@@ -170,9 +170,9 @@ const response = await fetch('/api/ai-assist', {
 ## Testing
 
 ### Test Suite Overview
-The application includes comprehensive Jest testing with 17 test cases covering:
-- **4 Test Suites**: All passing with 100% success rate
-- **16 Tests**: All critical functionality covered
+The application includes comprehensive Jest testing with 51 test cases covering:
+- **7 Test Suites**: All passing with 100% success rate
+- **50 Tests**: All critical functionality covered
 - **1 Skipped**: Email validation test (optional enhancement)
 
 ### Running Tests
@@ -200,6 +200,9 @@ npm test -- --watchAll=false
 | **ProgressBar Tests** | 3 tests | ✅ Passing | UI rendering, step display, current step indication |
 | **Step1 Component Tests** | 4 tests | ✅ Passing | Form validation, field rendering, data flow |
 | **API Route Tests** | 3 tests | ✅ Passing | Endpoint functionality, error handling, response format |
+| **EmailSendingOverlay Tests** | 11 tests | ✅ Passing | Email flow phases, UI states, user interactions |
+| **AIAssistModal Tests** | 12 tests | ✅ Passing | Modal behavior, language support, accessibility |
+| **Onboarding Tests** | 11 tests | ✅ Passing | Tour navigation, localStorage integration, RTL support |
 
 ### Test Implementation Details
 
