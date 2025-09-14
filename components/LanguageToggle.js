@@ -6,7 +6,7 @@ import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 
 export default function LanguageToggle({ currentLang, className = '', showLabel = false }) {
-  const { language } = useLanguage();
+  const { language, isRTL } = useLanguage();
   const router = useRouter();
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
@@ -73,7 +73,7 @@ export default function LanguageToggle({ currentLang, className = '', showLabel 
           />
 
           {/* Dropdown - Mobile optimized */}
-          <div className="absolute top-full right-0 mt-2 w-40 sm:w-44 bg-white border border-gray-200 rounded-xl shadow-lg z-50 overflow-hidden animate-in slide-in-from-top-2 duration-200">
+          <div className={`absolute top-full mt-2 w-40 sm:w-44 bg-white border border-gray-200 rounded-xl shadow-lg z-50 overflow-hidden animate-in slide-in-from-top-2 duration-200 ${isRTL ? 'left-0' : 'right-0'}`}>
             {languages.map((lang) => (
               <button
                 key={lang.code}
@@ -85,7 +85,7 @@ export default function LanguageToggle({ currentLang, className = '', showLabel 
                 <span className="text-lg">{lang.flag}</span>
                 <span className="font-medium text-sm">{lang.name}</span>
                 {currentLang === lang.code && (
-                  <div className="ml-auto w-2 h-2 bg-gray-900 rounded-full"></div>
+                  <div className={`w-2 h-2 bg-gray-900 rounded-full ${isRTL ? 'mr-auto' : 'ml-auto'}`}></div>
                 )}
               </button>
             ))}
