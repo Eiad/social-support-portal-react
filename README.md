@@ -374,8 +374,8 @@ This project is created for interview/demonstration purposes.
 
 ## Support
 
-For questions or issues, please contact the development team.
+For questions or issues, please contact me.
 
 ---
 
-Built with care for accessible government services
+Built with ❤️ for Northbay Solutions team
