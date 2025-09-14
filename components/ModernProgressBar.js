@@ -133,7 +133,7 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
                     {hoveredStep === step.id && step.id < currentStep && (
                       <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 z-20 animate-fadeIn">
                         <div className="bg-gray-900 text-white text-xs px-3 py-2 rounded-lg whitespace-nowrap shadow-xl border border-gray-700">
-                          ← Click to go back
+                          {isRTL ? '→' : '←'} {t('clickToGoBack')}
                           <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gray-900 rotate-45 border-l border-t border-gray-700"></div>
                         </div>
                       </div>
