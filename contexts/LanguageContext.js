@@ -47,6 +47,15 @@ const translations = {
     addressTooltip: 'Provide your complete residential address including building number, street name, and area',
     aiAssistTooltip: 'AI will help expand and professionalize your text for the application',
     aiAssistDisabledTooltip: 'Write at least 10 characters to enable AI assistance',
+
+    // Contextual AI tooltips for each field
+    aiAssistCurrentSituation: 'Describe your main financial challenges and our smart AI will help you craft a clear, professional explanation that strengthens your application',
+    aiAssistEmployment: 'Explain your work situation and our AI assistant will help you present your employment circumstances in the most effective way',
+    aiAssistReasonApplying: 'Share why you need support and our intelligent writing assistant will help you articulate your reasons professionally and persuasively',
+
+    aiAssistCurrentSituationDisabled: 'Start typing about your financial situation to unlock AI writing assistance',
+    aiAssistEmploymentDisabled: 'Begin describing your employment situation to enable smart writing help',
+    aiAssistReasonApplyingDisabled: 'Share your reasons for applying to activate AI writing support',
     
     // Step 1
     personalInformation: 'My Info',
@@ -238,6 +247,15 @@ const translations = {
     addressTooltip: 'يرجى إدخال العنوان الوطني الكامل أو العنوان السكني مع تفاصيل المنطقة',
     aiAssistTooltip: 'ستساعدكم الأداة التلقائية في صياغة وتطوير وصف طلبكم بصورة مهنية',
     aiAssistDisabledTooltip: 'يرجى كتابة 10 أحرف على الأقل لتفعيل المساعدة التلقائية',
+
+    // نصائح الذكاء الاصطناعي المخصصة لكل حقل
+    aiAssistCurrentSituation: 'اشرحوا تحدياتكم المالية الأساسية وسيساعدكم مساعدنا الذكي في صياغة تفسير واضح ومهني يقوي طلبكم',
+    aiAssistEmployment: 'وضحوا وضعكم الوظيفي وسيساعدكم المساعد الذكي في عرض ظروفكم المهنية بأفضل طريقة ممكنة',
+    aiAssistReasonApplying: 'شاركونا أسباب حاجتكم للدعم وسيساعدكم المساعد الذكي في التعبير عن أسبابكم بشكل مهني ومقنع',
+
+    aiAssistCurrentSituationDisabled: 'ابدؤوا بوصف وضعكم المالي لتفعيل المساعدة الذكية في الكتابة',
+    aiAssistEmploymentDisabled: 'ابدؤوا بوصف وضعكم الوظيفي لتفعيل المساعدة الذكية في الكتابة',
+    aiAssistReasonApplyingDisabled: 'شاركوا أسباب تقديمكم للطلب لتفعيل دعم الكتابة الذكي',
     
     // Step 1
     personalInformation: 'بياناتي',

@@ -177,8 +177,8 @@ Write a comprehensive professional statement explaining why they deserve social 
               </label>
               <Tooltip
                 content={watchedValues.currentSituation && watchedValues.currentSituation.trim().length >= 10
-                  ? t('aiAssistTooltip')
-                  : t('aiAssistDisabledTooltip')
+                  ? t('aiAssistCurrentSituation')
+                  : t('aiAssistCurrentSituationDisabled')
                 }
                 position="left"
               >
@@ -228,8 +228,8 @@ Write a comprehensive professional statement explaining why they deserve social 
               </label>
               <Tooltip
                 content={watchedValues.employmentCircumstances && watchedValues.employmentCircumstances.trim().length >= 10
-                  ? t('aiAssistTooltip')
-                  : t('aiAssistDisabledTooltip')
+                  ? t('aiAssistEmployment')
+                  : t('aiAssistEmploymentDisabled')
                 }
                 position="left"
               >
@@ -279,8 +279,8 @@ Write a comprehensive professional statement explaining why they deserve social 
               </label>
               <Tooltip
                 content={watchedValues.reasonForApplying && watchedValues.reasonForApplying.trim().length >= 10
-                  ? t('aiAssistTooltip')
-                  : t('aiAssistDisabledTooltip')
+                  ? t('aiAssistReasonApplying')
+                  : t('aiAssistReasonApplyingDisabled')
                 }
                 position="left"
               >

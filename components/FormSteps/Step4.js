@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useFormContext } from '@/contexts/FormContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useRouter } from 'next/navigation';
-import { Edit, Check, User, Home, FileText, Loader2 } from 'lucide-react';
+import { Edit, Check, User, Users, Home, FileText, Loader2 } from 'lucide-react';
 import { triggerFormCompletion } from '../CelebrationEffects';
 import EmailSendingOverlay from '../EmailSendingOverlay';
 
@@ -215,7 +215,7 @@ export default function Step4() {
         <div className="bg-white border border-gray-200 rounded-lg p-6">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
-              <Home size={20} className="text-blue-600" />
+              <Users size={20} className="text-blue-600" />
               <h3 className="text-lg font-medium text-gray-800">{t('familyFinancialInfo')}</h3>
             </div>
             <button

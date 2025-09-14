@@ -49,7 +49,7 @@ export default function ApplicationForm() {
         />
       )}
       
-      <div className="min-h-screen bg-white py-4 sm:py-6 pb-0">
+      <div className="min-h-screen bg-white py-4 sm:pt-6 pb-0">
         <div className="max-w-4xl mx-auto px-3 sm:px-4">
           {/* Smart Responsive Header */}
           <header className="mb-4 sm:mb-6">
