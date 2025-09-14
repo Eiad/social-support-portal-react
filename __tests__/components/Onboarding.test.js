@@ -66,7 +66,7 @@ describe('Onboarding Component', () => {
     fireEvent.click(nextButton);
 
     await waitFor(() => {
-      expect(screen.getByText('Personal Information')).toBeInTheDocument();
+      expect(screen.getByText('My Information')).toBeInTheDocument();
     });
   });
 
@@ -92,7 +92,7 @@ describe('Onboarding Component', () => {
     fireEvent.click(screen.getByText('Next'));
 
     await waitFor(() => {
-      expect(screen.getByText('Personal Information')).toBeInTheDocument();
+      expect(screen.getByText('My Information')).toBeInTheDocument();
     });
 
     // Go back to first step
@@ -167,7 +167,7 @@ describe('Onboarding Component', () => {
     fireEvent.click(nextButton);
 
     await waitFor(() => {
-      expect(screen.getByText('Personal Information')).toBeInTheDocument();
+      expect(screen.getByText('My Information')).toBeInTheDocument();
     }, { timeout: 1000 });
 
     // For now, verify that onComplete function is provided and can be called
