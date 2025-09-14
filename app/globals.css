@@ -264,23 +264,23 @@ body {
 }
 
 .radio-label {
-  @apply flex items-center gap-3 px-4 py-3 rounded-lg border border-gray-200 cursor-pointer transition-all duration-200;
+  @apply flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer transition-all duration-200;
 }
 
 .radio-label:hover:has(.radio-modern:not(.radio-modern-female)) {
-  @apply border-blue-400 bg-blue-50;
+  @apply bg-blue-50;
 }
 
 .radio-label:hover:has(.radio-modern-female) {
-  @apply border-pink-400 bg-pink-50;
+  @apply bg-pink-50;
 }
 
 .radio-label:has(.radio-modern:checked) {
-  @apply border-blue-500 bg-blue-50;
+  @apply bg-blue-50;
 }
 
 .radio-label:has(.radio-modern-female:checked) {
-  @apply border-pink-500 bg-pink-50;
+  @apply bg-pink-50;
 }
 
 .radio-label.group:has(.radio-modern:checked) .bg-blue-100 {
