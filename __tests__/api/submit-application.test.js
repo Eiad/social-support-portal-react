@@ -13,14 +13,10 @@ jest.mock('next/server', () => ({
 describe('Submit Application API', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    jest.useFakeTimers();
+    jest.restoreAllMocks();
   });
 
-  afterEach(() => {
-    jest.useRealTimers();
-  });
-
-  it('successfully submits application after 3 second delay', async () => {
+  it('successfully submits application', async () => {
     const mockFormData = {
       name: 'John Doe',
       email: 'john@example.com',
@@ -34,12 +30,13 @@ describe('Submit Application API', () => {
     // Mock Math.random to avoid error simulation
     jest.spyOn(Math, 'random').mockReturnValue(0.1);
 
-    const responsePromise = POST(mockRequest);
-    
-    // Fast-forward 3 seconds
-    jest.advanceTimersByTime(3000);
-    
-    const response = await responsePromise;
+    // Mock setTimeout to execute immediately
+    jest.spyOn(global, 'setTimeout').mockImplementation((cb) => {
+      cb();
+      return 1;
+    });
+
+    const response = await POST(mockRequest);
 
     expect(mockRequest.json).toHaveBeenCalled();
     expect(NextResponse.json).toHaveBeenCalledWith(
@@ -77,9 +74,13 @@ describe('Submit Application API', () => {
     // Mock Math.random to trigger error simulation
     jest.spyOn(Math, 'random').mockReturnValue(0.01);
 
-    const responsePromise = POST(mockRequest);
-    jest.advanceTimersByTime(3000);
-    const response = await responsePromise;
+    // Mock setTimeout to execute immediately
+    jest.spyOn(global, 'setTimeout').mockImplementation((cb) => {
+      cb();
+      return 1;
+    });
+
+    const response = await POST(mockRequest);
 
     expect(NextResponse.json).toHaveBeenCalledWith(
       { error: 'Server error. Please try again.' },

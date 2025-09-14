@@ -12,8 +12,11 @@ global.localStorage = localStorageMock;
 // Mock fetch
 global.fetch = jest.fn();
 
+// Mock window.scrollTo
+global.scrollTo = jest.fn();
+
 // Reset mocks before each test
 beforeEach(() => {
   jest.clearAllMocks();
-  localStorage.getItem.mockReturnValue(null);
+  localStorageMock.getItem.mockReturnValue(null);
 });
