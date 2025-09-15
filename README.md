@@ -1,6 +1,6 @@
 # Gov Social Support Portal
 
-**Executive Summary:** A modern, accessible government social support portal featuring a 4-step form wizard with AI-powered writing assistance, complete bilingual support (English/Arabic RTL), and comprehensive accessibility compliance. Built with Next.js 15 and React 19, delivering beyond requirements with interactive onboarding, email confirmation flows, and professional UX design.
+**Executive Summary:** A modern, accessible government social support portal featuring a 4-step form wizard with **AI-powered writing assistance**, complete **bilingual support** (English/Arabic **RTL**), and comprehensive **accessibility compliance**. Built with **Next.js 15 and React 1**9, delivering beyond requirements with interactive **onboarding, email confirmation flows, and professional UX design**.
 
 ## Live Demo
 
