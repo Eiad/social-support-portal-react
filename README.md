@@ -10,7 +10,7 @@ Experience the application in both languages:
 
 | **🇬🇧 English Version** | **🇦🇪 Arabic Version** |
 |:---:|:---:|
-| **[Try English Demo →](https://social-support-portal-react.vercel.app/en)** | **[جرب النسخة العربية ←](https://social-support-portal-react.vercel.app/ar)** |
+| **[Try English Demo →](https://social-support-portal-react.vercel.app/en)** | **[← جرب النسخة العربية ](https://social-support-portal-react.vercel.app/ar)** |
 | *Full LTR experience with AI assistance* | *Complete RTL layout with Arabic support* |
 
 
