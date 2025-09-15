@@ -2,6 +2,21 @@
 
 **Executive Summary:** A modern, accessible government social support portal featuring a 4-step form wizard with AI-powered writing assistance, complete bilingual support (English/Arabic RTL), and comprehensive accessibility compliance. Built with Next.js 15 and React 19, delivering beyond requirements with interactive onboarding, email confirmation flows, and professional UX design.
 
+## 🚀 Live Demo
+
+Experience the application in both languages:
+
+<div align="center">
+
+| **🇬🇧 English Version** | **🇦🇪 Arabic Version** |
+|:---:|:---:|
+| **[Try English Demo →](https://social-support-portal-react.vercel.app/en)** | **[جرب النسخة العربية ←](https://social-support-portal-react.vercel.app/ar)** |
+| *Full LTR experience with AI assistance* | *Complete RTL layout with Arabic support* |
+
+**Features to explore:** AI Writing Assistant • Progress Tracking • Interactive Onboarding • Email Confirmation Flow
+
+</div>
+
 ## Features Overview
 
 ### Core Application Features
