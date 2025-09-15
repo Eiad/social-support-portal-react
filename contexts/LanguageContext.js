@@ -120,7 +120,7 @@ const translations = {
     emailSentSuccess: 'Email Sent Successfully!',
     confirmationSent: 'Confirmation has been sent to your inbox',
     applicationSubmittedSuccess: 'Application Submitted Successfully!',
-    applicationSuccessDesc: 'Your application has been successfully submitted.',
+    applicationSuccessDesc: 'You will receive an email confirmation shortly with next steps and contact information.',
     sendingTo: 'Sending to:',
 
     // Onboarding tour
@@ -321,7 +321,7 @@ const translations = {
     emailSentSuccess: 'تم إرسال رسالة التأكيد بنجاح',
     confirmationSent: 'تم إرسال التأكيد إلى البريد الوارد',
     applicationSubmittedSuccess: 'تم تقديم الطلب بنجاح',
-    applicationSuccessDesc: 'تم استلام طلبكم وسيتم مراجعته.',
+    applicationSuccessDesc: 'ستتلقون رسالة تأكيد بالبريد الإلكتروني تتضمن الخطوات التالية ومعلومات التواصل.',
     sendingTo: 'الإرسال إلى:',
 
     // Onboarding tour
