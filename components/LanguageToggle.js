@@ -4,6 +4,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
+import { FlagIcon } from './icons/FlagIcons';
 
 export default function LanguageToggle({ currentLang, className = '', showLabel = false }) {
   const { language, isRTL } = useLanguage();
@@ -21,16 +22,18 @@ export default function LanguageToggle({ currentLang, className = '', showLabel 
     setIsOpen(false);
   };
 
+  // Language configuration with professional SVG flag icons
+  // Using country codes that map to our FlagIcon components
   const languages = [
     {
       code: 'en',
       name: 'English',
-      flag: '🇬🇧'
+      countryCode: 'GB' // Great Britain flag for English
     },
     {
       code: 'ar',
       name: 'العربية',
-      flag: '🇦🇪'
+      countryCode: 'AE' // UAE flag for Arabic
     }
   ];
 
@@ -44,7 +47,11 @@ export default function LanguageToggle({ currentLang, className = '', showLabel 
         aria-label="Select language"
         title="Change language"
       >
-        <span className="text-base sm:text-lg">{currentLanguage?.flag}</span>
+        <FlagIcon
+          countryCode={currentLanguage?.countryCode}
+          size={18}
+          className="sm:w-5 sm:h-4"
+        />
         {showLabel && (
           <span className="text-xs sm:text-sm font-medium text-gray-600 group-hover:text-gray-800 hidden sm:inline">
             {currentLanguage?.name}
@@ -82,7 +89,11 @@ export default function LanguageToggle({ currentLang, className = '', showLabel 
                   currentLang === lang.code ? 'bg-gray-50 text-gray-900' : 'text-gray-700'
                 }`}
               >
-                <span className="text-lg">{lang.flag}</span>
+                <FlagIcon
+                  countryCode={lang.countryCode}
+                  size={20}
+                  className="flex-shrink-0"
+                />
                 <span className="font-medium text-sm">{lang.name}</span>
                 {currentLang === lang.code && (
                   <div className={`w-2 h-2 bg-gray-900 rounded-full ${isRTL ? 'mr-auto' : 'ml-auto'}`}></div>

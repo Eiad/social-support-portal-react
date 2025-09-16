@@ -83,7 +83,7 @@ export default function ApplicationForm() {
                   <Info size={14} className="sm:hidden text-blue-600 group-hover:text-blue-700" />
                   <Info size={16} className="hidden sm:block text-blue-600 group-hover:text-blue-700" />
                   <span className="hidden sm:inline md:hidden">{language === 'ar' ? 'التفاصيل' : 'Details'}</span>
-                  <span className="hidden md:inline">{language === 'ar' ? 'تفاصيل التقنية' : "Used Tech Details"}</span>
+                  <span className="hidden md:inline">{language === 'ar' ? 'تقرير نورث باي' : "Northbay Report"}</span>
                 </Link>
 
                 {/* Help/Tutorial Button - Enhanced */}

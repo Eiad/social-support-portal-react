@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { useFormContext } from '@/contexts/FormContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useRouter } from 'next/navigation';
+import { api } from '@/lib/apiClient';
+import { refreshGuestToken } from '@/lib/guestAuth';
 import { Edit, Check, User, Users, Home, FileText, Loader2 } from 'lucide-react';
 import { triggerFormCompletion } from '../CelebrationEffects';
 import EmailSendingOverlay from '../EmailSendingOverlay';
@@ -25,49 +27,36 @@ export default function Step4() {
     localStorage.setItem('applicationSubmitted', 'true');
 
     try {
-      const response = await fetch('/api/submit-application', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-      });
+      const result = await api.submitApplication(formData);
 
-      const result = await response.json();
+      // Store application number for success phase
+      setApplicationNumber(result.applicationNumber);
 
-      if (response.ok) {
-        // Store application number for success phase
-        setApplicationNumber(result.applicationNumber);
+      // Refresh guest token after successful submission
+      refreshGuestToken();
 
-        // Transition to email sending phase
+      // Transition to email sending phase
+      setTimeout(() => {
+        setEmailPhase('sending');
+
+        // Simulate email sending delay
         setTimeout(() => {
-          setEmailPhase('sending');
+          setEmailPhase('sent');
 
-          // Simulate email sending delay
+          // Show success immediately after 1.5 seconds of displaying "sent"
           setTimeout(() => {
-            setEmailPhase('sent');
+            setEmailPhase('success');
+          }, 1500);
 
-            // Show success immediately after 1.5 seconds of displaying "sent"
-            setTimeout(() => {
-              setEmailPhase('success');
-            }, 1500);
-
-            // No auto-complete - user manually closes via X button
-          }, 2000);
-        }, 1500);
-      } else {
-        setEmailPhase(null);
-        setSubmissionResult({
-          success: false,
-          message: result.error || t('error')
-        });
-      }
+          // No auto-complete - user manually closes via X button
+        }, 2000);
+      }, 1500);
     } catch (error) {
       console.error('Submission error:', error);
       setEmailPhase(null);
       setSubmissionResult({
         success: false,
-        message: t('error')
+        message: error.message || t('error')
       });
     } finally {
       setTimeout(() => {

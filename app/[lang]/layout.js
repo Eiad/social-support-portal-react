@@ -5,6 +5,8 @@ import "@fontsource/reem-kufi";
 import "../globals.css";
 import StructuredData from "../components/StructuredData";
 import { Analytics } from "@vercel/analytics/react";
+import ErrorBoundary from "../../components/ErrorBoundary";
+import GuestAuthInitializer from "../../components/GuestAuthInitializer";
 
 export const viewport = {
   width: 'device-width',
@@ -32,6 +34,9 @@ export const metadata = {
     },
   },
   manifest: "/manifest.json",
+  icons: {
+    icon: "data:image/svg+xml;base64," + btoa(`<svg xmlns="http://www.w3.org/2000/svg"  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hand-heart hidden md:block text-white scale-x-[-1]" aria-hidden="true"><path d="M11 14h2a2 2 0 0 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 16"></path><path d="m14.45 13.39 5.05-4.694C20.196 8 21 6.85 21 5.75a2.75 2.75 0 0 0-4.797-1.837.276.276 0 0 1-.406 0A2.75 2.75 0 0 0 11 5.75c0 1.2.802 2.248 1.5 2.946L16 11.95"></path><path d="m2 15 6 6"></path><path d="m7 20 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a1 1 0 0 0-2.75-2.91"></path></svg>`),
+  },
   alternates: {
     canonical: "https://social-support-portal.gov",
     languages: {
@@ -88,7 +93,10 @@ export default async function LanguageLayout({ children, params }) {
     <html lang={lang} dir={isArabic ? 'rtl' : 'ltr'}>
       <body className={`antialiased ${isArabic ? 'font-arabic' : 'font-english'}`}>
         <StructuredData />
-        {children}
+        <GuestAuthInitializer />
+        <ErrorBoundary>
+          {children}
+        </ErrorBoundary>
         <Analytics />
       </body>
     </html>

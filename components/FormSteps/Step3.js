@@ -1,16 +1,28 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useFormContext } from '@/contexts/FormContext';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { api } from '@/lib/apiClient';
 import AIAssistModal from '../AIAssistModal';
 import Tooltip from '../Tooltip';
 import { Wand2, Loader2 } from 'lucide-react';
 
 export default function Step3() {
-  const { formData, updateFormData, prevStep, nextStep } = useFormContext();
+  const { formData, updateFormData, updateFieldData, prevStep, nextStep } = useFormContext();
   const { t, language } = useLanguage();
+
+  /**
+   * Handle auto-save for long-form text fields
+   * Saves user's progress automatically to prevent data loss
+   * Especially important for lengthy descriptions that take time to write
+   */
+  const handleFieldBlur = (fieldName, value) => {
+    if (value && value.trim() !== '' && value.trim().length >= 10) {
+      updateFieldData(fieldName, value.trim());
+    }
+  };
   const [showAIModal, setShowAIModal] = useState(false);
   const [currentField, setCurrentField] = useState('');
   const [aiSuggestion, setAiSuggestion] = useState('');
@@ -21,6 +33,7 @@ export default function Step3() {
     handleSubmit,
     setValue,
     watch,
+    reset,
     formState: { errors }
   } = useForm({
     defaultValues: {
@@ -29,6 +42,15 @@ export default function Step3() {
       reasonForApplying: formData.reasonForApplying
     }
   });
+
+  // Update form only when component mounts
+  useEffect(() => {
+    reset({
+      currentSituation: formData.currentSituation,
+      employmentCircumstances: formData.employmentCircumstances,
+      reasonForApplying: formData.reasonForApplying
+    });
+  }, []); // Only run on mount
 
   const watchedValues = watch();
 
@@ -53,21 +75,11 @@ export default function Step3() {
     
     try {
       const prompt = getPromptForField(fieldName, userText, language);
-      const response = await fetch('/api/ai-assist', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt, currentText: userText, language })
-      });
-      
-      if (response.ok) {
-        const data = await response.json();
-        setAiSuggestion(data.suggestion);
-      } else {
-        throw new Error('Failed to get AI assistance');
-      }
+      const data = await api.getAIAssistance(prompt, userText, language);
+      setAiSuggestion(data.suggestion);
     } catch (error) {
       console.error('AI Assist error:', error);
-      const errorMessage = language === 'ar' 
+      const errorMessage = language === 'ar'
         ? 'عذراً، لم أتمكن من إنشاء اقتراح في هذا الوقت. يرجى المحاولة مرة أخرى.'
         : 'Sorry, I could not generate a suggestion at this time. Please try again.';
       setAiSuggestion(errorMessage);
@@ -141,8 +153,20 @@ Write a comprehensive professional statement explaining why they deserve social 
     }
   };
 
+  /**
+   * Handle applying AI suggestion to textarea
+   * Automatically saves the AI-generated content to localStorage
+   * This ensures the valuable AI content is preserved immediately
+   */
   const handleApplySuggestion = () => {
+    // Apply the AI suggestion to the form field
     setValue(currentField, aiSuggestion);
+
+    // Immediately auto-save the AI-generated content
+    // This is important since AI suggestions are valuable and should be preserved
+    updateFieldData(currentField, aiSuggestion);
+
+    // Close the modal and reset state
     setShowAIModal(false);
     setAiSuggestion('');
     setCurrentField('');
@@ -206,10 +230,11 @@ Write a comprehensive professional statement explaining why they deserve social 
             </div>
             <textarea
               id="currentSituation"
-              {...register('currentSituation', { 
+              {...register('currentSituation', {
                 required: t('required'),
                 minLength: { value: 50, message: 'Please provide at least 50 characters' }
               })}
+              onBlur={(e) => handleFieldBlur('currentSituation', e.target.value)}
               rows="4"
               placeholder={t('currentSituationPlaceholder')}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-500 resize-vertical min-h-[100px]"
@@ -257,10 +282,11 @@ Write a comprehensive professional statement explaining why they deserve social 
             </div>
             <textarea
               id="employmentCircumstances"
-              {...register('employmentCircumstances', { 
+              {...register('employmentCircumstances', {
                 required: t('required'),
                 minLength: { value: 50, message: 'Please provide at least 50 characters' }
               })}
+              onBlur={(e) => handleFieldBlur('employmentCircumstances', e.target.value)}
               rows="4"
               placeholder={t('employmentCircumstancesPlaceholder')}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-500 resize-vertical min-h-[100px]"
@@ -308,10 +334,11 @@ Write a comprehensive professional statement explaining why they deserve social 
             </div>
             <textarea
               id="reasonForApplying"
-              {...register('reasonForApplying', { 
+              {...register('reasonForApplying', {
                 required: t('required'),
                 minLength: { value: 50, message: 'Please provide at least 50 characters' }
               })}
+              onBlur={(e) => handleFieldBlur('reasonForApplying', e.target.value)}
               rows="4"
               placeholder={t('reasonForApplyingPlaceholder')}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-500 resize-vertical min-h-[100px]"

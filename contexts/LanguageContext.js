@@ -34,6 +34,20 @@ const translations = {
     required: 'This field is required',
     invalidEmail: 'Invalid email address',
     invalidPhone: 'Invalid phone number',
+    dateCannotBeFuture: 'Date cannot be in the future',
+    invalidDateOfBirth: 'Please enter a valid date of birth',
+
+    // Progress labels - Used in ModernProgressBar component
+    progress: 'Progress',
+    complete: 'Complete',
+
+    // Error boundary labels
+    formError: 'Form Error',
+    formErrorDescription: 'There was an issue with the form. Your data has been preserved.',
+    dataPreserved: 'Data Preserved',
+    dataPreservedMessage: 'Your form data has been automatically saved and will be restored when you continue.',
+    retryForm: 'Try Again',
+    resetForm: 'Reset Form',
     provideBasicInfo: 'Please provide your basic information',
     completeInSteps: 'Finish your application in a few steps',
     helpMeWrite: 'Help Me Write',
@@ -235,6 +249,20 @@ const translations = {
     required: 'مطلوب',
     invalidEmail: 'البريد الإلكتروني غير صحيح',
     invalidPhone: 'رقم الهاتف غير صحيح',
+    dateCannotBeFuture: 'لا يمكن أن يكون التاريخ في المستقبل',
+    invalidDateOfBirth: 'يرجى إدخال تاريخ ميلاد صحيح',
+
+    // Progress labels - Used in ModernProgressBar component
+    progress: 'التقدم',
+    complete: 'مكتمل',
+
+    // Error boundary labels
+    formError: 'خطأ في النموذج',
+    formErrorDescription: 'حدث خطأ في النموذج. تم حفظ بياناتك بأمان.',
+    dataPreserved: 'البيانات محفوظة',
+    dataPreservedMessage: 'تم حفظ بيانات النموذج تلقائياً وسيتم استعادتها عند المتابعة.',
+    retryForm: 'المحاولة مرة أخرى',
+    resetForm: 'إعادة تعيين النموذج',
     provideBasicInfo: 'يرجى إدخال بياناتك الأساسية',
     completeInSteps: 'أكمل طلبك بخطوات بسيطة',
     helpMeWrite: 'مساعدة في الكتابة',

@@ -19,9 +19,9 @@ export default function AIAssistModal({ suggestion, onApply, onRegenerate, onDis
 
   if (isLoading) {
     return (
-      <div className="fixed inset-0 bg-white bg-opacity-20 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-[10000] p-4 transition-all duration-200">
         <div className="bg-white rounded-xl shadow-2xl w-full max-w-lg mx-4">
-          <AILoadingSkeleton 
+          <AILoadingSkeleton
             message={language === 'ar' ? 'جاري صياغة محتوى احترافي...' : 'Crafting professional content...'}
           />
         </div>
@@ -30,8 +30,9 @@ export default function AIAssistModal({ suggestion, onApply, onRegenerate, onDis
   }
 
   return (
-    <div className="fixed inset-0 bg-white bg-opacity-20 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[85vh] sm:max-h-[70vh] overflow-hidden mx-4 flex flex-col">
+    <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-[10000] p-4 transition-all duration-200 animate-fadeIn">
+      {/* Modal container with improved shadow and animation */}
+      <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[85vh] sm:max-h-[70vh] overflow-hidden mx-4 flex flex-col transform transition-all duration-300 animate-scaleIn">
         <div className="p-4 sm:p-6 border-b border-gray-100 flex-shrink-0">
           <h3 className="text-base sm:text-lg font-semibold text-gray-800 flex items-center">
             <div className="flex items-center gap-2">

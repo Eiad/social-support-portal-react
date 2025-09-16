@@ -16,13 +16,10 @@ export async function POST(request) {
     // 3. Send confirmation email
     // 4. Trigger any necessary workflows
     
-    // Simulate occasional errors for testing (5% chance)
-    if (Math.random() < 0.05) {
-      return NextResponse.json(
-        { error: 'Server error. Please try again.' },
-        { status: 500 }
-      );
-    }
+    // Real error handling would go here for actual failures
+    // - Database connection errors
+    // - Validation failures
+    // - External service failures
     
     // Return success response
     return NextResponse.json({

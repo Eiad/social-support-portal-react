@@ -1,16 +1,38 @@
 'use client';
 
 import { useForm } from 'react-hook-form';
+import { useEffect } from 'react';
 import { useFormContext } from '@/contexts/FormContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Step2() {
-  const { formData, updateFormData, nextStep, prevStep } = useFormContext();
+  const { formData, updateFormData, updateFieldData, nextStep, prevStep } = useFormContext();
   const { t } = useLanguage();
+
+  /**
+   * Handle auto-save for form fields when user leaves the field
+   * Essential for preventing data loss during form completion
+   */
+  const handleFieldBlur = (fieldName, value) => {
+    if (value && value.toString().trim() !== '') {
+      updateFieldData(fieldName, value.toString().trim());
+    }
+  };
+
+  /**
+   * Handle auto-save for select dropdowns when user makes a selection
+   * Saves immediately on selection change
+   */
+  const handleSelectChange = (fieldName, value) => {
+    if (value && value !== '') {
+      updateFieldData(fieldName, value);
+    }
+  };
   
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors }
   } = useForm({
     defaultValues: {
@@ -21,6 +43,17 @@ export default function Step2() {
       housingStatus: formData.housingStatus
     }
   });
+
+  // Update form only when component mounts
+  useEffect(() => {
+    reset({
+      maritalStatus: formData.maritalStatus,
+      dependents: formData.dependents,
+      employmentStatus: formData.employmentStatus,
+      monthlyIncome: formData.monthlyIncome,
+      housingStatus: formData.housingStatus
+    });
+  }, []); // Only run on mount
 
   const onSubmit = (data) => {
     updateFormData(data);
@@ -43,6 +76,7 @@ export default function Step2() {
           <select
             id="maritalStatus"
             {...register('maritalStatus', { required: t('required') })}
+            onChange={(e) => handleSelectChange('maritalStatus', e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             aria-invalid={errors.maritalStatus ? 'true' : 'false'}
           >
@@ -66,12 +100,14 @@ export default function Step2() {
             id="dependents"
             type="number"
             min="0"
-            {...register('dependents', { 
+            {...register('dependents', {
               required: t('required'),
               min: { value: 0, message: 'Must be 0 or greater' }
             })}
+            onBlur={(e) => handleFieldBlur('dependents', e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             aria-invalid={errors.dependents ? 'true' : 'false'}
+            placeholder="0"
           />
           {errors.dependents && (
             <span className="text-red-500 text-sm mt-1" role="alert">{errors.dependents.message}</span>
@@ -86,6 +122,7 @@ export default function Step2() {
           <select
             id="employmentStatus"
             {...register('employmentStatus', { required: t('required') })}
+            onChange={(e) => handleSelectChange('employmentStatus', e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             aria-invalid={errors.employmentStatus ? 'true' : 'false'}
           >
@@ -110,12 +147,14 @@ export default function Step2() {
             type="number"
             min="0"
             step="0.01"
-            {...register('monthlyIncome', { 
+            {...register('monthlyIncome', {
               required: t('required'),
               min: { value: 0, message: 'Must be 0 or greater' }
             })}
+            onBlur={(e) => handleFieldBlur('monthlyIncome', e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             aria-invalid={errors.monthlyIncome ? 'true' : 'false'}
+            placeholder="0.00"
           />
           {errors.monthlyIncome && (
             <span className="text-red-500 text-sm mt-1" role="alert">{errors.monthlyIncome.message}</span>
@@ -130,6 +169,7 @@ export default function Step2() {
           <select
             id="housingStatus"
             {...register('housingStatus', { required: t('required') })}
+            onChange={(e) => handleSelectChange('housingStatus', e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             aria-invalid={errors.housingStatus ? 'true' : 'false'}
           >

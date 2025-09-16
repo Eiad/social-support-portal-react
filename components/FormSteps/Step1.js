@@ -1,18 +1,41 @@
 'use client';
 
 import { useForm } from 'react-hook-form';
+import { useEffect } from 'react';
 import { useFormContext } from '@/contexts/FormContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { User, UserCircle, HelpCircle } from 'lucide-react';
 import Tooltip from '../Tooltip';
 
 export default function Step1() {
-  const { formData, updateFormData, nextStep } = useFormContext();
+  const { formData, updateFormData, updateFieldData, nextStep } = useFormContext();
   const { t, language } = useLanguage();
+
+  /**
+   * Handle auto-save when user leaves a field
+   * Saves data to localStorage without requiring form submission
+   * This ensures user's progress is preserved if they accidentally close the browser
+   */
+  const handleFieldBlur = (fieldName, value) => {
+    if (value && value.trim() !== '') {
+      updateFieldData(fieldName, value.trim());
+    }
+  };
+
+  /**
+   * Handle auto-save for radio button selections
+   * Immediately saves when user makes a selection
+   */
+  const handleRadioChange = (fieldName, value) => {
+    if (value) {
+      updateFieldData(fieldName, value);
+    }
+  };
   
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors }
   } = useForm({
     defaultValues: {
@@ -28,6 +51,25 @@ export default function Step1() {
       email: formData.email
     }
   });
+
+  // Update form only when component mounts or when data is loaded from localStorage
+  useEffect(() => {
+    reset({
+      name: formData.name,
+      nationalId: formData.nationalId,
+      dateOfBirth: formData.dateOfBirth,
+      gender: formData.gender,
+      address: formData.address,
+      city: formData.city,
+      state: formData.state,
+      country: formData.country,
+      phone: formData.phone,
+      email: formData.email
+    });
+  }, []); // Only run on mount
+
+  // Get today's date for validation
+  const today = new Date().toISOString().split('T')[0];
 
   const onSubmit = (data) => {
     updateFormData(data);
@@ -54,8 +96,10 @@ export default function Step1() {
               id="name"
               type="text"
               {...register('name', { required: t('required') })}
+              onBlur={(e) => handleFieldBlur('name', e.target.value)}
               className="form-input"
               aria-invalid={errors.name ? 'true' : 'false'}
+              placeholder={t('name')}
             />
             {errors.name && (
               <span className="text-red-500 text-sm mt-1 animate-slideUp" role="alert">{errors.name.message}</span>
@@ -76,8 +120,10 @@ export default function Step1() {
               id="nationalId"
               type="text"
               {...register('nationalId', { required: t('required') })}
+              onBlur={(e) => handleFieldBlur('nationalId', e.target.value)}
               className="form-input"
               aria-invalid={errors.nationalId ? 'true' : 'false'}
+              placeholder={t('nationalId')}
             />
             {errors.nationalId && (
               <span className="text-red-500 text-sm mt-1" role="alert">{errors.nationalId.message}</span>
@@ -97,9 +143,28 @@ export default function Step1() {
             <input
               id="dateOfBirth"
               type="date"
-              {...register('dateOfBirth', { required: t('required') })}
+              {...register('dateOfBirth', {
+                required: t('required'),
+                validate: {
+                  notFuture: (value) => {
+                    if (!value) return true; // Skip if empty (required will handle)
+                    return value <= today || t('dateCannotBeFuture') || 'Date cannot be in the future';
+                  },
+                  validAge: (value) => {
+                    if (!value) return true;
+                    const birthDate = new Date(value);
+                    const currentDate = new Date();
+                    const age = currentDate.getFullYear() - birthDate.getFullYear();
+                    const monthDiff = currentDate.getMonth() - birthDate.getMonth();
+                    const finalAge = monthDiff < 0 || (monthDiff === 0 && currentDate.getDate() < birthDate.getDate()) ? age - 1 : age;
+                    return finalAge >= 0 && finalAge <= 120 || t('invalidDateOfBirth') || 'Please enter a valid date of birth';
+                  }
+                }
+              })}
+              onBlur={(e) => handleFieldBlur('dateOfBirth', e.target.value)}
               className="form-input"
               aria-invalid={errors.dateOfBirth ? 'true' : 'false'}
+              max={today}
             />
             {errors.dateOfBirth && (
               <span className="text-red-500 text-sm mt-1" role="alert">{errors.dateOfBirth.message}</span>
@@ -121,6 +186,7 @@ export default function Step1() {
                 <input
                   type="radio"
                   {...register('gender', { required: t('required') })}
+                  onChange={(e) => handleRadioChange('gender', e.target.value)}
                   value="male"
                   className="radio-modern"
                 />
@@ -135,6 +201,7 @@ export default function Step1() {
                 <input
                   type="radio"
                   {...register('gender', { required: t('required') })}
+                  onChange={(e) => handleRadioChange('gender', e.target.value)}
                   value="female"
                   className="radio-modern radio-modern-female"
                 />
@@ -165,8 +232,10 @@ export default function Step1() {
               id="address"
               type="text"
               {...register('address', { required: t('required') })}
+              onBlur={(e) => handleFieldBlur('address', e.target.value)}
               className="form-input"
               aria-invalid={errors.address ? 'true' : 'false'}
+              placeholder={t('address')}
             />
             {errors.address && (
               <span className="text-red-500 text-sm mt-1" role="alert">{errors.address.message}</span>
@@ -182,8 +251,10 @@ export default function Step1() {
               id="city"
               type="text"
               {...register('city', { required: t('required') })}
+              onBlur={(e) => handleFieldBlur('city', e.target.value)}
               className="form-input"
               aria-invalid={errors.city ? 'true' : 'false'}
+              placeholder={t('city')}
             />
             {errors.city && (
               <span className="text-red-500 text-sm mt-1" role="alert">{errors.city.message}</span>
@@ -199,8 +270,10 @@ export default function Step1() {
               id="state"
               type="text"
               {...register('state', { required: t('required') })}
+              onBlur={(e) => handleFieldBlur('state', e.target.value)}
               className="form-input"
               aria-invalid={errors.state ? 'true' : 'false'}
+              placeholder={t('state')}
             />
             {errors.state && (
               <span className="text-red-500 text-sm mt-1" role="alert">{errors.state.message}</span>
@@ -216,8 +289,10 @@ export default function Step1() {
               id="country"
               type="text"
               {...register('country', { required: t('required') })}
+              onBlur={(e) => handleFieldBlur('country', e.target.value)}
               className="form-input"
               aria-invalid={errors.country ? 'true' : 'false'}
+              placeholder={t('country')}
             />
             {errors.country && (
               <span className="text-red-500 text-sm mt-1" role="alert">{errors.country.message}</span>
@@ -237,15 +312,17 @@ export default function Step1() {
             <input
               id="phone"
               type="tel"
-              {...register('phone', { 
+              {...register('phone', {
                 required: t('required'),
                 pattern: {
                   value: /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/,
                   message: t('invalidPhone')
                 }
               })}
+              onBlur={(e) => handleFieldBlur('phone', e.target.value)}
               className="form-input"
               aria-invalid={errors.phone ? 'true' : 'false'}
+              placeholder="+971 XX XXX XXXX"
             />
             {errors.phone && (
               <span className="text-red-500 text-sm mt-1" role="alert">{errors.phone.message}</span>
@@ -265,15 +342,17 @@ export default function Step1() {
             <input
               id="email"
               type="email"
-              {...register('email', { 
+              {...register('email', {
                 required: t('required'),
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                   message: t('invalidEmail')
                 }
               })}
+              onBlur={(e) => handleFieldBlur('email', e.target.value)}
               className="form-input"
               aria-invalid={errors.email ? 'true' : 'false'}
+              placeholder="example@domain.com"
             />
             {errors.email && (
               <span className="text-red-500 text-sm mt-1" role="alert">{errors.email.message}</span>

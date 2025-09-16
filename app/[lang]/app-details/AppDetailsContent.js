@@ -111,10 +111,10 @@ export default function AppDetailsContent() {
             <div className="flex-1">
               <div className="inline-flex items-center text-gray-600 text-sm mb-3">
                 <Star className="w-4 h-4 mr-2" />
-                <span>{t('caseStudy')}</span>
+                <span>{t('appDetailsTitle')}</span>
               </div>
               <h1 className="text-3xl font-normal text-gray-900 mb-3">
-                {t('appDetailsTitle')}
+                {t('caseStudy')}
               </h1>
               <p className="text-md text-gray-700 max-w-2xl leading-relaxed">
                 {t('appDetailsSubtitle')}
@@ -302,10 +302,10 @@ export default function AppDetailsContent() {
               </a>
               <Link
                 href={`/${language}`}
-                className="group inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-3 rounded-lg text-sm font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl ring-1 ring-blue-500/20"
+                className="inline-flex items-center justify-center bg-blue-600 text-white px-6 py-2 rounded text-sm font-medium hover:bg-blue-700 transition-colors"
               >
                 {t('tryApplication')}
-                <ArrowRight className={`w-4 h-4 ${isRTL ? 'mr-2 rotate-180 group-hover:-translate-x-1' : 'ml-2 group-hover:translate-x-1'} transition-transform duration-200`} />
+                <ArrowRight className={`w-4 h-4 ${isRTL ? 'mr-2 rotate-180' : 'ml-2'}`} />
               </Link>
             </div>
           </div>

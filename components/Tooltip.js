@@ -39,12 +39,14 @@ export default function Tooltip({ children, content, position = 'top', delay = 3
   };
 
   return (
-    <div 
+    <div
       className="relative inline-block"
       onMouseEnter={showTooltip}
       onMouseLeave={hideTooltip}
       onFocus={showTooltip}
       onBlur={hideTooltip}
+      onClick={hideTooltip}
+      onMouseDown={hideTooltip}
     >
       {children}
       

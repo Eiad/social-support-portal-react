@@ -18,20 +18,32 @@
   --color-muted: var(--muted);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #010101;
-    --foreground: #f9fafb;
-    --primary: #f9fafb;
-    --secondary: #e5e7eb;
-    --accent: #9ca3af;
-    --muted: #1f2937;
-  }
+/* Remove OS dark mode override - maintain consistent light theme */
+body {
+  background: #ffffff !important;
+  color: #010101 !important;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
+/* Force all form elements to use light theme regardless of OS dark mode */
+input, textarea, select {
+  color-scheme: light !important;
+  background-color: white !important;
+  color: #111827 !important;
+}
+
+/* Prevent OS dark mode from affecting any elements */
+* {
+  color-scheme: light !important;
+}
+
+/* Hide tooltips immediately on any interaction */
+button:active + [role="tooltip"],
+button:focus + [role="tooltip"],
+[role="button"]:active + [role="tooltip"],
+[role="button"]:focus + [role="tooltip"] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
 }
 
 .font-english {
@@ -213,18 +225,82 @@ body {
   background-size: 200px;
 }
 
-/* Google-style Form Enhancements */
+/* Google-style Form Enhancements - Force light theme */
 .form-input {
   @apply w-full px-3 py-3 border border-gray-300 rounded text-sm focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-all duration-200 hover:border-gray-400;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background-color: white !important;
+  color: #111827 !important;
+  color-scheme: light !important;
 }
 
 .form-input:focus {
   box-shadow: 0 0 0 1px #1976d2;
 }
 
+/**
+ * Date Picker Dark Mode Support
+ * Ensures date inputs are visible and usable in both light and dark modes
+ * Fixes the issue where date pickers become invisible in dark mode
+ */
+/* Light mode date picker styling - Force light scheme to prevent OS dark mode interference */
+input[type="date"] {
+  color-scheme: light !important;
+  background-color: white !important;
+  color: #111827 !important;
+}
+
+/* Calendar icon styling for better visibility */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 2px;
+  opacity: 0.7;
+  filter: invert(0);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+/* Disable OS dark mode interference - keep consistent light appearance */
+@media (prefers-color-scheme: dark) {
+  input[type="date"] {
+    color-scheme: light !important;
+    background-color: white !important;
+    color: #111827 !important;
+    border-color: #d1d5db !important;
+  }
+
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0) !important;
+    opacity: 0.7 !important;
+  }
+
+  input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1 !important;
+    background-color: rgba(59, 130, 246, 0.1) !important;
+  }
+
+  /* Ensure consistent light mode styling for date text fields */
+  input[type="date"]::-webkit-datetime-edit-text,
+  input[type="date"]::-webkit-datetime-edit-month-field,
+  input[type="date"]::-webkit-datetime-edit-day-field,
+  input[type="date"]::-webkit-datetime-edit-year-field {
+    color: #111827 !important;
+  }
+
+  /* Style the date picker dropdown consistently */
+  input[type="date"]::-webkit-calendar-picker-indicator:focus {
+    outline: 2px solid #3b82f6 !important;
+    outline-offset: 2px !important;
+  }
+}
+
 .form-label {
   @apply block text-sm font-medium text-gray-700 mb-1;
+  color: #374151 !important;
 }
 
 /* Google-style Buttons */
@@ -269,6 +345,8 @@ label,
 /* Modern Radio Button Styles */
 .radio-modern {
   @apply appearance-none w-5 h-5 rounded-full border-2 border-gray-400 cursor-pointer transition-all duration-200 relative;
+  background-color: white !important;
+  color-scheme: none !important;
 }
 
 .radio-modern:hover {
@@ -277,11 +355,20 @@ label,
 
 .radio-modern:checked {
   @apply border-blue-600 bg-blue-600;
+  background-color: #2563eb !important;
 }
 
 .radio-modern:checked::after {
   content: '';
   @apply absolute inset-0 m-auto w-2 h-2 rounded-full bg-white;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 8px !important;
+  height: 8px !important;
+  background-color: white !important;
+  border-radius: 50% !important;
 }
 
 .radio-modern:focus {
@@ -295,6 +382,19 @@ label,
 
 .radio-modern-female:checked {
   @apply border-pink-600 bg-pink-600;
+  background-color: #db2777 !important;
+}
+
+.radio-modern-female:checked::after {
+  content: '';
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 8px !important;
+  height: 8px !important;
+  background-color: #fce7f3 !important;
+  border-radius: 50% !important;
 }
 
 .radio-modern-female:focus {

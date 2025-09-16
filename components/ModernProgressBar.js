@@ -41,20 +41,6 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
           </p>
         </div>
 
-        {/* Mini progress indicator for mobile */}
-        <div className="flex sm:hidden items-center gap-2">
-          <div className="w-12 bg-gray-200 rounded-full h-1 overflow-hidden">
-            <div
-              className={`h-full rounded-full transition-all duration-1000 ease-out ${
-                isRTL
-                  ? 'bg-gradient-to-l from-gray-700 to-black ml-auto'
-                  : 'bg-gradient-to-r from-gray-700 to-black'
-              }`}
-              style={{ width: `${progressPercentage}%` }}
-            />
-          </div>
-          <span className="text-xs text-gray-500 font-medium">{Math.round(progressPercentage)}%</span>
-        </div>
       </div>
 
       {/* Clean Desktop Step Indicator */}
@@ -218,11 +204,6 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
             </div>
           </div>
 
-          {/* Progress percentage */}
-          <div className="flex justify-between mt-2 text-xs text-gray-500">
-            <span>Progress</span>
-            <span className="font-semibold">{Math.round(progressPercentage)}% Complete</span>
-          </div>
         </div>
       </div>
     </div>
