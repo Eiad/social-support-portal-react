@@ -13,6 +13,8 @@ export default function Step3() {
   const { formData, updateFormData, updateFieldData, prevStep, nextStep } = useFormContext();
   const { t, language } = useLanguage();
 
+  const MIN_CHARACTERS = 10;
+
   /**
    * Handle auto-save for long-form text fields
    * Saves user's progress automatically to prevent data loss
@@ -232,7 +234,10 @@ Write a comprehensive professional statement explaining why they deserve social 
               id="currentSituation"
               {...register('currentSituation', {
                 required: t('required'),
-                minLength: { value: 50, message: 'Please provide at least 50 characters' }
+                minLength: {
+                  value: MIN_CHARACTERS,
+                  message: t('minCharacters').replace('{{count}}', MIN_CHARACTERS)
+                }
               })}
               onBlur={(e) => handleFieldBlur('currentSituation', e.target.value)}
               rows="4"
@@ -284,7 +289,10 @@ Write a comprehensive professional statement explaining why they deserve social 
               id="employmentCircumstances"
               {...register('employmentCircumstances', {
                 required: t('required'),
-                minLength: { value: 50, message: 'Please provide at least 50 characters' }
+                minLength: {
+                  value: MIN_CHARACTERS,
+                  message: t('minCharacters').replace('{{count}}', MIN_CHARACTERS)
+                }
               })}
               onBlur={(e) => handleFieldBlur('employmentCircumstances', e.target.value)}
               rows="4"
@@ -336,7 +344,10 @@ Write a comprehensive professional statement explaining why they deserve social 
               id="reasonForApplying"
               {...register('reasonForApplying', {
                 required: t('required'),
-                minLength: { value: 50, message: 'Please provide at least 50 characters' }
+                minLength: {
+                  value: MIN_CHARACTERS,
+                  message: t('minCharacters').replace('{{count}}', MIN_CHARACTERS)
+                }
               })}
               onBlur={(e) => handleFieldBlur('reasonForApplying', e.target.value)}
               rows="4"

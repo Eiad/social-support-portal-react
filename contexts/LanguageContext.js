@@ -34,6 +34,7 @@ const translations = {
     required: 'This field is required',
     invalidEmail: 'Invalid email address',
     invalidPhone: 'Invalid phone number',
+    minCharacters: 'Please provide at least {{count}} characters',
     dateCannotBeFuture: 'Date cannot be in the future',
     invalidDateOfBirth: 'Please enter a valid date of birth',
 
@@ -249,6 +250,7 @@ const translations = {
     required: 'مطلوب',
     invalidEmail: 'البريد الإلكتروني غير صحيح',
     invalidPhone: 'رقم الهاتف غير صحيح',
+    minCharacters: 'يرجى كتابة {{count}} حرف على الأقل',
     dateCannotBeFuture: 'لا يمكن أن يكون التاريخ في المستقبل',
     invalidDateOfBirth: 'يرجى إدخال تاريخ ميلاد صحيح',
 
