@@ -23,12 +23,6 @@ export async function POST(request) {
         model: 'gpt-3.5-turbo',
         messages: [
           {
-            role: 'system',
-            content: language === 'ar' 
-              ? 'أنت مساعد كتابة مهني متخصص في الطلبات الحكومية. مهمتك إعادة كتابة النصوص لتكون أكثر مهنية ووضوحاً ومناسبة للوثائق الرسمية مع الحفاظ على المعنى الأصلي والظروف الشخصية. استخدم لغة رسمية وهيكلاً مناسباً ونبرة متعاطفة. اجعل الردود بين 100-150 كلمة.'
-              : 'You are a professional writing assistant specializing in government applications. Your task is to rewrite user text to be more professional, clear, and appropriate for official documents while maintaining the original meaning and personal circumstances. Use formal language, proper structure, and empathetic tone. Keep responses between 100-150 words.'
-          },
-          {
             role: 'user',
             content: prompt
           }

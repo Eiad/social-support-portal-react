@@ -15,7 +15,7 @@ export default function GuestAuthInitializer() {
     const token = initializeGuestAuth();
 
     if (process.env.NODE_ENV === 'development') {
-      console.log('🎫 Guest auth system initialized');
+      console.log('Guest auth system initialized');
     }
   }, []);
 

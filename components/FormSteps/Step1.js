@@ -66,7 +66,7 @@ export default function Step1() {
       phone: formData.phone,
       email: formData.email
     });
-  }, []); // Only run on mount
+  }, [formData]); // Update when formData changes (localStorage loaded)
 
   // Get today's date for validation
   const today = new Date().toISOString().split('T')[0];

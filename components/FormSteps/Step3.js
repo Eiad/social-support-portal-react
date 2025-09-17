@@ -52,7 +52,7 @@ export default function Step3() {
       employmentCircumstances: formData.employmentCircumstances,
       reasonForApplying: formData.reasonForApplying
     });
-  }, []); // Only run on mount
+  }, [formData, reset]); // Update when formData changes (localStorage loaded)
 
   const watchedValues = watch();
 

@@ -53,7 +53,7 @@ export default function Step2() {
       monthlyIncome: formData.monthlyIncome,
       housingStatus: formData.housingStatus
     });
-  }, []); // Only run on mount
+  }, [formData]); // Update when formData changes (localStorage loaded)
 
   const onSubmit = (data) => {
     updateFormData(data);
