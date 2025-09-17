@@ -213,29 +213,63 @@ npm test -- --coverage               # With coverage report
 ```
 social-support-portal/
 ├── app/
-│   ├── [lang]/              # Route-based internationalization
+│   ├── [lang]/                      # Route-based internationalization
+│   │   ├── app-details/             # Application documentation page
+│   │   │   ├── page.js              # App details route
+│   │   │   └── AppDetailsContent.js # Documentation content
+│   │   ├── layout.js                # Language-specific layout
+│   │   └── page.js                  # Main application page
 │   ├── api/
-│   │   ├── ai-assist/         # OpenAI integration endpoint
-│   │   └── submit-application/ # Form submission endpoint
-│   ├── globals.css            # Tailwind CSS with custom styles
-│   ├── page.js                # Main application page
-│   └── layout.js              # Root layout with providers
+│   │   ├── ai-assist/               # OpenAI integration endpoint
+│   │   │   └── route.js             # AI assistance API route
+│   │   └── submit-application/      # Form submission endpoint
+│   │       └── route.js             # Application submission route
+│   ├── components/
+│   │   └── StructuredData.js        # SEO structured data
+│   ├── globals.css                  # Tailwind CSS with custom styles
+│   ├── layout.js                    # Root layout with providers
+│   ├── page.js                      # Root redirect page
+│   └── sitemap.js                   # Dynamic sitemap generation
 ├── components/
-│   ├── FormSteps/             # Multi-step form components
-│   │   ├── Step1.js           # Personal information
-│   │   ├── Step2.js           # Family & financial data
-│   │   ├── Step3.js           # Situation descriptions (AI-enabled)
-│   │   └── Step4.js           # Review & submit
-│   ├── AIAssistModal.js       # AI writing assistance modal
-│   ├── EmailSendingOverlay.js # Email confirmation flow
-│   ├── Onboarding.js          # Interactive user tour
-│   ├── ModernProgressBar.js   # Progress tracking component
-│   └── CelebrationEffects.js  # Confetti animations
+│   ├── FormSteps/                   # Multi-step form components
+│   │   ├── Step1.js                 # Personal information
+│   │   ├── Step2.js                 # Family & financial data
+│   │   ├── Step3.js                 # Situation descriptions (AI-enabled)
+│   │   └── Step4.js                 # Review & submit
+│   ├── icons/                       # Custom icon components
+│   │   └── FlagIcon.js              # Language flag icons
+│   ├── AIAssistModal.js             # AI writing assistance modal
+│   ├── ApplicationForm.js           # Main form wrapper component
+│   ├── CelebrationEffects.js        # Confetti animations
+│   ├── EmailSendingOverlay.js       # Email confirmation flow
+│   ├── ErrorBoundary.js             # Global error boundary
+│   ├── FAQ.js                       # Frequently asked questions
+│   ├── Footer.js                    # Application footer
+│   ├── FormErrorBoundary.js         # Form-specific error boundary
+│   ├── GuestAuthInitializer.js      # Guest authentication setup
+│   ├── LanguageToggle.js            # Language switching component
+│   ├── ModernProgressBar.js         # Progress tracking component
+│   ├── Onboarding.js                # Interactive user tour
+│   ├── ProgressBar.js               # Legacy progress component
+│   ├── Skeleton.js                  # Loading skeleton components
+│   ├── Tooltip.js                   # Tooltip component
+│   └── ZoomableImage.js             # Image zoom functionality
 ├── contexts/
-│   ├── FormContext.js         # Form state and navigation
-│   └── LanguageContext.js     # i18n with full translations
-├── __tests__/                 # Test files
-└── public/                    # Static assets and icons
+│   ├── FormContext.js               # Form state and navigation
+│   └── LanguageContext.js           # i18n with full translations
+├── lib/
+│   ├── apiClient.js                 # Axios instance with interceptors
+│   └── guestAuth.js                 # Guest authentication utilities
+├── __tests__/                       # Test files
+│   ├── api/                         # API route tests
+│   ├── components/                  # Component tests
+│   │   └── FormSteps/               # Form step component tests
+│   └── contexts/                    # Context tests
+├── public/                          # Static assets and icons
+│   └── assets/                      # Application assets
+├── jest.config.js                   # Jest testing configuration
+├── jest.setup.js                    # Jest setup file
+└── jsconfig.js                      # JavaScript configuration
 ```
 
 ### State Management Strategy
