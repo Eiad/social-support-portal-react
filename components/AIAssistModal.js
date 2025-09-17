@@ -137,7 +137,7 @@ export default function AIAssistModal({ suggestion, onApply, onRegenerate, onDis
           {isEditing && (
             <div className="mt-2 flex items-center gap-2 text-xs text-blue-600">
               <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-              {language === 'ar' ? 'وضع التعديل نشط' : 'Edit mode active'}
+              {language === 'ar' ? 'جاري التعديل...' : 'Editing...'}
             </div>
           )}
         </div>
