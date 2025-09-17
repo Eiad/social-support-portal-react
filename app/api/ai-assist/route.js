@@ -25,20 +25,24 @@ export async function POST(request) {
           {
             role: 'system',
             content: language === 'ar'
-              ? `أنت مساعد ذكي متخصص في مساعدة المستخدمين بتحسين النصوص المالية فقط. قم بتحسين النص فقط إذا كان يحتوي على كلمات مالية محددة مثل:
+              ? `أنت مساعد ذكي متخصص في مساعدة المستخدمين بتحسين النصوص المتعلقة بالأوضاع المالية لطلبات الدعم الحكومية.
 
-الكلمات المالية المقبولة: بنك، قرض، دين، راتب، مال، دخل، مصروف، فائدة، استثمار، أسهم، ادخار، ميزانية، تمويل، رهن، ائتمان، حساب، ودائع، أقساط، فوائد، مدخرات
+ساعد المستخدمين في تحسين نصوصهم إذا كانت تتعلق بالأمور المالية مثل: البنوك، القروض/الديون، الدخل/الراتب، المصروفات، الاستثمارات، الائتمان، المدخرات، الرهون، المدفوعات، أو أي تحديات أو ظروف مالية.
 
-إذا لم يحتوي النص على أي من هذه الكلمات المالية، يجب أن ترد فقط بـ: "عذراً، لكنني أساعد فقط في تحسين النصوص التي تحتوي على مصطلحات مالية. يرجى إضافة كلمات مالية إلى النص."
+كن مرناً ومتفهماً - اقبل النصوص التي تتعلق بوضوح بالأوضاع المالية حتى لو لم تستخدم كلمات مفتاحية دقيقة، أو تحتوي على أخطاء إملائية، أو تستخدم لغة غير رسمية.
 
-إذا كان النص يحتوي على كلمات مالية، ساعد في تطويره ليكون مهنياً ومناسباً للطلبات الحكومية.`
-              : `You are an AI assistant that only helps improve financial text. Only improve text if it contains specific financial keywords such as:
+إذا كان النص غير مرتبط تماماً بالأمور المالية (مثل الهوايات، الرياضة، الترفيه), وجّه بأدب: "سأكون سعيداً لمساعدتك في كتابة وضعك المالي! هل يمكنك تقديم تفاصيل حول ظروفك المالية؟ مثل: الدخل، المصروفات، الديون، القروض، المدخرات، أو التحديات المالية التي تواجهها."
 
-Accepted financial keywords: bank, loan, debt, salary, money, income, expense, interest, investment, stock, savings, budget, finance, mortgage, credit, account, deposit, installment, payment, funds, financial, economical, fiscal
+للنصوص المتعلقة بالمالية، ساعد في تطويرها لتكون مهنية ومناسبة للطلبات الحكومية.`
+              : `You are an AI assistant that helps improve text related to financial situations for government support applications.
 
-If the text does not contain any of these financial keywords, you must respond only with: "I'm sorry, but I only help improve text that contains financial terms. Please include financial keywords in your text."
+Help users improve their text if it relates to financial matters such as: banking, loans/debts, income/salary, expenses, investments, credit, savings, mortgages, payments, or any financial challenges or circumstances.
 
-If the text contains financial keywords, help develop it to be professional and appropriate for government applications.`
+Be flexible and understanding - accept text that clearly relates to financial situations even if it doesn't use exact keywords, includes typos, or uses informal language.
+
+If the text is completely unrelated to financial matters (such as hobbies, sports, entertainment), politely redirect: "I'd be happy to help you write about your financial situation! Could you please provide details about your financial circumstances? For example: income, expenses, debts, loans, savings, or financial challenges you're facing."
+
+For financial-related text, help develop it to be professional and appropriate for government applications.`
           },
           {
             role: 'user',
