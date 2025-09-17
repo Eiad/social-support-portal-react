@@ -137,7 +137,7 @@ export default function AIAssistModal({ suggestion, onApply, onRegenerate, onDis
           {isEditing && (
             <div className="mt-2 flex items-center gap-2 text-xs text-blue-600">
               <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-              {language === 'ar' ? 'جاري التعديل...' : 'Editing...'}
+              {language === 'ar' ? 'يمكنك إعادة الإنشاء أو الحفظ وتطبيق التغييرات...' : 'Editing the text, you can regenrate or save and apply the changes...'}
             </div>
           )}
         </div>
@@ -156,15 +156,14 @@ export default function AIAssistModal({ suggestion, onApply, onRegenerate, onDis
             <div className="flex flex-col sm:flex-row gap-3 sm:space-x-3 order-1 sm:order-2">
               <button
                 onClick={handleRegenerateWithEdits}
-                disabled={isEditing}
                 className={`px-4 sm:px-5 py-2.5 rounded-lg focus:outline-none transition-colors duration-200 font-medium w-full sm:w-auto ${
                   isEditing
-                    ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                    ? 'bg-blue-100 text-purple-700 hover:bg-blue-200'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
                 title={isEditing
-                  ? (language === 'ar' ? 'غير متاح أثناء التعديل' : 'Not available while editing')
-                  : (language === 'ar' ? 'إعادة إنشاء' : 'Regenerate')
+                  ? (language === 'ar' ? 'استخدم النص المعدل كمدخل جديد للذكاء الاصطناعي' : 'Use your edited text as new input to AI')
+                  : (language === 'ar' ? 'إعادة إنشاء نفس الطلب' : 'Regenerate same request')
                 }
               >
                 <div className="flex items-center justify-center gap-1 text-sm sm:text-base">
@@ -180,15 +179,15 @@ export default function AIAssistModal({ suggestion, onApply, onRegenerate, onDis
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
                 title={isEditing
-                  ? (language === 'ar' ? 'حفظ التعديلات' : 'Save changes')
+                  ? (language === 'ar' ? 'حفظ التعديلات وتطبيقها على النموذج' : 'Save edits and apply to form')
                   : (language === 'ar' ? 'تعديل النص' : 'Edit text')
                 }
               >
                 <div className="flex items-center justify-center gap-1 text-sm sm:text-base">
                   {isEditing ? (
                     <>
-                      <Save size={16} />
-                      {language === 'ar' ? 'حفظ' : 'Save'}
+                      <Check size={16} />
+                      {language === 'ar' ? 'حفظ وتطبيق' : 'Save & Apply'}
                     </>
                   ) : (
                     <>
@@ -198,24 +197,18 @@ export default function AIAssistModal({ suggestion, onApply, onRegenerate, onDis
                   )}
                 </div>
               </button>
-              <button
-                onClick={handleApplyContent}
-                disabled={isEditing}
-                className={`px-4 sm:px-5 py-2.5 rounded-lg focus:outline-none transition-colors duration-200 font-medium w-full sm:w-auto ${
-                  isEditing
-                    ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                    : 'bg-blue-600 text-white hover:bg-blue-700'
-                }`}
-                title={isEditing
-                  ? (language === 'ar' ? 'احفظ التعديلات أولاً' : 'Save changes first')
-                  : (language === 'ar' ? 'تطبيق النص' : 'Apply Text')
-                }
-              >
-                <div className="flex items-center justify-center gap-1 text-sm sm:text-base">
-                  <Check size={16} />
-                  {language === 'ar' ? 'تطبيق النص' : 'Apply Text'}
-                </div>
-              </button>
+              {!isEditing && (
+                <button
+                  onClick={handleApplyContent}
+                  className="px-4 sm:px-5 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none transition-colors duration-200 font-medium w-full sm:w-auto"
+                  title={language === 'ar' ? 'تطبيق النص على النموذج' : 'Apply text to form'}
+                >
+                  <div className="flex items-center justify-center gap-1 text-sm sm:text-base">
+                    <Check size={16} />
+                    {language === 'ar' ? 'تطبيق النص' : 'Apply Text'}
+                  </div>
+                </button>
+              )}
             </div>
           </div>
         </div>
