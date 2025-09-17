@@ -160,13 +160,16 @@ Write a comprehensive professional statement explaining why they deserve social 
    * Automatically saves the AI-generated content to localStorage
    * This ensures the valuable AI content is preserved immediately
    */
-  const handleApplySuggestion = () => {
-    // Apply the AI suggestion to the form field
-    setValue(currentField, aiSuggestion);
+  const handleApplySuggestion = (contentToApply = null) => {
+    // Use provided content or fallback to current AI suggestion
+    const finalContent = contentToApply || aiSuggestion;
 
-    // Immediately auto-save the AI-generated content
+    // Apply the content to the form field
+    setValue(currentField, finalContent);
+
+    // Immediately auto-save the content
     // This is important since AI suggestions are valuable and should be preserved
-    updateFieldData(currentField, aiSuggestion);
+    updateFieldData(currentField, finalContent);
 
     // Close the modal and reset state
     setShowAIModal(false);
@@ -174,8 +177,9 @@ Write a comprehensive professional statement explaining why they deserve social 
     setCurrentField('');
   };
 
-  const handleRegenerateSuggestion = () => {
-    const currentValue = watchedValues[currentField];
+  const handleRegenerateSuggestion = (editedContent = null) => {
+    // Use edited content if provided, otherwise use current field value
+    const currentValue = editedContent || watchedValues[currentField];
     setIsLoadingAI(true);
     generateAISuggestion(currentField, currentValue);
   };

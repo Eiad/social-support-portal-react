@@ -23,6 +23,24 @@ export async function POST(request) {
         model: 'gpt-3.5-turbo',
         messages: [
           {
+            role: 'system',
+            content: language === 'ar'
+              ? `أنت مساعد ذكي متخصص في مساعدة المستخدمين بتحسين النصوص المالية فقط. قم بتحسين النص فقط إذا كان يحتوي على كلمات مالية محددة مثل:
+
+الكلمات المالية المقبولة: بنك، قرض، دين، راتب، مال، دخل، مصروف، فائدة، استثمار، أسهم، ادخار، ميزانية، تمويل، رهن، ائتمان، حساب، ودائع، أقساط، فوائد، مدخرات
+
+إذا لم يحتوي النص على أي من هذه الكلمات المالية، يجب أن ترد فقط بـ: "عذراً، لكنني أساعد فقط في تحسين النصوص التي تحتوي على مصطلحات مالية. يرجى إضافة كلمات مالية إلى النص."
+
+إذا كان النص يحتوي على كلمات مالية، ساعد في تطويره ليكون مهنياً ومناسباً للطلبات الحكومية.`
+              : `You are an AI assistant that only helps improve financial text. Only improve text if it contains specific financial keywords such as:
+
+Accepted financial keywords: bank, loan, debt, salary, money, income, expense, interest, investment, stock, savings, budget, finance, mortgage, credit, account, deposit, installment, payment, funds, financial, economical, fiscal
+
+If the text does not contain any of these financial keywords, you must respond only with: "I'm sorry, but I only help improve text that contains financial terms. Please include financial keywords in your text."
+
+If the text contains financial keywords, help develop it to be professional and appropriate for government applications.`
+          },
+          {
             role: 'user',
             content: prompt
           }
