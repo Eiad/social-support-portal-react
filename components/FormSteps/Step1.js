@@ -97,7 +97,7 @@ export default function Step1() {
               type="text"
               {...register('name', { required: t('required') })}
               onBlur={(e) => handleFieldBlur('name', e.target.value)}
-              className="form-input"
+              className="form-input form-input-animated form-input-smooth"
               aria-invalid={errors.name ? 'true' : 'false'}
               placeholder={t('name')}
             />
@@ -121,7 +121,7 @@ export default function Step1() {
               type="text"
               {...register('nationalId', { required: t('required') })}
               onBlur={(e) => handleFieldBlur('nationalId', e.target.value)}
-              className="form-input"
+              className="form-input form-input-animated form-input-smooth"
               aria-invalid={errors.nationalId ? 'true' : 'false'}
               placeholder={t('nationalId')}
             />
@@ -162,7 +162,7 @@ export default function Step1() {
                 }
               })}
               onBlur={(e) => handleFieldBlur('dateOfBirth', e.target.value)}
-              className="form-input"
+              className="form-input form-input-smooth"
               aria-invalid={errors.dateOfBirth ? 'true' : 'false'}
               max={today}
             />
@@ -233,7 +233,7 @@ export default function Step1() {
               type="text"
               {...register('address', { required: t('required') })}
               onBlur={(e) => handleFieldBlur('address', e.target.value)}
-              className="form-input"
+              className="form-input placeholder-typewriter form-input-smooth"
               aria-invalid={errors.address ? 'true' : 'false'}
               placeholder={t('address')}
             />
@@ -252,7 +252,7 @@ export default function Step1() {
               type="text"
               {...register('city', { required: t('required') })}
               onBlur={(e) => handleFieldBlur('city', e.target.value)}
-              className="form-input"
+              className="form-input form-input-animated form-input-smooth"
               aria-invalid={errors.city ? 'true' : 'false'}
               placeholder={t('city')}
             />
@@ -271,7 +271,7 @@ export default function Step1() {
               type="text"
               {...register('state', { required: t('required') })}
               onBlur={(e) => handleFieldBlur('state', e.target.value)}
-              className="form-input"
+              className="form-input form-input-animated form-input-smooth"
               aria-invalid={errors.state ? 'true' : 'false'}
               placeholder={t('state')}
             />
@@ -290,7 +290,7 @@ export default function Step1() {
               type="text"
               {...register('country', { required: t('required') })}
               onBlur={(e) => handleFieldBlur('country', e.target.value)}
-              className="form-input"
+              className="form-input form-input-animated form-input-smooth"
               aria-invalid={errors.country ? 'true' : 'false'}
               placeholder={t('country')}
             />
@@ -315,14 +315,19 @@ export default function Step1() {
               {...register('phone', {
                 required: t('required'),
                 pattern: {
-                  value: /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/,
+                  value: /^[0-9]{10}$/,
                   message: t('invalidPhone')
+                },
+                maxLength: {
+                  value: 10,
+                  message: 'Phone number must be 10 digits'
                 }
               })}
               onBlur={(e) => handleFieldBlur('phone', e.target.value)}
-              className="form-input"
+              className="form-input placeholder-typewriter form-input-smooth"
               aria-invalid={errors.phone ? 'true' : 'false'}
-              placeholder="+971 XX XXX XXXX"
+              placeholder="XXXXXXXXXX"
+              maxLength="10"
             />
             {errors.phone && (
               <span className="text-red-500 text-sm mt-1" role="alert">{errors.phone.message}</span>
@@ -350,7 +355,7 @@ export default function Step1() {
                 }
               })}
               onBlur={(e) => handleFieldBlur('email', e.target.value)}
-              className="form-input"
+              className="form-input placeholder-typewriter form-input-smooth"
               aria-invalid={errors.email ? 'true' : 'false'}
               placeholder="example@domain.com"
             />
