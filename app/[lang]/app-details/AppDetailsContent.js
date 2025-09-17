@@ -114,21 +114,10 @@ export default function AppDetailsContent() {
                 <span>{t('appDetailsTitle')}</span>
               </div>
               <h1 className="text-3xl font-normal text-gray-900 mb-3">
-                {language === 'ar' ? (
-                  <>
-                    دراسة حالة التنفيذ لـ{' '}
-                    <span className="bg-white text-blue-600">
-                      Northbay Solutions
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    Case Study Implementation for{' '}
-                    <span className="bg-white text-blue-600">
-                      Northbay Solutions
-                    </span>
-                  </>
-                )}
+                {t('caseStudy')}{' '}
+                <span className="bg-white text-blue-600">
+                  {t('caseStudyDocumentation')}
+                </span>
               </h1>
               <p className="text-md text-gray-700 max-w-2xl leading-relaxed">
                 {t('appDetailsSubtitle')}

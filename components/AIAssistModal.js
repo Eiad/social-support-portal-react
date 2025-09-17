@@ -75,7 +75,7 @@ export default function AIAssistModal({ suggestion, onApply, onRegenerate, onDis
       <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-[10000] p-4 transition-all duration-200">
         <div className="bg-white rounded-xl shadow-2xl w-full max-w-lg mx-4">
           <AILoadingSkeleton
-            message={language === 'ar' ? 'جاري صياغة محتوى احترافي...' : 'Crafting professional content...'}
+            message={t('craftingContent')}
           />
         </div>
       </div>
@@ -91,15 +91,12 @@ export default function AIAssistModal({ suggestion, onApply, onRegenerate, onDis
             <div className="flex items-center gap-2">
               <Sparkles size={18} className="text-blue-600 sm:w-5 sm:h-5" />
               <span className="text-sm sm:text-base">
-                {language === 'ar' ? 'المحتوى الاحترافي المقترح' : 'Professional Content Suggestion'}
+                {t('professionalContentSuggestion')}
               </span>
             </div>
           </h3>
           <p className="text-xs sm:text-sm text-gray-500 mt-1 leading-relaxed">
-            {language === 'ar'
-              ? 'قمنا بصياغة محتوى احترافي ومقنع لطلبك:'
-              : 'We\'ve crafted professional and compelling content for your application:'
-            }
+            {t('craftedContentDesc')}
           </p>
         </div>
         
@@ -115,10 +112,7 @@ export default function AIAssistModal({ suggestion, onApply, onRegenerate, onDis
                 value={editedSuggestion}
                 onChange={handleTextareaChange}
                 className="w-full p-3 sm:p-4 bg-transparent border-none resize-none focus:outline-none text-gray-800 leading-relaxed text-sm sm:text-base placeholder-gray-400 min-h-[120px]"
-                placeholder={language === 'ar'
-                  ? 'قم بتعديل النص هنا...'
-                  : 'Edit your text here...'
-                }
+                placeholder={t('editTextHere')}
                 style={{
                   fontFamily: 'inherit',
                   lineHeight: '1.6'
@@ -137,7 +131,7 @@ export default function AIAssistModal({ suggestion, onApply, onRegenerate, onDis
           {isEditing && (
             <div className="mt-2 flex items-center gap-2 text-xs text-blue-600">
               <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-              {language === 'ar' ? 'يمكنك إعادة الإنشاء أو الحفظ وتطبيق التغييرات...' : 'Editing the text, you can regenrate or save and apply the changes...'}
+              {t('editingTextDesc')}
             </div>
           )}
         </div>
@@ -150,7 +144,7 @@ export default function AIAssistModal({ suggestion, onApply, onRegenerate, onDis
             >
               <div className="flex items-center justify-center gap-1 text-sm sm:text-base">
                 <X size={16} />
-                {language === 'ar' ? 'إلغاء' : 'Cancel'}
+                {t('cancel')}
               </div>
             </button>
             <div className="flex flex-col sm:flex-row gap-3 sm:space-x-3 order-1 sm:order-2">
@@ -161,14 +155,11 @@ export default function AIAssistModal({ suggestion, onApply, onRegenerate, onDis
                     ? 'bg-blue-100 text-purple-700 hover:bg-blue-200'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
-                title={isEditing
-                  ? (language === 'ar' ? 'استخدم النص المعدل كمدخل جديد للذكاء الاصطناعي' : 'Use your edited text as new input to AI')
-                  : (language === 'ar' ? 'إعادة إنشاء نفس الطلب' : 'Regenerate same request')
-                }
+                title={isEditing ? t('useEditedText') : t('regenerateSameRequest')}
               >
                 <div className="flex items-center justify-center gap-1 text-sm sm:text-base">
                   <RotateCcw size={16} />
-                  {language === 'ar' ? 'إعادة إنشاء' : 'Regenerate'}
+                  {t('regenerate')}
                 </div>
               </button>
               <button
@@ -178,21 +169,18 @@ export default function AIAssistModal({ suggestion, onApply, onRegenerate, onDis
                     ? 'bg-green-100 text-green-700 hover:bg-green-200'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
-                title={isEditing
-                  ? (language === 'ar' ? 'حفظ التعديلات وتطبيقها على النموذج' : 'Save edits and apply to form')
-                  : (language === 'ar' ? 'تعديل النص' : 'Edit text')
-                }
+                title={isEditing ? t('saveEdits') : t('editText')}
               >
                 <div className="flex items-center justify-center gap-1 text-sm sm:text-base">
                   {isEditing ? (
                     <>
                       <Check size={16} />
-                      {language === 'ar' ? 'حفظ وتطبيق' : 'Save & Apply'}
+                      {t('saveAndApply')}
                     </>
                   ) : (
                     <>
                       <Edit3 size={16} />
-                      {language === 'ar' ? 'تعديل' : 'Edit'}
+                      {t('edit')}
                     </>
                   )}
                 </div>
@@ -201,11 +189,11 @@ export default function AIAssistModal({ suggestion, onApply, onRegenerate, onDis
                 <button
                   onClick={handleApplyContent}
                   className="px-4 sm:px-5 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none transition-colors duration-200 font-medium w-full sm:w-auto"
-                  title={language === 'ar' ? 'تطبيق النص على النموذج' : 'Apply text to form'}
+                  title={t('applyToForm')}
                 >
                   <div className="flex items-center justify-center gap-1 text-sm sm:text-base">
                     <Check size={16} />
-                    {language === 'ar' ? 'تطبيق النص' : 'Apply Text'}
+                    {t('applyText')}
                   </div>
                 </button>
               )}
