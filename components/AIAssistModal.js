@@ -156,9 +156,14 @@ export default function AIAssistModal({ suggestion, onApply, onRegenerate, onDis
             <div className="flex flex-col sm:flex-row gap-3 sm:space-x-3 order-1 sm:order-2">
               <button
                 onClick={handleRegenerateWithEdits}
-                className="px-4 sm:px-5 py-2.5 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 focus:outline-none transition-colors duration-200 font-medium w-full sm:w-auto"
+                disabled={isEditing}
+                className={`px-4 sm:px-5 py-2.5 rounded-lg focus:outline-none transition-colors duration-200 font-medium w-full sm:w-auto ${
+                  isEditing
+                    ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
                 title={isEditing
-                  ? (language === 'ar' ? 'إعادة إنشاء بناءً على التعديلات' : 'Regenerate with your edits')
+                  ? (language === 'ar' ? 'غير متاح أثناء التعديل' : 'Not available while editing')
                   : (language === 'ar' ? 'إعادة إنشاء' : 'Regenerate')
                 }
               >
