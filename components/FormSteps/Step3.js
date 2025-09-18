@@ -102,25 +102,43 @@ export default function Step3() {
       // Arabic prompts
       switch(fieldName) {
         case 'currentSituation':
-          return `أنت تساعد شخصاً في كتابة طلب دعم اجتماعي حكومي مقنع. استناداً إلى وصفهم المختصر، اكتب تفسيراً تفصيلياً ومهنياً ومتعاطفاً لوضعهم المالي الحالي. اجعله مقنعاً ولكن صادقاً، واذكر التحديات المحددة التي يواجهونها، ووضح كيف يؤثر ذلك على حياتهم اليومية. اكتب بين 120-180 كلمة واستخدم لغة رسمية مناسبة للطلبات الحكومية.
+          return `أنت تساعد شخصاً في كتابة طلب دعم اجتماعي حكومي مقنع. استناداً إلى وصفهم المختصر، اكتب تفسيراً مهنياً ومتعاطفاً لوضعهم المالي الحالي.
+
+قواعد مهمة:
+- اكتب في 5 أسطر كحد أقصى
+- كن موجزاً ومباشراً
+- ركز على أهم التحديات المالية فقط
+- استخدم لغة رسمية مناسبة للطلبات الحكومية
 
 الوصف المختصر للمستخدم: "${currentText}"
 
-اكتب بياناً مهنياً شاملاً عن وضعهم المالي الحالي يساعد في تبرير حاجتهم للدعم الاجتماعي.`;
+اكتب بياناً مهنياً موجزاً عن وضعهم المالي الحالي يساعد في تبرير حاجتهم للدعم الاجتماعي في 5 أسطر كحد أقصى.`;
 
         case 'employmentCircumstances':
-          return `أنت تساعد شخصاً في كتابة طلب دعم اجتماعي حكومي. استناداً إلى وصفهم المختصر، اكتب تفسيراً تفصيلياً ومهنياً لظروف عملهم وأي عقبات يواجهونها. اذكر تفاصيل محددة حول جهود البحث عن العمل، والحواجز التي تحول دون التوظيف، والمهارات أو المؤهلات، وكيف تؤثر حالتهم على قدرتهم على العمل. اكتب بين 120-180 كلمة واستخدم لغة رسمية.
+          return `أنت تساعد شخصاً في كتابة طلب دعم اجتماعي حكومي. استناداً إلى وصفهم المختصر، اكتب تفسيراً مهنياً لظروف عملهم.
+
+قواعد مهمة:
+- اكتب في 5 أسطر كحد أقصى
+- كن موجزاً ومباشراً
+- ركز على أهم عقبات التوظيف
+- استخدم لغة رسمية
 
 الوصف المختصر للمستخدم: "${currentText}"
 
-اكتب بياناً مهنياً شاملاً عن ظروف عملهم يوضح وضعهم بوضوح.`;
+اكتب بياناً مهنياً موجزاً عن ظروف عملهم يوضح وضعهم بوضوح في 5 أسطر كحد أقصى.`;
 
         case 'reasonForApplying':
-          return `أنت تساعد شخصاً في كتابة طلب دعم اجتماعي حكومي. استناداً إلى وصفهم المختصر، اكتب تفسيراً تفصيلياً ومهنياً ومقنعاً لسبب حاجتهم للدعم الاجتماعي. اذكر الاحتياجات المحددة، وكيف سيساعدهم الدعم، وجهودهم لتحسين وضعهم، والتزامهم باستخدام المساعدة بمسؤولية. اكتب بين 120-180 كلمة واستخدم لغة رسمية ومحترمة.
+          return `أنت تساعد شخصاً في كتابة طلب دعم اجتماعي حكومي. استناداً إلى وصفهم المختصر، اكتب تفسيراً مهنياً ومقنعاً لسبب حاجتهم للدعم.
+
+قواعد مهمة:
+- اكتب في 5 أسطر كحد أقصى
+- كن موجزاً ومباشراً
+- ركز على الاحتياجات الأساسية
+- استخدم لغة رسمية ومحترمة
 
 الوصف المختصر للمستخدم: "${currentText}"
 
-اكتب بياناً مهنياً شاملاً يوضح سبب استحقاقهم لمساعدة الدعم الاجتماعي.`;
+اكتب بياناً مهنياً موجزاً يوضح سبب استحقاقهم لمساعدة الدعم الاجتماعي في 5 أسطر كحد أقصى.`;
 
         default:
           return `قم بتوسيع وتطوير هذا النص ليكون مهنياً ومناسباً لطلب حكومي: "${currentText}"`;
@@ -129,25 +147,43 @@ export default function Step3() {
       // English prompts
       switch(fieldName) {
         case 'currentSituation':
-          return `You are helping someone write a compelling government Gov Social Support. Based on their brief description, write a detailed, professional, and empathetic explanation of their current financial situation. Make it convincing but honest, include specific challenges they face, and explain how this impacts their daily life. Keep it between 120-180 words and use formal language appropriate for government applications.
+          return `You are helping someone write a compelling government Gov Social Support. Based on their brief description, write a professional and empathetic explanation of their current financial situation.
+
+IMPORTANT RULES:
+- Write in maximum 5 lines
+- Be concise and direct
+- Focus on the most important financial challenges only
+- Use formal language appropriate for government applications
 
 User's brief description: "${currentText}"
 
-Write a comprehensive professional statement about their current financial situation that would help justify their need for social support.`;
+Write a concise professional statement about their current financial situation in maximum 5 lines.`;
 
         case 'employmentCircumstances':
-          return `You are helping someone write a compelling government Gov Social Support. Based on their brief description, write a detailed, professional explanation of their employment circumstances and any obstacles they face. Include specific details about their job search efforts, barriers to employment, skills or qualifications, and how their situation affects their ability to work. Keep it between 120-180 words and use formal language.
+          return `You are helping someone write a compelling government Gov Social Support. Based on their brief description, write a professional explanation of their employment circumstances.
+
+IMPORTANT RULES:
+- Write in maximum 5 lines
+- Be concise and direct
+- Focus on the most important employment barriers
+- Use formal language
 
 User's brief description: "${currentText}"
 
-Write a comprehensive professional statement about their employment circumstances that explains their situation clearly.`;
+Write a concise professional statement about their employment circumstances in maximum 5 lines.`;
 
         case 'reasonForApplying':
-          return `You are helping someone write a compelling government Gov Social Support. Based on their brief description, write a detailed, professional, and persuasive explanation of why they need social support. Include specific needs, how the support would help them, their efforts to improve their situation, and their commitment to using the assistance responsibly. Keep it between 120-180 words and use formal, respectful language.
+          return `You are helping someone write a compelling government Gov Social Support. Based on their brief description, write a professional and persuasive explanation of why they need social support.
+
+IMPORTANT RULES:
+- Write in maximum 5 lines
+- Be concise and direct
+- Focus on the most essential needs
+- Use formal, respectful language
 
 User's brief description: "${currentText}"
 
-Write a comprehensive professional statement explaining why they deserve social support assistance.`;
+Write a concise professional statement explaining why they deserve social support assistance in maximum 5 lines.`;
 
         default:
           return `Expand and professionalize this text for a government application: "${currentText}"`;

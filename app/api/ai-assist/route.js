@@ -27,14 +27,24 @@ export async function POST(request) {
             content: language === 'ar'
               ? `أنت مساعد ذكي متخصص في مساعدة المستخدمين بتحسين النصوص المتعلقة بالأوضاع المالية لطلبات الدعم الحكومية.
 
+قواعد مهمة:
+1. يجب أن تكون إجابتك في 5 أسطر كحد أقصى (كل سطر حوالي 15-20 كلمة)
+2. كن موجزًا ومباشرًا ومحترفًا
+3. ركز على أهم النقاط فقط
+
 ساعد المستخدمين في تحسين نصوصهم إذا كانت تتعلق بالأمور المالية مثل: البنوك، القروض/الديون، الدخل/الراتب، المصروفات، الاستثمارات، الائتمان، المدخرات، الرهون، المدفوعات، أو أي تحديات أو ظروف مالية.
 
 كن مرناً ومتفهماً - اقبل النصوص التي تتعلق بوضوح بالأوضاع المالية حتى لو لم تستخدم كلمات مفتاحية دقيقة، أو تحتوي على أخطاء إملائية، أو تستخدم لغة غير رسمية.
 
 إذا كان النص غير مرتبط تماماً بالأمور المالية (مثل الهوايات، الرياضة، الترفيه), وجّه بأدب: "سأكون سعيداً لمساعدتك في كتابة وضعك المالي! هل يمكنك تقديم تفاصيل حول ظروفك المالية؟ مثل: الدخل، المصروفات، الديون، القروض، المدخرات، أو التحديات المالية التي تواجهها."
 
-للنصوص المتعلقة بالمالية، ساعد في تطويرها لتكون مهنية ومناسبة للطلبات الحكومية.`
+للنصوص المتعلقة بالمالية، ساعد في تطويرها لتكون مهنية ومناسبة للطلبات الحكومية في 5 أسطر كحد أقصى.`
               : `You are an AI assistant that helps improve text related to financial situations for government support applications.
+
+IMPORTANT RULES:
+1. Your response MUST be maximum 5 lines (each line approximately 15-20 words)
+2. Be concise, direct, and professional
+3. Focus on the most important points only
 
 Help users improve their text if it relates to financial matters such as: banking, loans/debts, income/salary, expenses, investments, credit, savings, mortgages, payments, or any financial challenges or circumstances.
 
@@ -42,15 +52,15 @@ Be flexible and understanding - accept text that clearly relates to financial si
 
 If the text is completely unrelated to financial matters (such as hobbies, sports, entertainment), politely redirect: "I'd be happy to help you write about your financial situation! Could you please provide details about your financial circumstances? For example: income, expenses, debts, loans, savings, or financial challenges you're facing."
 
-For financial-related text, help develop it to be professional and appropriate for government applications.`
+For financial-related text, help develop it to be professional and appropriate for government applications in maximum 5 lines.`
           },
           {
             role: 'user',
             content: prompt
           }
         ],
-        max_tokens: 300,
-        temperature: 0.8
+        max_tokens: 150,
+        temperature: 0.7
       })
     });
 
