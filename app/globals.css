@@ -571,3 +571,10 @@ label,
 .radio-label.group:has(.radio-modern-female:checked) .bg-pink-100 {
   @apply bg-pink-200;
 }
+
+/* Remove focus outline from country dropdown */
+.country-dropdown-no-focus:focus {
+  box-shadow: none !important;
+  outline: none !important;
+  border-color: #d1d5db !important;
+}

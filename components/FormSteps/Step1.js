@@ -6,6 +6,7 @@ import { useFormContext } from '@/contexts/FormContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { User, UserCircle, HelpCircle } from 'lucide-react';
 import Tooltip from '../Tooltip';
+import SearchableCountryDropdown from '../SearchableCountryDropdown';
 
 export default function Step1() {
   const { formData, updateFormData, updateFieldData, nextStep } = useFormContext();
@@ -58,6 +59,7 @@ export default function Step1() {
     handleSubmit,
     reset,
     getValues,
+    setValue,
     formState: { errors }
   } = useForm({
     defaultValues: {
@@ -88,7 +90,7 @@ export default function Step1() {
       phone: formData.phone,
       email: formData.email
     });
-  }, [formData]); // Update when formData changes (localStorage loaded)
+  }, [formData, reset]); // Update when formData changes (localStorage loaded)
 
   // Enhanced autofill detection
   useEffect(() => {
@@ -130,7 +132,7 @@ export default function Step1() {
         input.removeEventListener('change', handleAutofill);
       });
     };
-  }, [getValues, updateFormData]);
+  }, [getValues, updateFormData, setValue]);
 
   // Get today's date for validation
   const today = new Date().toISOString().split('T')[0];
@@ -163,7 +165,7 @@ export default function Step1() {
               onBlur={(e) => handleFieldBlur('name', e.target.value)}
               className="form-input form-input-animated form-input-smooth"
               aria-invalid={errors.name ? 'true' : 'false'}
-              placeholder={t('name')}
+              placeholder={t('namePlaceholder')}
             />
             {errors.name && (
               <span className="text-red-500 text-sm mt-1 animate-slideUp" role="alert">{errors.name.message}</span>
@@ -187,7 +189,7 @@ export default function Step1() {
               onBlur={(e) => handleFieldBlur('nationalId', e.target.value)}
               className="form-input form-input-animated form-input-smooth"
               aria-invalid={errors.nationalId ? 'true' : 'false'}
-              placeholder={t('nationalId')}
+              placeholder={t('nationalIdPlaceholder')}
             />
             {errors.nationalId && (
               <span className="text-red-500 text-sm mt-1" role="alert">{errors.nationalId.message}</span>
@@ -226,7 +228,7 @@ export default function Step1() {
                 }
               })}
               onBlur={(e) => handleFieldBlur('dateOfBirth', e.target.value)}
-              className="form-input form-input-smooth"
+              className="form-input form-input-animated form-input-smooth"
               aria-invalid={errors.dateOfBirth ? 'true' : 'false'}
               max={today}
             />
@@ -297,9 +299,9 @@ export default function Step1() {
               type="text"
               {...register('address', { required: t('required') })}
               onBlur={(e) => handleFieldBlur('address', e.target.value)}
-              className="form-input placeholder-typewriter form-input-smooth"
+              className="form-input form-input-animated form-input-smooth"
               aria-invalid={errors.address ? 'true' : 'false'}
-              placeholder={t('address')}
+              placeholder={t('addressPlaceholder')}
             />
             {errors.address && (
               <span className="text-red-500 text-sm mt-1" role="alert">{errors.address.message}</span>
@@ -318,7 +320,7 @@ export default function Step1() {
               onBlur={(e) => handleFieldBlur('city', e.target.value)}
               className="form-input form-input-animated form-input-smooth"
               aria-invalid={errors.city ? 'true' : 'false'}
-              placeholder={t('city')}
+              placeholder={t('cityPlaceholder')}
             />
             {errors.city && (
               <span className="text-red-500 text-sm mt-1" role="alert">{errors.city.message}</span>
@@ -337,7 +339,7 @@ export default function Step1() {
               onBlur={(e) => handleFieldBlur('state', e.target.value)}
               className="form-input form-input-animated form-input-smooth"
               aria-invalid={errors.state ? 'true' : 'false'}
-              placeholder={t('state')}
+              placeholder={t('statePlaceholder')}
             />
             {errors.state && (
               <span className="text-red-500 text-sm mt-1" role="alert">{errors.state.message}</span>
@@ -349,14 +351,17 @@ export default function Step1() {
             <label htmlFor="country" className="form-label">
               {t('country')} *
             </label>
-            <input
-              id="country"
-              type="text"
-              {...register('country', { required: t('required') })}
-              onBlur={(e) => handleFieldBlur('country', e.target.value)}
-              className="form-input form-input-animated form-input-smooth"
+            <SearchableCountryDropdown
+              value={formData.country}
+              onChange={(countryCode) => {
+                updateFieldData('country', countryCode);
+                // Also update the form register to keep react-hook-form in sync
+                setValue('country', countryCode, { shouldValidate: true });
+              }}
+              onBlur={() => handleFieldBlur('country', formData.country)}
+              error={errors.country}
+              placeholder={t('countryPlaceholder')}
               aria-invalid={errors.country ? 'true' : 'false'}
-              placeholder={t('country')}
             />
             {errors.country && (
               <span className="text-red-500 text-sm mt-1" role="alert">{errors.country.message}</span>
@@ -388,9 +393,9 @@ export default function Step1() {
                 }
               })}
               onBlur={(e) => handleFieldBlur('phone', e.target.value)}
-              className="form-input placeholder-typewriter form-input-smooth"
+              className="form-input form-input-animated form-input-smooth"
               aria-invalid={errors.phone ? 'true' : 'false'}
-              placeholder="XXXXXXXXXX"
+              placeholder={t('phonePlaceholder')}
               maxLength="10"
             />
             {errors.phone && (
@@ -419,9 +424,9 @@ export default function Step1() {
                 }
               })}
               onBlur={(e) => handleFieldBlur('email', e.target.value)}
-              className="form-input placeholder-typewriter form-input-smooth"
+              className="form-input form-input-animated form-input-smooth"
               aria-invalid={errors.email ? 'true' : 'false'}
-              placeholder="example@domain.com"
+              placeholder={t('emailPlaceholder')}
             />
             {errors.email && (
               <span className="text-red-500 text-sm mt-1" role="alert">{errors.email.message}</span>

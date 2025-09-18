@@ -106,6 +106,24 @@ const translations = {
     country: 'Country',
     phone: 'Phone Number',
     email: 'Email Address',
+
+    // Interactive placeholders
+    namePlaceholder: 'Enter your full legal name',
+    nationalIdPlaceholder: 'Enter your National ID number',
+    dateOfBirthPlaceholder: 'Select your date of birth',
+    addressPlaceholder: 'Your complete residential address',
+    cityPlaceholder: 'Which city do you live in?',
+    statePlaceholder: 'Your state or emirate',
+    countryPlaceholder: 'Your country of residence',
+    phonePlaceholder: 'Your mobile number with country code',
+    emailPlaceholder: 'Your email address for updates',
+
+    // Country dropdown translations
+    search: 'Search',
+    popularCountries: 'Popular Countries',
+    allCountries: 'All Countries',
+    noCountriesFound: 'No countries found',
+    tryDifferentSearch: 'Try a different search term',
     
     // Step 2
     familyFinancialInfo: 'Family & Finance',
@@ -343,6 +361,24 @@ const translations = {
     country: 'الدولة',
     phone: 'رقم الهاتف المتحرك',
     email: 'البريد الإلكتروني',
+
+    // Interactive placeholders
+    namePlaceholder: 'يرجى إدخال اسمكم الكامل',
+    nationalIdPlaceholder: 'أدخلوا رقم الهوية الوطنية',
+    dateOfBirthPlaceholder: 'اختاروا تاريخ ميلادكم',
+    addressPlaceholder: 'عنوانكم السكني الكامل',
+    cityPlaceholder: 'ما هي مدينة إقامتكم؟',
+    statePlaceholder: 'المحافظة أو الإمارة',
+    countryPlaceholder: 'دولة الإقامة',
+    phonePlaceholder: 'رقم هاتفكم المتحرك مع رمز الدولة',
+    emailPlaceholder: 'بريدكم الإلكتروني لتلقي التحديثات',
+
+    // Country dropdown translations
+    search: 'البحث',
+    popularCountries: 'الدول الشائعة',
+    allCountries: 'جميع الدول',
+    noCountriesFound: 'لم يتم العثور على دول',
+    tryDifferentSearch: 'جربوا مصطلح بحث آخر',
     
     // Step 2
     familyFinancialInfo: 'بيانات الأسرة',
