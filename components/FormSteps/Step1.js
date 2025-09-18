@@ -16,32 +16,10 @@ export default function Step1() {
   /**
    * Handle auto-save when user leaves a field
    * Saves data to localStorage without requiring form submission
-   * Enhanced to detect and preserve browser autofilled values
    */
   const handleFieldBlur = (fieldName, value) => {
-    if (value && value.trim() !== '') {
-      // Get all current form values to detect autofill
-      const currentFormValues = getValues();
-
-      // Check if multiple fields have been populated (likely browser autofill)
-      const filledFields = Object.entries(currentFormValues).filter(([_, val]) => val && val.toString().trim() !== '');
-
-      if (filledFields.length > 3) {
-        // Multiple fields filled - likely browser autofill, save all at once
-        const autofillData = {};
-        filledFields.forEach(([key, val]) => {
-          if (val && val.toString().trim() !== '') {
-            autofillData[key] = val.toString().trim();
-          }
-        });
-
-        // Update form data with all autofilled values to preserve them
-        updateFormData(autofillData);
-      } else {
-        // Single field update - normal user typing
-        updateFieldData(fieldName, value.trim());
-      }
-    }
+    // Always save the current field value, even if empty (to handle deletions)
+    updateFieldData(fieldName, value ? value.trim() : '');
   };
 
   /**
@@ -58,7 +36,6 @@ export default function Step1() {
     register,
     handleSubmit,
     reset,
-    getValues,
     setValue,
     formState: { errors }
   } = useForm({
@@ -92,47 +69,6 @@ export default function Step1() {
     });
   }, [formData, reset]); // Update when formData changes (localStorage loaded)
 
-  // Enhanced autofill detection
-  useEffect(() => {
-    const form = formRef.current;
-    if (!form) return;
-
-    // Detect browser autofill using input events
-    const handleAutofill = () => {
-      setTimeout(() => {
-        const currentValues = getValues();
-        const filledFields = Object.entries(currentValues).filter(([_, val]) => val && val.toString().trim() !== '');
-
-        // If multiple fields are suddenly filled, it's likely autofill
-        if (filledFields.length > 3) {
-          const autofillData = {};
-          filledFields.forEach(([key, val]) => {
-            if (val && val.toString().trim() !== '') {
-              autofillData[key] = val.toString().trim();
-            }
-          });
-
-          // Save all autofilled data immediately
-          updateFormData(autofillData);
-        }
-      }, 100); // Small delay to ensure all fields are populated
-    };
-
-    // Listen for input events on all form inputs
-    const inputs = form.querySelectorAll('input');
-    inputs.forEach(input => {
-      input.addEventListener('input', handleAutofill);
-      // Also listen for browser's auto-complete events
-      input.addEventListener('change', handleAutofill);
-    });
-
-    return () => {
-      inputs.forEach(input => {
-        input.removeEventListener('input', handleAutofill);
-        input.removeEventListener('change', handleAutofill);
-      });
-    };
-  }, [getValues, updateFormData, setValue]);
 
   // Get today's date for validation
   const today = new Date().toISOString().split('T')[0];
