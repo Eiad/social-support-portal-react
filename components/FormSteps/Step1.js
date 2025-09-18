@@ -1,7 +1,7 @@
 'use client';
 
 import { useForm } from 'react-hook-form';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useFormContext } from '@/contexts/FormContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { User, UserCircle, HelpCircle } from 'lucide-react';
@@ -10,15 +10,36 @@ import Tooltip from '../Tooltip';
 export default function Step1() {
   const { formData, updateFormData, updateFieldData, nextStep } = useFormContext();
   const { t, language } = useLanguage();
+  const formRef = useRef(null);
 
   /**
    * Handle auto-save when user leaves a field
    * Saves data to localStorage without requiring form submission
-   * This ensures user's progress is preserved if they accidentally close the browser
+   * Enhanced to detect and preserve browser autofilled values
    */
   const handleFieldBlur = (fieldName, value) => {
     if (value && value.trim() !== '') {
-      updateFieldData(fieldName, value.trim());
+      // Get all current form values to detect autofill
+      const currentFormValues = getValues();
+
+      // Check if multiple fields have been populated (likely browser autofill)
+      const filledFields = Object.entries(currentFormValues).filter(([_, val]) => val && val.toString().trim() !== '');
+
+      if (filledFields.length > 3) {
+        // Multiple fields filled - likely browser autofill, save all at once
+        const autofillData = {};
+        filledFields.forEach(([key, val]) => {
+          if (val && val.toString().trim() !== '') {
+            autofillData[key] = val.toString().trim();
+          }
+        });
+
+        // Update form data with all autofilled values to preserve them
+        updateFormData(autofillData);
+      } else {
+        // Single field update - normal user typing
+        updateFieldData(fieldName, value.trim());
+      }
     }
   };
 
@@ -36,6 +57,7 @@ export default function Step1() {
     register,
     handleSubmit,
     reset,
+    getValues,
     formState: { errors }
   } = useForm({
     defaultValues: {
@@ -68,6 +90,48 @@ export default function Step1() {
     });
   }, [formData]); // Update when formData changes (localStorage loaded)
 
+  // Enhanced autofill detection
+  useEffect(() => {
+    const form = formRef.current;
+    if (!form) return;
+
+    // Detect browser autofill using input events
+    const handleAutofill = () => {
+      setTimeout(() => {
+        const currentValues = getValues();
+        const filledFields = Object.entries(currentValues).filter(([_, val]) => val && val.toString().trim() !== '');
+
+        // If multiple fields are suddenly filled, it's likely autofill
+        if (filledFields.length > 3) {
+          const autofillData = {};
+          filledFields.forEach(([key, val]) => {
+            if (val && val.toString().trim() !== '') {
+              autofillData[key] = val.toString().trim();
+            }
+          });
+
+          // Save all autofilled data immediately
+          updateFormData(autofillData);
+        }
+      }, 100); // Small delay to ensure all fields are populated
+    };
+
+    // Listen for input events on all form inputs
+    const inputs = form.querySelectorAll('input');
+    inputs.forEach(input => {
+      input.addEventListener('input', handleAutofill);
+      // Also listen for browser's auto-complete events
+      input.addEventListener('change', handleAutofill);
+    });
+
+    return () => {
+      inputs.forEach(input => {
+        input.removeEventListener('input', handleAutofill);
+        input.removeEventListener('change', handleAutofill);
+      });
+    };
+  }, [getValues, updateFormData]);
+
   // Get today's date for validation
   const today = new Date().toISOString().split('T')[0];
 
@@ -78,7 +142,7 @@ export default function Step1() {
 
   return (
     <div className="w-full">
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <form ref={formRef} onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div className="mb-6">
           <h2 className="text-xl text-gray-900 mb-2">
             {t('personalInformation')}
