@@ -109,8 +109,7 @@ export default function AppDetailsContent() {
         <div className="max-w-4xl mx-auto px-6 py-8">
           <div className="flex justify-between items-start mb-6">
             <div className="flex-1">
-              <div className="inline-flex items-center text-gray-600 text-sm mb-3">
-                <Star className="w-4 h-4 mr-2" />
+              <div className="inline-flex items-center text-gray-600 text-sm mb-3">               
                 <span>{t('appDetailsTitle')}</span>
               </div>
               <h1 className="text-3xl font-normal text-gray-900 mb-3">
