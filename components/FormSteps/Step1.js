@@ -16,10 +16,33 @@ export default function Step1() {
   /**
    * Handle auto-save when user leaves a field
    * Saves data to localStorage without requiring form submission
+   * Enhanced to detect and preserve browser autofilled values
    */
   const handleFieldBlur = (fieldName, value) => {
-    // Always save the current field value, even if empty (to handle deletions)
+    // Always save the current field value first (to handle deletions properly)
     updateFieldData(fieldName, value ? value.trim() : '');
+
+    // Only check for autofill if the field has a value (not empty/deleted)
+    if (value && value.trim() !== '') {
+      // Get all current form values to detect autofill
+      const currentFormValues = getValues();
+
+      // Check if multiple fields have been populated (likely browser autofill)
+      const filledFields = Object.entries(currentFormValues).filter(([_, val]) => val && val.toString().trim() !== '');
+
+      if (filledFields.length > 3) {
+        // Multiple fields filled - likely browser autofill, save all at once
+        const autofillData = {};
+        filledFields.forEach(([key, val]) => {
+          if (val && val.toString().trim() !== '') {
+            autofillData[key] = val.toString().trim();
+          }
+        });
+
+        // Update form data with all autofilled values to preserve them
+        updateFormData(autofillData);
+      }
+    }
   };
 
   /**
@@ -36,6 +59,7 @@ export default function Step1() {
     register,
     handleSubmit,
     reset,
+    getValues,
     setValue,
     formState: { errors }
   } = useForm({
