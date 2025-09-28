@@ -170,9 +170,9 @@ const translations = {
     sendingToEmail: 'Sending confirmation to your email...',
     emailSentSuccess: 'Email Sent Successfully!',
     confirmationSent: 'Confirmation has been sent to your inbox',
-    applicationSubmittedSuccess: 'Application Submitted Successfully!',
-    applicationSuccessDesc: 'You will receive an email confirmation shortly with next steps and contact information.',
-    sendingTo: 'Sending to:',
+    applicationSubmittedSuccess: 'Application Submitted',
+    applicationSuccessDesc: 'Confirmation email sent.',
+    sendingTo: 'Sent to:',
 
     // Onboarding tour
     tourWelcomeTitle: 'Welcome to Social Support Portal',
@@ -425,9 +425,9 @@ const translations = {
     sendingToEmail: 'جاري إرسال التأكيد إلى بريدكم الإلكتروني...',
     emailSentSuccess: 'تم إرسال رسالة التأكيد بنجاح',
     confirmationSent: 'تم إرسال التأكيد إلى البريد الوارد',
-    applicationSubmittedSuccess: 'تم تقديم الطلب بنجاح',
-    applicationSuccessDesc: 'ستتلقون رسالة تأكيد بالبريد الإلكتروني تتضمن الخطوات التالية ومعلومات التواصل.',
-    sendingTo: 'الإرسال إلى:',
+    applicationSubmittedSuccess: 'تم تقديم الطلب',
+    applicationSuccessDesc: 'تم إرسال رسالة التأكيد.',
+    sendingTo: 'تم الإرسال إلى:',
 
     // Onboarding tour
     tourWelcomeTitle: 'مرحباً ببوابة الدعم الاجتماعي',
