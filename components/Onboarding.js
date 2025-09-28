@@ -28,7 +28,7 @@ export default function Onboarding({ onComplete, onSkip }) {
         t('tourPersonalTip2'),
         t('tourPersonalTip3')
       ],
-      estimatedTime: '2 min',
+      estimatedTime: isRTL ? '٢ دقيقة' : '2 min',
       stepNumber: 1
     },
     {
@@ -41,7 +41,7 @@ export default function Onboarding({ onComplete, onSkip }) {
         t('tourFamilyTip2'),
         t('tourFamilyTip3')
       ],
-      estimatedTime: '3 min',
+      estimatedTime: isRTL ? '٣ دقائق' : '3 min',
       stepNumber: 2
     },
     {
@@ -54,7 +54,7 @@ export default function Onboarding({ onComplete, onSkip }) {
         t('tourSituationTip2'),
         t('tourSituationTip3')
       ],
-      estimatedTime: '5 min',
+      estimatedTime: isRTL ? '٥ دقائق' : '5 min',
       stepNumber: 3
     },
     {
@@ -67,7 +67,7 @@ export default function Onboarding({ onComplete, onSkip }) {
         t('tourReviewTip2'),
         t('tourReviewTip3')
       ],
-      estimatedTime: '2 min',
+      estimatedTime: isRTL ? '٢ دقيقة' : '2 min',
       stepNumber: 4
     },
     {
@@ -263,7 +263,7 @@ export default function Onboarding({ onComplete, onSkip }) {
               {/* Tips Section */}
               {currentTourStep.tips && (
                 <div className="bg-gray-50 rounded-2xl p-4 border border-gray-100">
-                  <h4 className="font-medium text-gray-900 mb-3 text-sm">Quick Tips</h4>
+                  <h4 className="font-medium text-gray-900 mb-3 text-sm">{t('quickTips')}</h4>
                   <div className="space-y-2">
                     {currentTourStep.tips.map((tip, index) => (
                       <div key={index} className="flex items-start gap-2">
@@ -323,7 +323,15 @@ export default function Onboarding({ onComplete, onSkip }) {
           {/* Keyboard Shortcuts */}
           <div className="mt-3 text-center">
             <p className="text-xs text-gray-400">
-              Use <kbd className="px-1.5 py-0.5 bg-gray-100 rounded text-gray-600 text-xs font-mono">←</kbd> <kbd className="px-1.5 py-0.5 bg-gray-100 rounded text-gray-600 text-xs font-mono">→</kbd> to navigate • <kbd className="px-1.5 py-0.5 bg-gray-100 rounded text-gray-600 text-xs font-mono">ESC</kbd> to skip
+              {isRTL ? (
+                <>
+                  استخدم <kbd className="px-1.5 py-0.5 bg-gray-100 rounded text-gray-600 text-xs font-mono">→</kbd> <kbd className="px-1.5 py-0.5 bg-gray-100 rounded text-gray-600 text-xs font-mono">←</kbd> للتنقل • <kbd className="px-1.5 py-0.5 bg-gray-100 rounded text-gray-600 text-xs font-mono">ESC</kbd> للتخطي
+                </>
+              ) : (
+                <>
+                  Use <kbd className="px-1.5 py-0.5 bg-gray-100 rounded text-gray-600 text-xs font-mono">←</kbd> <kbd className="px-1.5 py-0.5 bg-gray-100 rounded text-gray-600 text-xs font-mono">→</kbd> to navigate • <kbd className="px-1.5 py-0.5 bg-gray-100 rounded text-gray-600 text-xs font-mono">ESC</kbd> to skip
+                </>
+              )}
             </p>
           </div>
         </div>
