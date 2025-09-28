@@ -93,7 +93,8 @@ const translations = {
     
     // Step 1
     personalInformation: 'My Info',
-    personalInformationFull: 'Personal Information',
+    personalInformationTitle: 'Personal Information',
+    personalInformationFull: 'Basic Details & ID',
     name: 'Full Name',
     nationalId: 'National ID',
     dateOfBirth: 'Date of Birth',
@@ -127,7 +128,8 @@ const translations = {
     
     // Step 2
     familyFinancialInfo: 'Family & Finance',
-    familyFinancialInfoFull: 'Family & Financial Details',
+    familyFinancialInfoTitle: 'Family & Finance',
+    familyFinancialInfoFull: 'Household & Income Details',
     maritalStatus: 'Marital Status',
     single: 'Single',
     married: 'Married',
@@ -147,7 +149,8 @@ const translations = {
     
     // Step 3
     situationDescriptions: 'My Situation',
-    situationDescriptionsFull: 'Situation Description',
+    situationDescriptionsTitle: 'Situation Description',
+    situationDescriptionsFull: 'Your Support Request',
     currentSituation: 'Current Financial Situation',
     currentSituationPlaceholder: 'Describe your current financial situation and challenges...',
     employmentCircumstances: 'Employment Circumstances',
@@ -157,7 +160,8 @@ const translations = {
     
     // Step 4
     reviewAndSubmit: 'Review & Send',
-    reviewAndSubmitFull: 'Review and Submit',
+    reviewAndSubmitTitle: 'Review & Submit',
+    reviewAndSubmitFull: 'Review & Send',
     reviewYourInfo: 'Please review your information carefully before submitting',
     readyToSubmit: 'Ready to Submit?',
     submitWarning: 'Please ensure all information is correct as changes cannot be made after submission.',
@@ -348,7 +352,8 @@ const translations = {
     
     // Step 1
     personalInformation: 'بياناتي',
-    personalInformationFull: 'البيانات الشخصية',
+    personalInformationTitle: 'البيانات الشخصية',
+    personalInformationFull: 'البيانات والهوية',
     name: 'الاسم الكامل',
     nationalId: 'رقم الهوية',
     dateOfBirth: 'تاريخ الميلاد',
@@ -382,7 +387,8 @@ const translations = {
     
     // Step 2
     familyFinancialInfo: 'بيانات الأسرة',
-    familyFinancialInfoFull: 'بيانات الأسرة والوضع المالي',
+    familyFinancialInfoTitle: 'بيانات الأسرة والوضع المالي',
+    familyFinancialInfoFull: 'الأسرة والدخل',
     maritalStatus: 'الحالة الاجتماعية',
     single: 'أعزب',
     married: 'متزوج',
@@ -402,7 +408,8 @@ const translations = {
     
     // Step 3
     situationDescriptions: 'وصف الحالة',
-    situationDescriptionsFull: 'تفاصيل الوضع والاحتياجات',
+    situationDescriptionsTitle: 'تفاصيل الوضع والاحتياجات',
+    situationDescriptionsFull: 'طلب الدعم',
     currentSituation: 'الوضع المالي الحالي',
     currentSituationPlaceholder: 'يرجى وصف وضعكم المالي الحالي والظروف التي تستدعي طلب المساعدة...',
     employmentCircumstances: 'الظروف الوظيفية',
@@ -412,7 +419,8 @@ const translations = {
     
     // Step 4
     reviewAndSubmit: 'مراجعة وإرسال',
-    reviewAndSubmitFull: 'مراجعة الطلب وتقديمه',
+    reviewAndSubmitTitle: 'مراجعة الطلب وتقديمه',
+    reviewAndSubmitFull: 'مراجعة وإرسال',
     reviewYourInfo: 'يرجى مراجعة بياناتكم بعناية قبل تقديم الطلب',
     readyToSubmit: 'هل أنتم مستعدون لتقديم الطلب؟',
     submitWarning: 'يرجى التأكد من صحة جميع البيانات المدخلة حيث لا يمكن تعديلها بعد التقديم.',

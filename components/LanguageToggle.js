@@ -75,12 +75,12 @@ export default function LanguageToggle({ currentLang, className = '', showLabel 
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 z-40"
+            className="fixed inset-0 z-[999]"
             onClick={() => setIsOpen(false)}
           />
 
           {/* Dropdown - Mobile optimized */}
-          <div className={`absolute top-full mt-2 w-40 sm:w-44 bg-white border border-gray-200 rounded-xl shadow-lg z-50 overflow-hidden animate-in slide-in-from-top-2 duration-200 ${isRTL ? 'left-0' : 'right-0'}`}>
+          <div className={`absolute top-full mt-2 w-40 sm:w-44 bg-white border border-gray-200 rounded-xl shadow-lg z-[9999] overflow-hidden animate-in slide-in-from-top-2 duration-200 ${isRTL ? 'left-0' : 'right-0'}`}>
             {languages.map((lang) => (
               <button
                 key={lang.code}

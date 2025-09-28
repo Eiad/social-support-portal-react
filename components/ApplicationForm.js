@@ -50,9 +50,9 @@ export default function ApplicationForm() {
       )}
       
       <div className="min-h-screen bg-white py-4 sm:pt-6 pb-0">
-        <div className="max-w-4xl mx-auto px-3 sm:px-4">
+        <div className="max-w-5xl mx-auto px-3 sm:px-6">
           {/* Smart Responsive Header */}
-          <header className="mb-4 sm:mb-6">
+          <header className="mb-4 sm:mb-6 relative z-[999]">
             {/* Navigation Bar */}
             <nav className="flex items-center justify-between py-3 sm:py-4 border-b border-gray-100 bg-white/80 backdrop-blur-sm">
 

@@ -2,7 +2,7 @@
 
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useState, useEffect } from 'react';
-import { User, Users, FileText, CheckSquare } from 'lucide-react';
+import { User, Users, FileText, CheckSquare, Pencil } from 'lucide-react';
 import { useFormContext } from '@/contexts/FormContext';
 
 export default function ModernProgressBar({ currentStep, totalSteps }) {
@@ -10,13 +10,17 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
   const { goToStep } = useFormContext();
   const [hoveredStep, setHoveredStep] = useState(null);
   
-  const progressPercentage = (currentStep / totalSteps) * 100;
+  // Custom progress weights based on estimated time/effort for each step
+  const stepWeights = [40, 30, 25, 5]; // Step 1: 40%, Step 2: 30%, Step 3: 25%, Step 4: 5%
+  const progressPercentage = currentStep === 1
+    ? 10 // Show 10% for Step 1 to indicate progress has started
+    : stepWeights.slice(0, currentStep - 1).reduce((sum, weight) => sum + weight, 0);
 
   const steps = [
-    { id: 1, name: t('personalInformation'), fullName: t('personalInformationFull'), icon: User },
-    { id: 2, name: t('familyFinancialInfo'), fullName: t('familyFinancialInfoFull'), icon: Users },
-    { id: 3, name: t('situationDescriptions'), fullName: t('situationDescriptionsFull'), icon: FileText },
-    { id: 4, name: t('reviewAndSubmit'), fullName: t('reviewAndSubmitFull'), icon: CheckSquare }
+    { id: 1, name: t('personalInformation'), title: t('personalInformationTitle'), fullName: t('personalInformationFull'), icon: User },
+    { id: 2, name: t('familyFinancialInfo'), title: t('familyFinancialInfoTitle'), fullName: t('familyFinancialInfoFull'), icon: Users },
+    { id: 3, name: t('situationDescriptions'), title: t('situationDescriptionsTitle'), fullName: t('situationDescriptionsFull'), icon: FileText },
+    { id: 4, name: t('reviewAndSubmit'), title: t('reviewAndSubmitTitle'), fullName: t('reviewAndSubmitFull'), icon: CheckSquare }
   ];
 
   const getStepStatus = (stepId) => {
@@ -26,126 +30,154 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
   };
 
   return (
-    <div className="mb-4 sm:mb-6">
-      {/* Minimal Progress Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3 mb-3 sm:mb-4 p-2 sm:p-3 bg-gray-50/30 rounded-lg">
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-0.5">
-            <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-gray-700 to-black animate-pulse"></div>
-            <h2 className="text-sm sm:text-base font-semibold text-gray-800 truncate">
-              {t('step')} {currentStep} {t('of')} {totalSteps}
-            </h2>
+    <div className="mb-4 sm:mb-6 relative z-10">
+      {/* Desktop: Single-Line Step Indicator */}
+      <div className="hidden md:block bg-white border border-gray-200 rounded-xl p-4 shadow-sm relative z-10">
+        <div className="flex items-center justify-between gap-3">
+
+          {/* Current Step Info */}
+          <div className="flex items-center gap-3 min-w-0">
+            <div className={`
+              w-10 h-10 rounded-xl flex items-center justify-center
+              bg-gradient-to-br from-gray-700 via-gray-800 to-black text-white shadow-lg
+            `}>
+              <span className="text-sm font-bold">{currentStep}</span>
+            </div>
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center gap-2 mb-0.5">
+                <h2 className="text-sm font-semibold text-gray-900 truncate">
+                  {t('step')} {currentStep} {t('of')} {totalSteps}
+                </h2>
+                <div className="w-1 h-1 rounded-full bg-gray-400"></div>
+                <span className="text-sm text-gray-600 font-medium">
+                  {Math.round(progressPercentage)}%
+                </span>
+              </div>
+              <p className="text-xs text-gray-600 font-medium truncate">
+                {steps.find(s => s.id === currentStep)?.title}: {steps.find(s => s.id === currentStep)?.fullName}
+              </p>
+            </div>
           </div>
-          <p className="text-xs sm:text-sm text-gray-600 font-medium truncate">
-            {steps.find(s => s.id === currentStep)?.fullName}
-          </p>
-        </div>
 
-      </div>
-
-      {/* Clean Desktop Step Indicator */}
-      <div className="hidden md:block p-4 bg-gray-50/30 rounded-lg">
-        <div className="relative">
-          {/* Enhanced Background Line */}
-          <div className="absolute top-8 left-0 w-full h-1 bg-gray-100 rounded-full" />
-
-          {/* Animated Progress Line */}
-          <div
-            className={`absolute top-8 h-1 rounded-full transition-all duration-1000 ease-out shadow-sm ${
-              isRTL
-                ? 'right-0 bg-gradient-to-l from-gray-700 via-gray-800 to-black'
-                : 'left-0 bg-gradient-to-r from-gray-700 via-gray-800 to-black'
-            }`}
-            style={{
-              width: `${((currentStep - 1) / (totalSteps - 1)) * 100}%`,
-              ...(isRTL && { transformOrigin: 'right' })
-            }}
-          />
-
-          {/* Steps with enhanced design */}
-          <div className="relative flex justify-between">
-            {steps.map((step) => {
+          {/* Horizontal Progress Steps */}
+          <div className="flex items-center gap-3">
+            {steps.map((step, index) => {
               const status = getStepStatus(step.id);
               const Icon = step.icon;
               return (
-                <div
-                  key={step.id}
-                  className={`flex flex-col items-center group ${
-                    step.id < currentStep ? 'cursor-pointer' : 'cursor-default'
-                  }`}
-                  onMouseEnter={() => setHoveredStep(step.id)}
-                  onMouseLeave={() => setHoveredStep(null)}
-                  onClick={() => {
-                    if (step.id < currentStep) {
-                      goToStep(step.id);
-                    }
-                  }}
-                >
-                  {/* Enhanced Circle with Icons */}
-                  <div className={`
-                    w-12 h-12 rounded-xl flex items-center justify-center
-                    transition-all duration-300 ring-2 ring-offset-2
-                    ${status === 'completed'
-                      ? 'bg-gradient-to-br from-gray-700 via-gray-800 to-black text-white ring-gray-200 shadow-lg'
-                      : status === 'current'
-                      ? 'bg-gradient-to-br from-gray-700 via-gray-800 to-black text-white ring-gray-300 shadow-xl scale-105'
-                      : 'bg-white text-gray-400 ring-gray-200 border border-gray-200'
-                    }
-                    ${step.id < currentStep && hoveredStep === step.id
-                      ? 'transform scale-110 shadow-xl ring-gray-400'
-                      : ''
-                    }
-                  `}>
+                <div key={step.id} className="flex items-center">
+
+                  {/* Step Circle */}
+                  <div
+                    className={`
+                      w-9 h-9 rounded-lg flex items-center justify-center
+                      transition-all duration-300 group relative z-[9998]
+                      ${step.id < currentStep ? 'cursor-pointer' : 'cursor-default'}
+                      ${status === 'completed'
+                        ? 'bg-gradient-to-br from-gray-700 via-gray-800 to-black text-white shadow-md hover:shadow-lg hover:scale-105'
+                        : status === 'current'
+                        ? 'bg-gradient-to-br from-gray-700 via-gray-800 to-black text-white shadow-lg ring-2 ring-gray-300'
+                        : 'bg-gray-100 text-gray-400 border border-gray-200'
+                      }
+                    `}
+                    onClick={() => {
+                      if (step.id < currentStep) {
+                        goToStep(step.id);
+                      }
+                    }}
+                    onMouseEnter={() => setHoveredStep(step.id)}
+                    onMouseLeave={() => setHoveredStep(null)}
+                  >
                     {status === 'completed' ? (
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
-                      </svg>
-                    ) : status === 'current' ? (
-                      <Icon size={20} className="text-white" />
+                      <>
+                        <svg className="w-5 h-5 group-hover:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <Pencil size={16} className="hidden group-hover:block text-white" />
+                      </>
                     ) : (
-                      <Icon size={18} className="text-gray-400" />
+                      <Icon size={18} className={`${status === 'current' ? 'text-white' : 'text-gray-400'}`} />
                     )}
-                  </div>
 
-                  {/* Enhanced Label */}
-                  <div className={`
-                    mt-3 text-center max-w-32 transition-all duration-200 relative
-                    ${status === 'current' ? 'text-gray-900 font-semibold' : 'text-gray-600 font-medium'}
-                    ${hoveredStep === step.id && step.id < currentStep ? 'text-gray-900 font-semibold' : ''}
-                  `}>
-                    <div className="text-sm leading-tight">{step.name}</div>
-
-                    {/* Enhanced Tooltip */}
-                    {hoveredStep === step.id && step.id < currentStep && (
-                      <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 z-20 animate-fadeIn">
-                        <div className="bg-gray-900 text-white text-xs px-3 py-2 rounded-lg whitespace-nowrap shadow-xl border border-gray-700">
-                          {t('clickToGoBack')}
-                          <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gray-900 rotate-45 border-l border-t border-gray-700"></div>
+                    {/* Tooltip */}
+                    {hoveredStep === step.id && (
+                      <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 z-[99999] animate-fadeIn" style={{zIndex: 99999}}>
+                        <div className="bg-gray-900 text-white text-xs px-3 py-2 rounded-lg whitespace-nowrap shadow-xl">
+                          {step.id < currentStep ? `${t('edit')} ${t('step')} ${step.id}: ${step.name}` : `${step.title}: ${step.fullName}`}
+                          <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gray-900 rotate-45"></div>
                         </div>
                       </div>
                     )}
                   </div>
+
+                  {/* Connection Line */}
+                  {index < steps.length - 1 && (
+                    <div className={`
+                      w-4 h-0.5 mx-1 transition-all duration-500
+                      ${status === 'completed'
+                        ? 'bg-gradient-to-r from-gray-700 to-gray-500'
+                        : 'bg-gray-200'
+                      }
+                    `} />
+                  )}
                 </div>
               );
             })}
           </div>
+
         </div>
+
+        {/* Animated Progress Bar */}
+        <div className="mt-4 relative">
+          <div className="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
+            <div
+              className={`h-full rounded-full transition-all duration-1000 ease-out relative overflow-hidden ${
+                isRTL
+                  ? 'bg-gradient-to-l from-gray-700 via-gray-800 to-black ml-auto'
+                  : 'bg-gradient-to-r from-gray-700 via-gray-800 to-black'
+              }`}
+              style={{ width: `${progressPercentage}%` }}
+            >
+              {/* Subtle flowing gradient animation */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shimmer_3s_ease-in-out_infinite]"></div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      {/* Clean Mobile/Tablet Step Indicator */}
-      <div className="md:hidden bg-gray-50/30 rounded-lg p-3">
+      {/* Mobile: Compact Vertical Step Indicator */}
+      <div className="md:hidden bg-white border border-gray-200 rounded-xl p-3 shadow-sm relative z-10">
 
-        {/* Step dots with labels */}
-        <div className="flex items-center justify-between mb-3">
+        {/* Current Step Header */}
+        <div className="flex items-center gap-3 mb-3">
+          <div className={`
+            w-8 h-8 rounded-lg flex items-center justify-center
+            bg-gradient-to-br from-gray-700 via-gray-800 to-black text-white shadow-lg
+          `}>
+            <span className="text-xs font-bold">{currentStep}</span>
+          </div>
+          <div className="min-w-0 flex-1">
+            <h2 className="text-sm font-semibold text-gray-900 truncate mb-1">
+              {t('step')} {currentStep} {t('of')} {totalSteps} • {Math.round(progressPercentage)}%
+            </h2>
+            <p className="text-xs text-gray-600 font-medium truncate">
+              {steps.find(s => s.id === currentStep)?.title}: {steps.find(s => s.id === currentStep)?.fullName}
+            </p>
+          </div>
+        </div>
+
+        {/* Horizontal Step Dots */}
+        <div className="flex items-center mb-3">
           {steps.map((step, index) => {
             const status = getStepStatus(step.id);
             const Icon = step.icon;
             return (
-              <div key={step.id} className="flex flex-col items-center flex-1 relative">
+              <div key={step.id} className="flex items-center">
 
                 {/* Step Circle */}
                 <div className={`
-                  w-7 h-7 rounded-lg flex items-center justify-center transition-all duration-300 mb-1.5
+                  w-7 h-7 rounded-lg flex items-center justify-center transition-all duration-300
                   ${status === 'completed'
                     ? 'bg-gradient-to-br from-gray-700 to-black text-white'
                     : status === 'current'
@@ -162,49 +194,42 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
                   )}
                 </div>
 
-                {/* Step Label */}
-                <div className={`
-                  text-center transition-all duration-200
-                  ${status === 'current' ? 'text-gray-900 font-semibold' : 'text-gray-500 font-medium'}
-                `}>
-                  <div className="text-xs leading-tight">{step.name}</div>
-                </div>
-
                 {/* Connection line to next step */}
                 {index < steps.length - 1 && (
                   <div className={`
-                    absolute top-3.5 w-full h-0.5 -translate-y-1/2
-                    ${status === 'completed' ?
-                      (isRTL ? 'bg-gradient-to-l from-gray-700 to-gray-400' : 'bg-gradient-to-r from-gray-700 to-gray-400')
+                    w-full h-0.5 transition-all duration-500 mx-2
+                    ${status === 'completed'
+                      ? (isRTL ? 'bg-gradient-to-l from-gray-700 to-gray-500' : 'bg-gradient-to-r from-gray-700 to-gray-500')
                       : 'bg-gray-200'}
-                  `} style={{
-                    [isRTL ? 'right' : 'left']: '50%',
-                    width: 'calc(100% - 1.75rem)',
-                    [isRTL ? 'marginRight' : 'marginLeft']: '0.875rem'
-                  }} />
+                  `} style={{ flex: '1 1 0%' }} />
                 )}
               </div>
             );
           })}
         </div>
 
-        {/* Enhanced Progress Bar */}
+        {/* Progress Bar */}
         <div className="relative">
-          <div className="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
+          <div className="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
             <div
-              className={`h-full rounded-full transition-all duration-1000 ease-out shadow-sm relative overflow-hidden ${
+              className={`h-full rounded-full transition-all duration-1000 ease-out relative overflow-hidden ${
                 isRTL
-                  ? 'bg-gradient-to-l from-gray-700 via-gray-800 to-black ml-auto'
+                  ? 'bg-gradient-to-l from-gray-700 via-gray-800 to-black'
                   : 'bg-gradient-to-r from-gray-700 via-gray-800 to-black'
               }`}
-              style={{ width: `${progressPercentage}%` }}
+              style={{
+                width: `${progressPercentage}%`,
+                ...(isRTL && { marginLeft: 'auto', marginRight: 0 })
+              }}
             >
-              {/* Animated shine effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse"></div>
+              {/* Subtle flowing gradient animation */}
+              <div className={`absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shimmer_3s_ease-in-out_infinite] ${
+                isRTL ? 'bg-gradient-to-l' : 'bg-gradient-to-r'
+              }`}></div>
             </div>
           </div>
-
         </div>
+
       </div>
     </div>
   );
