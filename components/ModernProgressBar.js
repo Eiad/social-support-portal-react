@@ -90,10 +90,14 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
                   >
                     {status === 'completed' ? (
                       <>
-                        <svg className="w-5 h-5 group-hover:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
-                        </svg>
+                        <Icon size={18} className="text-white group-hover:hidden" />
                         <Pencil size={16} className="hidden group-hover:block text-white" />
+                        {/* Completion badge */}
+                        <div className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-green-500 rounded-full border-2 border-white group-hover:hidden">
+                          <svg className="w-full h-full text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
+                        </div>
                       </>
                     ) : (
                       <Icon size={18} className={`${status === 'current' ? 'text-white' : 'text-gray-400'}`} />
@@ -177,7 +181,7 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
 
                 {/* Step Circle */}
                 <div className={`
-                  w-7 h-7 rounded-lg flex items-center justify-center transition-all duration-300
+                  w-7 h-7 rounded-lg flex items-center justify-center transition-all duration-300 relative
                   ${status === 'completed'
                     ? 'bg-gradient-to-br from-gray-700 to-black text-white'
                     : status === 'current'
@@ -185,12 +189,14 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
                     : 'bg-gray-100 text-gray-400'
                   }
                 `}>
-                  {status === 'completed' ? (
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
-                    </svg>
-                  ) : (
-                    <Icon size={13} />
+                  <Icon size={13} />
+                  {/* Completion badge for mobile */}
+                  {status === 'completed' && (
+                    <div className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-green-500 rounded-full border border-white">
+                      <svg className="w-full h-full text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
                   )}
                 </div>
 
