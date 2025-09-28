@@ -90,19 +90,19 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
                   >
                     {status === 'completed' ? (
                       <div className="relative w-full h-full [transform-style:preserve-3d] transition-transform duration-500 group-hover:[transform:rotateY(180deg)]">
-                        {/* Front side - Original icon */}
+                        {/* Front side - Original icon with badge */}
                         <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] flex items-center justify-center">
                           <Icon size={18} className="text-white" />
+                          {/* Completion badge on front side */}
+                          <div className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-green-500 rounded-full border-2 border-white">
+                            <svg className="w-full h-full text-white" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                          </div>
                         </div>
-                        {/* Back side - Edit icon */}
+                        {/* Back side - Edit icon only */}
                         <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] flex items-center justify-center">
                           <Pencil size={16} className="text-white" />
-                        </div>
-                        {/* Completion badge */}
-                        <div className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-green-500 rounded-full border-2 border-white group-hover:hidden">
-                          <svg className="w-full h-full text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                          </svg>
                         </div>
                       </div>
                     ) : (
