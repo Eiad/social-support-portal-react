@@ -28,7 +28,7 @@ export default function Onboarding({ onComplete, onSkip }) {
         t('tourPersonalTip2'),
         t('tourPersonalTip3')
       ],
-      estimatedTime: isRTL ? '٢ دقيقة' : '2 min',
+      estimatedTime: isRTL ? '٤ دقائق' : '4 min',
       stepNumber: 1
     },
     {
@@ -67,7 +67,7 @@ export default function Onboarding({ onComplete, onSkip }) {
         t('tourReviewTip2'),
         t('tourReviewTip3')
       ],
-      estimatedTime: isRTL ? '٢ دقيقة' : '2 min',
+      estimatedTime: isRTL ? '٣ دقائق' : '3 min',
       stepNumber: 4
     },
     {
