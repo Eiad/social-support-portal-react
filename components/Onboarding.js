@@ -232,7 +232,7 @@ export default function Onboarding({ onComplete, onSkip }) {
               {/* Step Header with Background Icon */}
               <div className="relative">
                 {/* Large Background Icon */}
-                <div className="absolute top-0 right-0 w-24 h-24 flex items-center justify-center text-gray-200 opacity-[0.7] pointer-events-none">
+                <div className={`absolute top-0 ${isRTL ? 'left-0' : 'right-0'} w-24 h-24 flex items-center justify-center text-gray-200 opacity-[0.7] pointer-events-none`}>
                   <div className="w-20 h-20">
                     {React.cloneElement(currentTourStep.icon, {
                       className: "w-full h-full",
