@@ -243,12 +243,12 @@ export default function Onboarding({ onComplete, onSkip }) {
 
                 {/* Clean Header Content */}
                 <div className="relative z-10">
-                  <div className="flex items-center gap-2 mb-2">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
                     <h3 className="text-xl font-medium text-gray-900">
                       {currentTourStep.title}
                     </h3>
                     {currentTourStep.estimatedTime && (
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded-full text-xs text-gray-600 font-medium">
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-gray-100 rounded-full text-xs text-gray-600 font-medium w-fit">
                         <Clock size={10} />
                         {currentTourStep.estimatedTime}
                       </span>
@@ -283,7 +283,7 @@ export default function Onboarding({ onComplete, onSkip }) {
             {currentStep > 0 && (
               <button
                 onClick={handlePrevious}
-                className="flex-1 px-4 py-2.5 text-gray-700 font-medium rounded-xl border border-gray-200 hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 flex items-center justify-center gap-2"
+                className="w-[35%] px-4 py-2.5 text-gray-700 font-medium rounded-xl border border-gray-200 hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 flex items-center justify-center gap-2"
                 disabled={isAnimating}
               >
                 <PrevIcon size={16} />

@@ -186,7 +186,7 @@ const translations = {
     tourPersonalTip1: 'Have your National ID ready',
     tourPersonalTip2: 'Ensure your contact info is up-to-date',
     tourPersonalTip3: 'Double-check your email address',
-    tourFamilyTitle: 'Family & Financial Details',
+    tourFamilyTitle: 'Family & Financials',
     tourFamilyDesc: 'Next, we\'ll ask about your family situation and financial status to better understand your needs.',
     tourFamilyTip1: 'Know your monthly income',
     tourFamilyTip2: 'Count all dependents',
