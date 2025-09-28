@@ -311,6 +311,11 @@ export default function Step1() {
             <label htmlFor="country" className="form-label">
               {t('country')} *
             </label>
+            {/* Hidden input for react-hook-form validation */}
+            <input
+              type="hidden"
+              {...register('country', { required: t('required') })}
+            />
             <SearchableCountryDropdown
               value={formData.country}
               onChange={(countryCode) => {

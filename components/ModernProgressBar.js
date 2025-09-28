@@ -113,9 +113,9 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
                   {/* Connection Line */}
                   {index < steps.length - 1 && (
                     <div className={`
-                      w-4 h-0.5 mx-1 transition-all duration-500
+                      flex-1 h-0.5 mx-3 transition-all duration-500
                       ${status === 'completed'
-                        ? 'bg-gradient-to-r from-gray-700 to-gray-500'
+                        ? (isRTL ? 'bg-gradient-to-l from-gray-700 to-gray-500' : 'bg-gradient-to-r from-gray-700 to-gray-500')
                         : 'bg-gray-200'
                       }
                     `} />
@@ -197,11 +197,11 @@ export default function ModernProgressBar({ currentStep, totalSteps }) {
                 {/* Connection line to next step */}
                 {index < steps.length - 1 && (
                   <div className={`
-                    w-full h-0.5 transition-all duration-500 mx-2
+                    flex-1 h-0.5 transition-all duration-500 mx-3
                     ${status === 'completed'
                       ? (isRTL ? 'bg-gradient-to-l from-gray-700 to-gray-500' : 'bg-gradient-to-r from-gray-700 to-gray-500')
                       : 'bg-gray-200'}
-                  `} style={{ flex: '1 1 0%' }} />
+                  `} />
                 )}
               </div>
             );
