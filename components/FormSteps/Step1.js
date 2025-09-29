@@ -268,6 +268,33 @@ export default function Step1() {
             )}
           </div>
 
+          {/* Country */}
+          <div>
+            <label htmlFor="country" className="form-label">
+              {t('country')} *
+            </label>
+            {/* Hidden input for react-hook-form validation */}
+            <input
+              type="hidden"
+              {...register('country', { required: t('required') })}
+            />
+            <SearchableCountryDropdown
+              value={formData.country}
+              onChange={(countryCode) => {
+                updateFieldData('country', countryCode);
+                // Also update the form register to keep react-hook-form in sync
+                setValue('country', countryCode, { shouldValidate: true });
+              }}
+              onBlur={() => handleFieldBlur('country', formData.country)}
+              error={errors.country}
+              placeholder={t('countryPlaceholder')}
+              aria-invalid={errors.country ? 'true' : 'false'}
+            />
+            {errors.country && (
+              <span className="text-red-500 text-sm mt-1" role="alert">{errors.country.message}</span>
+            )}
+          </div>
+
           {/* City */}
           <div>
             <label htmlFor="city" className="form-label">
@@ -303,33 +330,6 @@ export default function Step1() {
             />
             {errors.state && (
               <span className="text-red-500 text-sm mt-1" role="alert">{errors.state.message}</span>
-            )}
-          </div>
-
-          {/* Country */}
-          <div>
-            <label htmlFor="country" className="form-label">
-              {t('country')} *
-            </label>
-            {/* Hidden input for react-hook-form validation */}
-            <input
-              type="hidden"
-              {...register('country', { required: t('required') })}
-            />
-            <SearchableCountryDropdown
-              value={formData.country}
-              onChange={(countryCode) => {
-                updateFieldData('country', countryCode);
-                // Also update the form register to keep react-hook-form in sync
-                setValue('country', countryCode, { shouldValidate: true });
-              }}
-              onBlur={() => handleFieldBlur('country', formData.country)}
-              error={errors.country}
-              placeholder={t('countryPlaceholder')}
-              aria-invalid={errors.country ? 'true' : 'false'}
-            />
-            {errors.country && (
-              <span className="text-red-500 text-sm mt-1" role="alert">{errors.country.message}</span>
             )}
           </div>
 
