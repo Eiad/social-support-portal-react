@@ -229,47 +229,73 @@ social-support-portal/
 │   ├── globals.css                  # Tailwind CSS with custom styles
 │   ├── layout.js                    # Root layout with providers
 │   ├── page.js                      # Root redirect page
+│   ├── favicon.ico                  # Application favicon
 │   └── sitemap.js                   # Dynamic sitemap generation
 ├── components/
 │   ├── FormSteps/                   # Multi-step form components
-│   │   ├── Step1.js                 # Personal information
+│   │   ├── Step1.js                 # Personal information with country selector
 │   │   ├── Step2.js                 # Family & financial data
 │   │   ├── Step3.js                 # Situation descriptions (AI-enabled)
-│   │   └── Step4.js                 # Review & submit
+│   │   └── Step4.js                 # Review & submit with email confirmation
 │   ├── icons/                       # Custom icon components
-│   │   └── FlagIcon.js              # Language flag icons
+│   │   └── FlagIcons.js             # Country flag SVG icons
 │   ├── AIAssistModal.js             # AI writing assistance modal
 │   ├── ApplicationForm.js           # Main form wrapper component
 │   ├── CelebrationEffects.js        # Confetti animations
-│   ├── EmailSendingOverlay.js       # Email confirmation flow
+│   ├── EmailSendingOverlay.js       # Email confirmation flow UI
 │   ├── ErrorBoundary.js             # Global error boundary
 │   ├── FAQ.js                       # Frequently asked questions
-│   ├── Footer.js                    # Application footer
+│   ├── Footer.js                    # Application footer with contact info
 │   ├── FormErrorBoundary.js         # Form-specific error boundary
 │   ├── GuestAuthInitializer.js      # Guest authentication setup
-│   ├── LanguageToggle.js            # Language switching component
-│   ├── ModernProgressBar.js         # Progress tracking component
-│   ├── Onboarding.js                # Interactive user tour
+│   ├── LanguageSwitchLoader.js*     # Language switching animation overlay
+│   ├── LanguageToggle.js            # Language switching dropdown
+│   ├── LogoIcon.js*                 # Reusable logo component
+│   ├── ModernProgressBar.js         # Enhanced progress tracking
+│   ├── Onboarding.js                # Interactive 6-step user tour
 │   ├── ProgressBar.js               # Legacy progress component
-│   ├── Skeleton.js                  # Loading skeleton components
-│   ├── Tooltip.js                   # Tooltip component
+│   ├── SearchableCountryDropdown.js # Country selection with search
+│   ├── Skeleton.js                  # Loading skeleton screens
+│   ├── Tooltip.js                   # Tooltip component with animations
 │   └── ZoomableImage.js             # Image zoom functionality
 ├── contexts/
-│   ├── FormContext.js               # Form state and navigation
-│   └── LanguageContext.js           # i18n with full translations
+│   ├── FormContext.js               # Form state, validation & navigation
+│   └── LanguageContext.js           # Complete i18n translations (EN/AR)
+├── data/
+│   └── countries.js                 # Country list with codes and flags
 ├── lib/
 │   ├── apiClient.js                 # Axios instance with interceptors
 │   └── guestAuth.js                 # Guest authentication utilities
-├── __tests__/                       # Test files
+├── __tests__/                       # Comprehensive test suite
 │   ├── api/                         # API route tests
-│   ├── components/                  # Component tests
-│   │   └── FormSteps/               # Form step component tests
+│   │   └── submit-application.test.js
+│   ├── components/                  # Component unit tests
+│   │   ├── FormSteps/               # Form step component tests
+│   │   │   └── Step1.test.js
+│   │   ├── AIAssistModal.test.js
+│   │   ├── EmailSendingOverlay.test.js
+│   │   ├── Onboarding.test.js
+│   │   └── ProgressBar.test.js
 │   └── contexts/                    # Context tests
-├── public/                          # Static assets and icons
-│   └── assets/                      # Application assets
+│       └── FormContext.test.js
+├── public/                          # Static assets
+│   ├── assets/
+│   │   └── project-structure.png    # Architecture diagram
+│   ├── manifest.json                # PWA manifest
+│   ├── robots.txt                   # SEO robots file
+│   └── *.svg                        # Various SVG assets
+├── .env                             # Environment variables (API keys)
+├── .gitignore                       # Git ignore rules
+├── eslint.config.mjs                # ESLint configuration
 ├── jest.config.js                   # Jest testing configuration
-├── jest.setup.js                    # Jest setup file
-└── jsconfig.js                      # JavaScript configuration
+├── jest.setup.js                    # Jest setup and mocks
+├── jsconfig.json                    # JavaScript path configuration
+├── next.config.mjs                  # Next.js configuration
+├── package.json                     # Dependencies and scripts
+├── postcss.config.mjs               # PostCSS configuration
+└── README.md                        # Project documentation
+
+* Components marked with asterisk are newly added for language switching animation
 ```
 
 ### State Management Strategy
