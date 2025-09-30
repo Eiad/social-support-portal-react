@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { ChevronDown, Search, X } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { countries, searchCountries, getPopularCountries } from '@/data/countries';
+import FlagIcon from '@/components/icons/FlagIcons';
 
 export default function SearchableCountryDropdown({
   value,
@@ -141,9 +142,10 @@ export default function SearchableCountryDropdown({
 
   // Get display countries (popular first, then filtered results)
   const popularCountries = getPopularCountries();
+  const allOtherCountries = countries.filter(c => !c.popular);
   const displayCountries = searchQuery
     ? filteredCountries
-    : [...popularCountries, ...countries.filter(c => !c.popular)];
+    : [...popularCountries, ...allOtherCountries];
 
   return (
     <div ref={dropdownRef} className="relative">
@@ -164,9 +166,7 @@ export default function SearchableCountryDropdown({
         <div className="flex items-center gap-2 flex-1 min-w-0">
           {selectedCountry ? (
             <>
-              <span className="text-lg leading-none" role="img" aria-label={selectedCountry.name}>
-                {selectedCountry.flag}
-              </span>
+              <FlagIcon countryCode={selectedCountry.code} size={20} className="flex-shrink-0" />
               <span className="truncate text-gray-900 font-medium">
                 {displayName}
               </span>
@@ -240,39 +240,44 @@ export default function SearchableCountryDropdown({
                   const isSelected = country.code === value;
                   const countryName = language === 'ar' ? country.nameAr : country.name;
 
+                  // Show "All Countries" divider after popular countries
+                  const showAllCountriesDivider = !searchQuery &&
+                                                  index === popularCountries.length &&
+                                                  popularCountries.length > 0 &&
+                                                  allOtherCountries.length > 0;
+
                   return (
-                    <li
-                      key={country.code}
-                      onClick={() => handleCountrySelect(country)}
-                      className={`px-3 py-2 cursor-pointer flex items-center gap-3 transition-colors duration-150 ${
-                        isHighlighted
-                          ? 'bg-blue-50 text-blue-900'
-                          : isSelected
-                          ? 'bg-gray-100 text-gray-900'
-                          : 'text-gray-700 hover:bg-gray-50'
-                      }`}
-                      role="option"
-                      aria-selected={isSelected}
-                    >
-                      <span className="text-lg leading-none flex-shrink-0" role="img" aria-label={country.name}>
-                        {country.flag}
-                      </span>
-                      <span className="truncate font-medium">
-                        {countryName}
-                      </span>
-                      {searchQuery && (
-                        <span className="text-xs text-gray-500 ml-auto flex-shrink-0">
-                          {country.code}
-                        </span>
+                    <React.Fragment key={country.code}>
+                      {showAllCountriesDivider && (
+                        <li className="px-3 py-2 text-xs font-medium text-gray-500 uppercase tracking-wide bg-gray-50 border-t border-gray-100">
+                          {t('allCountries') || 'All Countries'}
+                        </li>
                       )}
-                    </li>
+                      <li
+                        onClick={() => handleCountrySelect(country)}
+                        className={`px-3 py-2 cursor-pointer flex items-center gap-3 transition-colors duration-150 ${
+                          isHighlighted
+                            ? 'bg-blue-50 text-blue-900'
+                            : isSelected
+                            ? 'bg-gray-100 text-gray-900'
+                            : 'text-gray-700 hover:bg-gray-50'
+                        }`}
+                        role="option"
+                        aria-selected={isSelected}
+                      >
+                        <FlagIcon countryCode={country.code} size={20} className="flex-shrink-0" />
+                        <span className="truncate font-medium">
+                          {countryName}
+                        </span>
+                        {searchQuery && (
+                          <span className="text-xs text-gray-500 ml-auto flex-shrink-0">
+                            {country.code}
+                          </span>
+                        )}
+                      </li>
+                    </React.Fragment>
                   );
                 })}
-                {!searchQuery && popularCountries.length > 0 && (
-                  <li className="px-3 py-2 text-xs font-medium text-gray-500 uppercase tracking-wide bg-gray-50 border-t border-gray-100">
-                    {t('allCountries') || 'All Countries'}
-                  </li>
-                )}
               </ul>
             ) : (
               <div className="px-3 py-6 text-center text-gray-500">
